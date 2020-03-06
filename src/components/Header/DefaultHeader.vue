@@ -7,11 +7,15 @@
       <div class="navWrap">
          <div class="guideTop" :class="{ layout : !isDefault }">
             <div class="searchBox" v-if="isDefault">
-               <input type="text" class="form-control" placeholder="搜尋">
+               <input 
+                  type="text" 
+                  class="form-control" 
+                  placeholder="搜尋"
+                  v-model="keyword" >
                <i class="far fa-search"></i>
             </div>
-            <router-link to="/">登入/註冊</router-link>
-            <router-link to="/siteMap">網站地圖</router-link>
+            <router-link to="/" :class="hoverClass">登入/註冊</router-link>
+            <router-link to="/siteMap" :class="hoverClass">網站地圖</router-link>
          </div>
          <div class="guideBottom" v-if="isDefault">
             <DropDown 
@@ -38,8 +42,18 @@ export default {
          default: true
       }
    },
+   data:() => ({
+      keyword: ''
+   }),
    computed: {
       ...mapGetters({ navList: 'navList' }),
+      hoverClass() {
+         let isHomeName = this.$route.name === 'home';
+         return {
+            default: isHomeName,
+            layout: !isHomeName
+         }
+      }
    },
    components: {
       DropDown

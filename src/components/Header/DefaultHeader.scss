@@ -24,13 +24,13 @@
 .guideTop {
    @extend %align;
    margin-bottom: 27px;
+   >* {
+      @include elGutter(margin-right, 20px);
+   }
    &.layout {
       >a {
          color: #fff;
       }
-   }
-   >* {
-      @include elGutter(margin-right, 20px);
    }
    >.searchBox {
       position: relative;
@@ -57,6 +57,16 @@
    }
    >a {
       color: map-get($fontColor, primary);
+      &.default {
+         &:hover {
+            color: #fff;
+         }
+      }
+      &.layout {
+         &:hover {
+            color: orange;
+         }
+      }
    }
 }
 

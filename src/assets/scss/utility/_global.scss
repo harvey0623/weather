@@ -6,14 +6,15 @@ $radius: (
 
 //字體顏色
 $fontColor: (
-	primary: #256298,
+   primary: #256298,
+   menu: #c1edff,
 );
 
 //元素背景色(不包含按鈕)
 $elBgColor: (
-   tip: #FF9100,
-   menu: #D6EBFF,
-   site: #64A0DA
+   menu: #c1edff,
+   hover: #256298,
+   title: #ddd
 );
 
 //按鈕背景色
@@ -25,8 +26,8 @@ $btnBgColor:(
 
 //邊框顏色
 $borderColor: (
-   menu: #64A0DA,
-   search: #2F7AC1
+   primary: #256298,
+   title: #ddd
 );
 
 //======extand

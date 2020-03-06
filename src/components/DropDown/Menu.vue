@@ -4,10 +4,10 @@
    :text="dropdownText" 
    toggle-tag="div"
    :ref="id"
-   variant="dropdown"
-   :class="{ open: isEnter }"
-   @mouseenter.native="showHandler"
-   @mouseleave.native="leaveHandler">
+   :class="['dropDownOuter', { open: isOpen }]"
+   @show="isOpen = true"
+   @hide="isOpen = false"
+   variant="menu-dropdown">
    <b-dropdown-item
       v-for="item in children"
       :key="item.name"
@@ -34,22 +34,32 @@ export default {
       path: {
          type: String,
          required: true
+      },
+      isHover: {
+         type: Boolean,
+         default: false
       }
    },
    data: () => ({
-      isEnter: false
+      isOpen: false
    }),
    methods: {
-      showHandler(evt) {
-         this.$refs[this.id].show(true);
-         this.isEnter = true;
-      },
-      leaveHandler() {
-         this.$refs[this.id].hide();
-         this.isEnter = false;
-      }
+      
    },
 }
 </script>
 
-<style lang="scss"></style>
+<style lang="scss">
+.dropDownOuter {
+   &.open,
+   &:hover {
+      background-color: map-get($elBgColor, hover);
+      >.dropdown-toggle {
+         color: map-get($fontColor, menu);
+      }
+   }
+   >.btn-menu-dropdown {
+      line-height: 40px;
+   }
+}
+</style>

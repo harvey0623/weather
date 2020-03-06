@@ -20,7 +20,7 @@ const routes = [
 		component: SiteMap,
 		meta: {
 			navName: '網站地圖',
-			layout: 'otherLayout'
+			layout: 'NoSideBar'
 		},
 	},
 	{

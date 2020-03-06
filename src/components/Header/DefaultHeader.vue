@@ -21,7 +21,6 @@
                :dropdownText="item.meta.navName"
                :children="item.children"
                :path="item.path"
-               :isHover="true"
             ></DropDown>
          </div>
       </div>
@@ -30,8 +29,10 @@
 </template>
 
 <script>
+import dropDownMixin from '@/mixins/dropDown.js';
 import DropDown from '@/components/DropDown/index.vue';
 export default {
+   mixins: [dropDownMixin],
    props: {
       isDefault: {
          type: Boolean,
@@ -39,13 +40,10 @@ export default {
       }
    },
    data: () => ({
-      subject: ['announcement', 'dataset'],
-      routeArr: []
+      
    }),
    created() {
-      this.routeArr = this.$router.options.routes.filter(item => {
-         return this.subject.includes(item.name);
-      });
+      
    },
    mounted() {
       

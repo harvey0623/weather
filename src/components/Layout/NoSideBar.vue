@@ -1,30 +1,38 @@
 <template>
-<div class="otherLayout">
+<div class="noSideBar">
 	<div class="topBlock">
 		<DefaultHeader :isDefault="false"></DefaultHeader>
+		<Menu></Menu>
 	</div>
-	<slot></slot>
+	<section class="mysection">
+		<div class="mycontainer">
+			<PageTitle :text="pageName"></PageTitle>
+			<slot></slot>
+		</div>
+	</section>
 </div>
 </template>
 
 <script>
 import DefaultHeader from '@/components/Header/DefaultHeader.vue';
+import Menu from '@/components/Menu/index.vue';
 export default {
 	computed: {
-		
-	},
-	mounted() {
-		
+		pageName() {
+			return this.$route.meta.navName;
+		}
 	},
    components: {
-      DefaultHeader
+		DefaultHeader,
+		Menu
    }
 }
 </script>
 
 <style lang="scss">
 .topBlock {
-	min-height: 340px;
+	position: relative;
+	min-height: 380px;
 	background-image: url("/img/blockBg/bg1.jpg");
 	background-size: cover;
 	background-repeat: no-repeat;

@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import Default from '@/components/Layout/Default.vue';
-import Other from '@/components/Layout/Other.vue';
+import NoSideBar from '@/components/Layout/NoSideBar.vue';
+import PageTitle from '@/components/PageTitle/index.vue';
 import BaseButton from '@/components/Button/BaseButton.vue';
 import ButtonBox from '@/components/ButtonBox/index.vue';
 import TextInput from '@/components/Form/TextInput.vue';
@@ -11,8 +12,9 @@ import CheckboxInput from '@/components/Form/CheckboxInput.vue';
 import DateInput from '@/components/Form/DateInput.vue';
 import BaseModal from '@/components/Modal/BaseModal.vue';
 
-Vue.component('defaultLayout', Default);
-Vue.component('otherLayout', Other);
+Vue.component('DefaultLayout', Default);
+Vue.component('NoSideBar', NoSideBar);
+Vue.component('PageTitle', PageTitle);
 // Vue.component('BaseButton', BaseButton);
 // Vue.component('ButtonBox', ButtonBox);
 // Vue.component('TextInput', TextInput);

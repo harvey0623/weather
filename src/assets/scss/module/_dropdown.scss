@@ -1,0 +1,47 @@
+$dropDownColor: map-get($fontColor, primary);
+
+.dropdown {
+   &.open {
+      .dropdown-toggle {
+         color: #fff;
+      }
+   }
+}
+
+.dropdown-toggle {
+   color: $dropDownColor;
+   &:hover,
+   &:focus {
+      color: $dropDownColor;
+      box-shadow: none;
+   }
+   &::after {
+      content: "\f078";
+      margin-left: 0.3rem;
+      font-family: 'Font Awesome 5 Pro';
+      font-size: 14px;
+      border: none;
+      vertical-align: initial;
+   }
+}
+
+.dropdown-menu {
+   padding: 3px 0;
+   border-radius: 0;
+   top: 95% !important;
+   transform: none !important;
+}
+
+.dropdown-item {
+   color: $dropDownColor;
+   &:active,
+   &:hover {
+      color: $dropDownColor;
+   }
+   &:active {
+      background-color: transparent;
+   }
+   &:hover {
+      background-color: #f8f9fa;
+   }
+}

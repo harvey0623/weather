@@ -15,7 +15,7 @@
          </div>
          <div class="guideBottom" v-if="isDefault">
             <DropDown 
-               v-for="item in routeArr"
+               v-for="item in navList"
                :key="item.name"
                :id="item.name" 
                :dropdownText="item.meta.navName"
@@ -29,24 +29,17 @@
 </template>
 
 <script>
-import dropDownMixin from '@/mixins/dropDown.js';
+import { mapGetters } from 'vuex';
 import DropDown from '@/components/DropDown/index.vue';
 export default {
-   mixins: [dropDownMixin],
    props: {
       isDefault: {
          type: Boolean,
          default: true
       }
    },
-   data: () => ({
-      
-   }),
-   created() {
-      
-   },
-   mounted() {
-      
+   computed: {
+      ...mapGetters({ navList: 'navList' }),
    },
    components: {
       DropDown

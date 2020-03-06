@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+import router from '@/router/index.js';
 import metaStore from './modules/metaStore.js';
 import i18nStore from './modules/i18nStore.js';
 import authStore from './modules/authStore.js';
@@ -13,6 +14,14 @@ export default new Vuex.Store({
 	strict: process.NODE_ENV === 'development',
 	state: {
 		isLoading: false,
+		blockNav: ['/', '/siteMap', '*']
+	},
+	getters: {
+		navList(state) {  //dropdown list && site map link
+			return router.options.routes.filter(item => {
+            return !state.blockNav.includes(item.path);
+         });
+		}
 	},
 	mutations: {
 		setLoading(state, value) {

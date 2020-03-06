@@ -34,18 +34,11 @@ export default {
       path: {
          type: String,
          required: true
-      },
-      isHover: {
-         type: Boolean,
-         default: false
       }
    },
    data: () => ({
       isOpen: false
    }),
-   methods: {
-      
-   },
 }
 </script>
 

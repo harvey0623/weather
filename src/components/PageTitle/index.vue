@@ -6,12 +6,11 @@
 
 <script>
 export default {
-   props: {
-      text: {
-         type: String,
-         required: true
-      }
-   }
+	computed: {
+		text() {
+			return this.$route.meta.navName;
+		}
+	},
 }
 </script>
 

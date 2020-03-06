@@ -2,28 +2,23 @@
 <div id="menu">
    <div class="mycontainer menuCenter">
       <DropDown 
-         v-for="item in routeArr"
+         v-for="item in navList"
          :key="item.name"
          :id="item.name" 
          :dropdownText="item.meta.navName"
          :children="item.children"
          :path="item.path"
-         :isHover="true"
       ></DropDown>
    </div>
 </div>
 </template>
 
 <script>
-import dropDownMixin from '@/mixins/dropDown.js';
+import { mapGetters } from 'vuex';
 import DropDown from '@/components/DropDown/Menu.vue';
 export default {
-   mixins: [dropDownMixin],
-   data: () => ({
-      
-   }),
-   created() {
-      
+   computed: {
+      ...mapGetters({ navList: 'navList' }),
    },
    components: {
       DropDown

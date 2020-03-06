@@ -1,0 +1,31 @@
+$siteColor: map-get($fontColor, primary);
+
+.siteWrap {
+   max-width: 65%;
+   margin: 0 auto; 
+}
+
+.siteBox {
+   border: 1px solid map-get($borderColor, title);
+   @include elGutter(margin-bottom, 25px);
+   >.mainTitle {
+      display: block;
+      padding: 10px 15px;
+      background-color: map-get($elBgColor, title);
+      color: $siteColor;
+      &:hover {
+         color: darken($siteColor, 10);
+      }
+   }
+   >.childrenBox {
+      padding: 12px 15px;
+      >a {
+         @include elGutter(margin-right, 15px);
+         font-size: 14px;
+         &:hover {
+            text-decoration: underline;
+            color: $siteColor;
+         }
+      }
+   }
+}

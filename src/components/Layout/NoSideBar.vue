@@ -6,7 +6,7 @@
 	</div>
 	<section class="mysection">
 		<div class="mycontainer">
-			<PageTitle :text="pageName"></PageTitle>
+			<PageTitle></PageTitle>
 			<slot></slot>
 		</div>
 	</section>
@@ -17,11 +17,6 @@
 import DefaultHeader from '@/components/Header/DefaultHeader.vue';
 import Menu from '@/components/Menu/index.vue';
 export default {
-	computed: {
-		pageName() {
-			return this.$route.meta.navName;
-		}
-	},
    components: {
 		DefaultHeader,
 		Menu

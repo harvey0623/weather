@@ -14,7 +14,7 @@
                   v-model="keyword" >
                <i class="far fa-search"></i>
             </div>
-            <router-link to="/" :class="hoverClass">登入/註冊</router-link>
+            <router-link to="/login" :class="hoverClass">登入/註冊</router-link>
             <router-link to="/siteMap" :class="hoverClass">網站地圖</router-link>
          </div>
          <div class="guideBottom" v-if="isDefault">
@@ -33,6 +33,7 @@
 </template>
 
 <script>
+import axios from 'axios';
 import { mapGetters } from 'vuex';
 import DropDown from '@/components/DropDown/index.vue';
 export default {

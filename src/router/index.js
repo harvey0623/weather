@@ -3,6 +3,7 @@ import VueRouter from 'vue-router';
 import i18n from '@/plugin/i18n/index.js';
 import Home from '@/views/home/index.vue';
 import SiteMap from '@/views/siteMap/index.vue';
+import Login from '@/views/login/index.vue';
 Vue.use(VueRouter);
 
 const routes = [
@@ -20,6 +21,15 @@ const routes = [
 		component: SiteMap,
 		meta: {
 			navName: '網站地圖',
+			layout: 'NoSideBar'
+		},
+	},
+	{
+		path: '/login',
+		name: 'login',
+		component: Login,
+		meta: {
+			navName: '登入',
 			layout: 'NoSideBar'
 		},
 	},

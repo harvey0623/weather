@@ -12,6 +12,12 @@ export default function() {
          meta: [
             { property: 'og:title', content: i18n.t('seo.siteMap.title') },
          ],
+      },
+      login: {
+         title: i18n.t('seo.login.title'),
+         meta: [
+            { property: 'og:title', content: i18n.t('seo.login.title') },
+         ],
       }
    }
 }

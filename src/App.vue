@@ -32,7 +32,7 @@ export default {
       },
       isLoading() {
 			return this.$store.state.isLoading;
-		}
+      }
 	},
    mounted() {
       

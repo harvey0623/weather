@@ -39,7 +39,7 @@ export default {
 	}
 	>h1 {
 		display: inline-block;
-		padding-bottom: 3px;
+		padding-bottom: 5px;
 		font-size: 25px;
 		border-bottom: 2px solid map-get($borderColor, primary);
 		color: map-get($fontColor, primary);

@@ -23,10 +23,10 @@ export default {
 </script>
 
 <style lang="scss">
-	.topBlock {
-		min-height: 330px;
-		background-image: url("/img/blockBg/bg1.jpg");
-		background-size: cover;
-		background-repeat: no-repeat;
-	}
+.topBlock {
+	min-height: 340px;
+	background-image: url("/img/blockBg/bg1.jpg");
+	background-size: cover;
+	background-repeat: no-repeat;
+}
 </style>

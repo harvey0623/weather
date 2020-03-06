@@ -14,10 +14,10 @@ export default {
    metaInfo() {
       return {
          title: '',
-         titleTemplate: '%s | project',
+         titleTemplate: '%s | weather',
          meta: [
             { property: 'og:image', content: '' },
-            { property: 'og:description', content: 'project' },
+            { property: 'og:description', content: 'weather' },
          ]
       }
    },

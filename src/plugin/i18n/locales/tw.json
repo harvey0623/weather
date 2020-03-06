@@ -53,6 +53,9 @@
    "seo": {
       "home": {
          "title": "首頁"
+      },
+      "siteMap": {
+         "title": "網站地圖"
       }
    }
 }

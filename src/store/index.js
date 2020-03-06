@@ -1,0 +1,30 @@
+import Vue from 'vue';
+import Vuex from 'vuex';
+import metaStore from './modules/metaStore.js';
+import i18nStore from './modules/i18nStore.js';
+import authStore from './modules/authStore.js';
+
+Vue.use(Vuex);
+Vuex.Store.prototype.hasModule = function (module) {
+	return this._modules.root._children[module] !== undefined;
+};
+
+export default new Vuex.Store({
+	strict: process.NODE_ENV === 'development',
+	state: {
+		isLoading: false,
+	},
+	mutations: {
+		setLoading(state, value) {
+			state.isLoading = value;
+		},
+	},
+	actions: {
+		
+   },
+   modules: {
+      i18n: i18nStore(),
+		meta: metaStore(),
+		auth: authStore()
+   }
+});

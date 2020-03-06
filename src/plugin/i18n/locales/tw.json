@@ -1,0 +1,58 @@
+{
+   "form": {
+      "title": {
+         "name": "姓名",
+         "gender": "性別",
+         "genderRole": {
+            "m": "男",
+            "f": "女"   
+         },
+         "email": "電子信箱",
+         "account": "帳號",
+         "password": "密碼",
+         "confirmPw": "確認密碼",
+         "taiwanId": "身分證字號",
+         "mobile": "手機號碼",
+         "address": "聯絡地址",
+         "uploadImage": "上傳圖片",
+         "keyword": "關鍵字",
+         "startTime": "發起日",
+         "endTime": "結束日",
+         "uploadImgLimit": "上傳{number}MB以內的jpg或png的圖片"
+      },
+      "placeholder": {
+         "name": "請輸入姓名",
+         "email": "請輸入電子信箱",
+         "keyword": "關鍵字",
+         "account": "請輸入帳號",
+         "password": "請輸入8~20位元密碼",
+         "confirmPw": "請輸入確認密碼",
+         "taiwanId": "請輸入身分證字號",
+         "mobile": "請輸入手機號碼",
+         "date": "請輸入日期",
+         "temporaryPw": "請輸入臨時密碼",
+         "newPw": "請輸入新密碼，8~20位數字",
+         "confirmNewPw": "確認8~20位數新密碼"
+      }
+   },
+   "validate": {
+      "required": "必填",
+      "email": "電子信箱格式有誤",
+      "mobile": "手機格式不正確",
+      "password": "密碼格式有誤",
+      "pwNotEqual": "密碼不一致",
+      "taiwanId": "身分正格式有誤",
+      "imageType": "檔案格式需為jpg或png",
+      "fileSize": "檔案大小超過限制"
+   },
+   "server": {
+      "badRequest": "登入失敗",
+      "unAuthorized": "請重新登入",
+      "systemError": "系統有誤"
+   },
+   "seo": {
+      "home": {
+         "title": "首頁"
+      }
+   }
+}

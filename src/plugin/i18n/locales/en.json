@@ -1,0 +1,58 @@
+{
+   "form": {
+      "title": {
+         "name": "Name",
+         "gender": "Gender",
+         "genderRole": {
+            "m": "male",
+            "f": "female"   
+         },
+         "email": "Email",
+         "account": "Account",
+         "password": "Password",
+         "confirmPw": "Confirm Password",
+         "taiwanId": "Taiwan ID",
+         "mobile": "Phone",
+         "address": "Address",
+         "uploadImage": "upload image",
+         "keyword": "keyword",
+         "startTime": "startTime",
+         "endTime": "endTime",
+         "uploadImgLimit": "Upload a jpg or png image within {number}MB"
+      },
+      "placeholder": {
+         "name": "Please enter your name",
+         "email": "Please enter your email",
+         "keyword": "Please enter keyword",
+         "account": "Please enter account",
+         "password": "Please enter 8~20 digit password",
+         "confirmPw": "Please enter Confirm Password",
+         "taiwanId": "Please enter taiwan ID",
+         "mobile": "Please enter phone number",
+         "date": "Please enter date",
+         "temporaryPw": "Please enter temporary password",
+         "newPw": "Please enter 8~20 new password",
+         "confirmNewPw": "confirm 8~20 new password"
+      }
+   },
+   "validate": {
+      "required": "required",
+      "email": "incorrect email format",
+      "mobile": "incorrect mobile format",
+      "password": "incorrect password format",
+      "pwNotEqual": "inconsistent passwords",
+      "taiwanId": "incorrect taiwan ID format",
+      "imageType": "file format must be jpg or png",
+      "fileSize": "file size exceeds limit"
+   },
+   "server": {
+      "badRequest": "login failed",
+      "unAuthorized": "please sign in again",
+      "systemError": "system error"
+   },
+	"seo": {
+		"home": {
+			"title": "Home"
+		}
+   }
+}

@@ -21,7 +21,7 @@ const routes = [
 		component: SiteMap,
 		meta: {
 			navName: '網站地圖',
-			layout: 'NoSideBar'
+			layout: 'HasSideBar'
 		},
 	},
 	{
@@ -30,7 +30,7 @@ const routes = [
 		component: Login,
 		meta: {
 			navName: '登入',
-			layout: 'NoSideBar'
+			layout: 'HasSideBar'
 		},
 	},
 	{

@@ -1,0 +1,28 @@
+.topBlock {
+	position: relative;
+	min-height: 380px;
+	background-image: url("/img/blockBg/bg1.jpg");
+	background-size: cover;
+	background-repeat: no-repeat;
+}
+
+#sideBarCenter {
+   display: flex;
+}
+
+#sideBar {
+   flex: 0 0 250px;
+   min-height: 200px;
+   background-color: gray;
+}
+
+#pageContent {
+   flex: 1;
+   padding-left: 0px;
+   &.hasPadding {
+      padding-left: 30px;
+   }
+}
+
+
+

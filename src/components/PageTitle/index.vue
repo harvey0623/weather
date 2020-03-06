@@ -1,14 +1,24 @@
 <template>
 <div class="pageTitle">
-   <h1>{{ text }}</h1>
+   <h1>{{ pageTitle }}</h1>
 </div>
 </template>
 
 <script>
 export default {
+	props: {
+		title: {
+			type: String,
+			default: ''
+		}
+	},
 	computed: {
-		text() {
+		navName() {
 			return this.$route.meta.navName;
+		},
+		pageTitle() {
+			if (this.title !== '') return this.title;
+			else return this.navName;
 		}
 	},
 }

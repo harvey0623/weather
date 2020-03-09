@@ -17,6 +17,7 @@ import '@/plugin/bootstrap/index.js';
 // import '@/plugin/breadcrumbs/index.js';
 // import '@/plugin/toastr/index.js';
 // import '@/plugin/cropper/index.js';
+import '@/plugin/fb/index.js';
 
 
 Vue.config.productionTip = false;

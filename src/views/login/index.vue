@@ -44,7 +44,11 @@
    </div>
    <div class="loginMethod otherBox">
       <PageTitle title="其他方式登入"></PageTitle>
-      <BaseButton class="btnFb" text="Facebook會員登入"></BaseButton>
+      <BaseButton  
+         class="btnFb" 
+         text="Facebook會員登入"
+         @click.native="fbLogin"
+      ></BaseButton>
    </div>
 </div>
 </template>
@@ -52,6 +56,9 @@
 <script>
 import { mapState } from 'vuex';
 import Recaptcha from '@/components/recaptcha/index.vue';
+import Fb from '@/plugin/fb/fb.js';
+const fbInstance = new Fb();
+
 export default {
    data: () => ({
       token: '',
@@ -98,7 +105,16 @@ export default {
          this.$refs.form.reset();
          this.loginField.forEach(field => field.value = '');
          this.$refs.recaptcha.reset();
+      },
+      async fbLogin() {
+         let result = await fbInstance.loginHandler(res => res);
+         console.log(result);
       }
+   },
+   mounted() {
+      fbInstance.loadSdk().then(res => {
+         console.log(res);
+      }) 
    },
    components: {
       Recaptcha

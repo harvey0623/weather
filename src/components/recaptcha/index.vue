@@ -15,9 +15,6 @@ export default {
       widgetId: 0
    }),
    methods: {
-      execute() {
-         window.grecaptcha.execute(this.widgetId);
-      },
       reset() {
          grecaptcha.reset(this.widgetId);
       },
@@ -25,13 +22,13 @@ export default {
          this.widgetId = grecaptcha.render(this.$refs.myrecaptcha, {
             sitekey: this.sitekey,
             size: 'normal',
-            callback: (token) => {
+            callback: token => {
                this.$emit('update:token', token);
             },
             'expired-callback'(err) {
                console.log(err);
             },
-            'error-callback'() {
+            'error-callback'(err) {
                console.log(err);
             }
          });

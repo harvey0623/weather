@@ -56,7 +56,7 @@
 <script>
 import { mapState } from 'vuex';
 import Recaptcha from '@/components/recaptcha/index.vue';
-import Fb from '@/plugin/fb/fb.js';
+import Fb from '@/plugin/fb/index.js';
 const fbInstance = new Fb();
 
 export default {
@@ -112,7 +112,7 @@ export default {
       }
    },
    mounted() {
-      fbInstance.loadSdk().then(res => {
+      fbInstance.initSdk().then(res => {
          console.log(res);
       }) 
    },

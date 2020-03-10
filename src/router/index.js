@@ -5,6 +5,9 @@ import i18n from '@/plugin/i18n/index.js';
 import Home from '@/views/home/index.vue';
 import SiteMap from '@/views/siteMap/index.vue';
 import Login from '@/views/login/index.vue';
+import RouterView from '@/views/routerView/index.vue';
+import UserInfo from '@/views/userInfo/index.vue';
+
 Vue.use(VueRouter);
 
 const routes = [
@@ -37,6 +40,30 @@ const routes = [
 			navName: '會員登入',
 			layout: 'HasSideBar'
 		},
+	},
+	{
+		path: '/user',
+		component: RouterView,
+		meta: {
+			navName: '會員資訊',
+			layout: 'HasSideBar',
+			auth: false
+		},
+		children: [
+			{
+				path: '',
+				redirect: 'info'
+			},
+			{
+				path: 'info',
+				name: 'info',
+				component: UserInfo,
+				meta: {
+					navName: '會員基本資料',
+					layout: 'HasSideBar'
+				}
+			}
+		]
 	},
 	{
 		path: '/announcement',

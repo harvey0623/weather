@@ -18,6 +18,12 @@ export default function() {
          meta: [
             { property: 'og:title', content: i18n.t('seo.login.title') },
          ],
-      }
+      },
+      userInfo: {
+         title: i18n.t('seo.userInfo.title'),
+         meta: [
+            { property: 'og:title', content: i18n.t('seo.userInfo.title') },
+         ],
+      },
    }
 }

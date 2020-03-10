@@ -59,6 +59,9 @@
       },
       "login": {
          "title": "登入"
+      },
+      "userInfo": {
+         "title": "會員基本資料"
       }
    }
 }

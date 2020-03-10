@@ -2,8 +2,9 @@
 <div id="sideBar">
    <ul class="sideBarList">
       <li 
-         v-for="item in routerList" 
+         v-for="(item, index) in routerList" 
          :key="item.name"
+         v-show="index !== 0"
          :class="{ active: item.name === routeName }">
          <router-link 
             :to="item.path"

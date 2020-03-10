@@ -20,7 +20,7 @@ export default class Fb {
             });
             FB.AppEvents.logPageView();
             let result = await this.checkLoginStatus().then(res => res);
-            if (!result.success) return resolve({ success: false });
+            if (!result.success) return resolve(result);
             let profile = await this.getFbProfile().then(res => res);
             resolve({ 
                success: true,
@@ -36,7 +36,7 @@ export default class Fb {
             if (res.status === 'connected') {
                return resolve({ success: true, authInfo: res });
             } else {
-               return resolve({ success: false });
+               return resolve({ success: false, msg: 'please login' });
             }
          });
       });
@@ -57,7 +57,7 @@ export default class Fb {
                   profile
                });
             } else {
-               return resolve({ success: false });
+               return resolve({ success: false, msg: 'login fail' });
             }
          }, this.profileOption);
       });

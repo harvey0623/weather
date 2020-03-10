@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
+import Store from '@/store/index.js';
 import i18n from '@/plugin/i18n/index.js';
 import Home from '@/views/home/index.vue';
 import SiteMap from '@/views/siteMap/index.vue';
@@ -39,6 +40,7 @@ const routes = [
 		component: Home,
 		meta: {
 			navName: '公告事項',
+			auth: true
 		},
 		children: [
 			{
@@ -107,7 +109,19 @@ const router = new VueRouter({
 	}
 });
 
-router.beforeEach((to, from, next) => {
+let isFirst = false;
+router.beforeEach(async (to, from, next) => {
+	let isAuth = to.matched.some(item => item.meta.auth);
+	if (!isFirst && isAuth === false) {
+		await Store.dispatch('auth/getFbAuth', 'store');
+		isFirst = true;
+	}
+	if (isAuth) {
+		isFirst = true;
+		let fbAuthStatus = await Store.dispatch('auth/getFbAuth', 'store').then(res => res);
+		if (fbAuthStatus) return next();
+		else return next('/login');
+	}
 	return next();
 });
 

@@ -112,9 +112,7 @@ export default {
       }
    },
    mounted() {
-      fbInstance.initSdk().then(res => {
-         console.log(res);
-      }) 
+      
    },
    components: {
       Recaptcha

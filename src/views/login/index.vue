@@ -47,7 +47,7 @@
       <BaseButton  
          class="btnFb" 
          text="Facebook會員登入"
-         @click.native="fbLogin"
+         @click.native="loginHandler"
       ></BaseButton>
    </div>
 </div>
@@ -56,8 +56,6 @@
 <script>
 import { mapState } from 'vuex';
 import Recaptcha from '@/components/recaptcha/index.vue';
-import Fb from '@/plugin/fb/index.js';
-const fbInstance = new Fb();
 
 export default {
    data: () => ({
@@ -106,13 +104,10 @@ export default {
          this.loginField.forEach(field => field.value = '');
          this.$refs.recaptcha.reset();
       },
-      async fbLogin() {
-         let result = await fbInstance.loginHandler(res => res);
-         console.log(result);
+      async loginHandler() {
+         let result = await this.$store.dispatch('auth/fbLogin').then(res => res);
+         if (result) this.$router.push('/');
       }
-   },
-   mounted() {
-      
    },
    components: {
       Recaptcha

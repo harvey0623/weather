@@ -34,7 +34,7 @@ export default class Fb {
       return new Promise((resolve, reject) => {
          FB.getLoginStatus(res => {
             if (res.status === 'connected') {
-               return resolve({ success: true, authInfo: res });
+               return resolve({ success: true, authInfo: res.authResponse });
             } else {
                return resolve({ success: false, msg: 'please login' });
             }
@@ -62,7 +62,7 @@ export default class Fb {
          }, this.profileOption);
       });
    }
-   logoutHandler() {
+   logOutHandler() {
       return new Promise((resolve, reject) => {
          FB.logout(res => resolve({ success: true }));
       })

@@ -29,6 +29,10 @@ const routes = [
 		path: '/login',
 		name: 'login',
 		component: Login,
+		beforeEnter(to, from, next) {
+			if (Store.state.auth.fbUser.isLogin) return next('/');
+			else return next();
+		},
 		meta: {
 			navName: '登入',
 			layout: 'HasSideBar'
@@ -113,12 +117,12 @@ let isFirst = false;
 router.beforeEach(async (to, from, next) => {
 	let isAuth = to.matched.some(item => item.meta.auth);
 	if (!isFirst && isAuth === false) {
-		await Store.dispatch('auth/getFbAuth', 'store');
+		await Store.dispatch('auth/getFbAuth');
 		isFirst = true;
 	}
 	if (isAuth) {
 		isFirst = true;
-		let fbAuthStatus = await Store.dispatch('auth/getFbAuth', 'store').then(res => res);
+		let fbAuthStatus = await Store.dispatch('auth/getFbAuth').then(res => res);
 		if (fbAuthStatus) return next();
 		else return next('/login');
 	}

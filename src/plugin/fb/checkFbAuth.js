@@ -6,7 +6,7 @@ export default async function() {
 	if (window.FB === undefined) {
 		result = await fbInstance.initSdk();
 	} else {
-		let checkStatus = await fbInstance.checkLoginStatus().then(res => res );
+      let checkStatus = await fbInstance.checkLoginStatus().then(res => res );
 		if (checkStatus.success) {
 			let profile = await fbInstance.getFbProfile().then(res => res);
 			result = { 

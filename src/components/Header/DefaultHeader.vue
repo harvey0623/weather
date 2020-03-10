@@ -14,7 +14,14 @@
                   v-model="keyword" >
                <i class="far fa-search"></i>
             </div>
-            <router-link to="/login" :class="hoverClass">登入/註冊</router-link>
+            <router-link 
+               to="/"
+               v-if="isLogin"
+               href="javascript:;" 
+               :class="hoverClass"
+               @click.prevent.native="loginOutHandler"
+            >登出</router-link>
+            <router-link to="/login" :class="hoverClass" v-else>登入/註冊</router-link>
             <router-link to="/siteMap" :class="hoverClass">網站地圖</router-link>
          </div>
          <div class="guideBottom" v-if="isDefault">
@@ -34,7 +41,7 @@
 
 <script>
 import axios from 'axios';
-import { mapGetters } from 'vuex';
+import { mapState, mapGetters } from 'vuex';
 import DropDown from '@/components/DropDown/index.vue';
 export default {
    props: {
@@ -47,6 +54,7 @@ export default {
       keyword: ''
    }),
    computed: {
+      ...mapState('auth', { isLogin: state => state.fbUser.isLogin }),
       ...mapGetters({ navList: 'navList' }),
       hoverClass() {
          let isHomeName = this.$route.name === 'home';
@@ -54,6 +62,12 @@ export default {
             default: isHomeName,
             layout: !isHomeName
          }
+      }
+   },
+   methods: {
+      async loginOutHandler() {
+         await this.$store.dispatch('auth/fbLogout').then(res => res);
+         this.$router.push('/').catch(() => {});
       }
    },
    components: {

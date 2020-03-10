@@ -14,14 +14,13 @@
 #sideBar {
    flex: 0 0 250px;
    min-height: 200px;
-   background-color: gray;
 }
 
 #pageContent {
    flex: 1;
    padding-left: 0px;
    &.hasPadding {
-      padding-left: 30px;
+      padding-left: 50px;
    }
 }
 

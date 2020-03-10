@@ -40,7 +40,6 @@
 </template>
 
 <script>
-import axios from 'axios';
 import { mapState, mapGetters } from 'vuex';
 import DropDown from '@/components/DropDown/index.vue';
 export default {

@@ -34,7 +34,7 @@ const routes = [
 			else return next();
 		},
 		meta: {
-			navName: '登入',
+			navName: '會員登入',
 			layout: 'HasSideBar'
 		},
 	},

@@ -6,7 +6,7 @@
 	</div>
 	<section class="mysection">
 		<div id="sideBarCenter" class="mycontainer">
-			<div id="sideBar" v-if="showSideBar"></div>
+			<SideBar v-if="showSideBar"></SideBar>
 			<div id="pageContent" :class="{ hasPadding: showSideBar }">
 				<PageTitle v-if="hidePageTitle"></PageTitle>
 				<slot></slot>
@@ -18,6 +18,7 @@
 
 <script>
 import DefaultHeader from '@/components/Header/DefaultHeader.vue';
+import SideBar from '@/components/SideBar/index.vue';
 import Menu from '@/components/Menu/index.vue';
 export default {
 	computed: {
@@ -34,7 +35,8 @@ export default {
 	},
    components: {
 		DefaultHeader,
-		Menu
+		Menu,
+		SideBar
    }
 }
 </script>

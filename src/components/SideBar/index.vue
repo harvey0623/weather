@@ -2,12 +2,11 @@
 <div id="sideBar">
    <ul class="sideBarList">
       <li 
-         v-for="(item, index) in routerList" 
+         v-for="item in childRoute" 
          :key="item.name"
-         v-show="index !== 0"
-         :class="{ active: item.name === routeName }">
-         <router-link 
-            :to="item.path"
+         :class="{ active: routeName === item.name }">
+         <router-link
+            :to="{name: item.name}"
          >{{ item.meta.navName }}</router-link>
       </li>
    </ul>
@@ -20,9 +19,18 @@ export default {
       routeName() {
          return this.$route.name;
       },
-      routerList() {
-         console.log(this.$route.matched);
-         return this.$route.matched;
+      parentPath() {  //取得父層路徑
+         return this.$route.matched[0].path;
+      },
+      familyRoute() {  //取得整個指定router
+         return this.$router.options.routes.filter(item => {
+            return item.path === this.parentPath;
+         });
+      },
+      childRoute() { //取得子router
+         let child = this.familyRoute[0].children;
+         let result = child !== undefined ? child : this.familyRoute;
+         return result.filter(item => item.name !== undefined);
       }
    }
 }

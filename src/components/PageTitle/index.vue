@@ -27,7 +27,7 @@ export default {
 <style lang="scss">
 .pageTitle {
 	position: relative;
-	margin-bottom: 30px;
+	margin-bottom: 25px;
 	&:after {
 		content: '';
 		position: absolute;

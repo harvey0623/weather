@@ -1,12 +1,12 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Store from '@/store/index.js';
-import i18n from '@/plugin/i18n/index.js';
 import Home from '@/views/home/index.vue';
 import SiteMap from '@/views/siteMap/index.vue';
 import Login from '@/views/login/index.vue';
 import RouterView from '@/views/routerView/index.vue';
 import UserInfo from '@/views/userInfo/index.vue';
+import Qa from '@/views/qa/index.vue';
 
 Vue.use(VueRouter);
 
@@ -38,6 +38,15 @@ const routes = [
 		},
 		meta: {
 			navName: '會員登入',
+			layout: 'HasSideBar'
+		},
+	},
+	{
+		path: '/qa',
+		name: 'qa',
+		component: Qa,
+		meta: {
+			navName: '常見問答',
 			layout: 'HasSideBar'
 		},
 	},
@@ -88,32 +97,6 @@ const routes = [
 				component: Home,
 				meta: {
 					navName: '會議記錄',
-				},
-			},
-		]
-	},
-	{
-		path: '/dataset',
-		name: 'dataset',
-		component: Home,
-		meta: {
-			navName: '資料主題',
-		},
-		children: [
-			{
-				path: 'forcast',
-				name: 'forcast',
-				component: Home,
-				meta: {
-					navName: '預報',
-				},
-			},
-			{
-				path: 'observation',
-				name: 'observation',
-				component: Home,
-				meta: {
-					navName: '觀測',
 				},
 			},
 		]

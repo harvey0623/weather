@@ -2,7 +2,7 @@
 <div class="hasSideBar">
 	<div class="topBlock">
 		<DefaultHeader :isDefault="false"></DefaultHeader>
-		<Menu></Menu>
+		<!-- <Menu></Menu> -->
 	</div>
 	<section class="mysection">
 		<div id="sideBarCenter" class="mycontainer">
@@ -26,7 +26,7 @@ export default {
 			return this.$route.name;
 		},
 		showSideBar() {  //顯示sideBar
-			let blockPage = ['siteMap'];
+			let blockPage = ['siteMap', 'qa'];
 			return !blockPage.includes(this.routeName);
 		},
 		hidePageTitle() {  //隱藏頁面標題

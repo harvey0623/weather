@@ -25,5 +25,11 @@ export default function() {
             { property: 'og:title', content: i18n.t('seo.userInfo.title') },
          ],
       },
+      qa: {
+         title: i18n.t('seo.qa.title'),
+         meta: [
+            { property: 'og:title', content: i18n.t('seo.qa.title') },
+         ],
+      },
    }
 }

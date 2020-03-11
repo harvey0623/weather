@@ -65,7 +65,7 @@ export default {
    methods: {
       async loginOutHandler() {
          await this.$store.dispatch('auth/fbLogout').then(res => res);
-         this.$router.push('/').catch(() => {});
+         this.$router.push('/');
       }
    },
    components: {

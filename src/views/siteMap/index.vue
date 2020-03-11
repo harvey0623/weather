@@ -2,7 +2,7 @@
 <div class="siteMap">
    <div class="siteWrap">
       <div class="siteBox" 
-         v-for="item in allRouter"
+         v-for="item in siteMapRouter"
          :key="item.name">
          <div class="mainTitle">
             <router-link 
@@ -14,8 +14,7 @@
                v-for="child in item.children"
                :key="child.name"
                :to="{ name: child.name }"
-               v-show="child.meta !== undefined"
-            >{{ child.meta !== undefined ? child.meta.navName : '' }}</router-link>
+            >{{ child.meta.navName }}</router-link>
          </div>
       </div>
    </div>
@@ -25,6 +24,9 @@
 <script>
 import { mapState, mapGetters } from 'vuex';
 export default {
+   data: () => ({
+      blockList: ['/', '*', '/siteMap']
+   }),
    metaInfo() {
       return { title: this.seo.title, meta: this.seo.meta }
    },
@@ -32,13 +34,24 @@ export default {
       ...mapState('meta', { seo: state => state.metaInfo.siteMap }),
       ...mapState('auth', { isLogin: state => state.fbUser.isLogin }),
       allRouter() {
-         let blockList = ['/', '*', '/siteMap'];
          return this.$router.options.routes.filter(item => {
-            return !blockList.includes(item.path)
+            return !this.blockList.includes(item.path);
          });
       },
-      authRouter() {
-
+      noEmptyRoute() {  //拿掉chihldren裡的path === ''
+         let copyArr = JSON.parse(JSON.stringify(this.allRouter));
+         for (let item of copyArr) {
+            if (item.children === undefined) continue;
+            let index = item.children.findIndex(child => child.path === '');
+            if (index === -1) continue;
+            item.children.splice(index, 1);
+         }
+         return copyArr;
+      },
+      siteMapRouter() { //依照登入狀態篩選對應route
+         let noAuthRoute = this.noEmptyRoute.filter(item => item.meta.auth === undefined);
+         let authRoute = this.noEmptyRoute.filter(item => item.meta.auth === this.isLogin);
+         return noAuthRoute.concat(authRoute);
       }
    },
    mounted() {

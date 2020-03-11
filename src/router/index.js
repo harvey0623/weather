@@ -29,6 +29,15 @@ const routes = [
 		},
 	},
 	{
+		path: '/qa',
+		name: 'qa',
+		component: Qa,
+		meta: {
+			navName: '常見問答',
+			layout: 'HasSideBar'
+		},
+	},
+	{
 		path: '/login',
 		name: 'login',
 		component: Login,
@@ -38,16 +47,8 @@ const routes = [
 		},
 		meta: {
 			navName: '會員登入',
-			layout: 'HasSideBar'
-		},
-	},
-	{
-		path: '/qa',
-		name: 'qa',
-		component: Qa,
-		meta: {
-			navName: '常見問答',
-			layout: 'HasSideBar'
+			layout: 'HasSideBar',
+			auth: false
 		},
 	},
 	{

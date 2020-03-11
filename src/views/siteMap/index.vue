@@ -2,19 +2,20 @@
 <div class="siteMap">
    <div class="siteWrap">
       <div class="siteBox" 
-         v-for="item in navList"
+         v-for="item in allRouter"
          :key="item.name">
-         <router-link
-            class="mainTitle"
-            :to="item.path"
-         >{{ item.meta.navName }}</router-link>
-         <div class="childrenBox" 
-            v-if="item.children && item.children.length !== 0">
+         <div class="mainTitle">
+            <router-link 
+               :to="item.path"
+            >{{ item.meta.navName }}</router-link>
+         </div>
+         <div class="childrenBox" v-if="item.children !== undefined">
             <router-link
                v-for="child in item.children"
-               :key="child.name" 
+               :key="child.name"
                :to="{ name: child.name }"
-            >{{ child.meta.navName }}</router-link>
+               v-show="child.meta !== undefined"
+            >{{ child.meta !== undefined ? child.meta.navName : '' }}</router-link>
          </div>
       </div>
    </div>
@@ -29,7 +30,19 @@ export default {
    },
    computed: {
       ...mapState('meta', { seo: state => state.metaInfo.siteMap }),
-      ...mapGetters({ navList: 'navList' }),
+      ...mapState('auth', { isLogin: state => state.fbUser.isLogin }),
+      allRouter() {
+         let blockList = ['/', '*', '/siteMap'];
+         return this.$router.options.routes.filter(item => {
+            return !blockList.includes(item.path)
+         });
+      },
+      authRouter() {
+
+      }
+   },
+   mounted() {
+      
    }
 }
 </script>

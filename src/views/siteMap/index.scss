@@ -10,15 +10,19 @@ $siteColor: map-get($fontColor, primary);
    @include elGutter(margin-bottom, 25px);
    >.mainTitle {
       display: block;
-      padding: 10px 15px;
+      padding: 10px 12px;
       background-color: map-get($elBgColor, title);
-      color: $siteColor;
+      >a {
+         color: $siteColor;
+      }
       &:hover {
-         color: darken($siteColor, 10);
+         >a {
+            color: darken($siteColor, 10%);
+         }
       }
    }
    >.childrenBox {
-      padding: 12px 15px;
+      padding: 12px 12px;
       >a {
          @include elGutter(margin-right, 15px);
          font-size: 14px;

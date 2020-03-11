@@ -14,14 +14,9 @@ export default new Vuex.Store({
 	strict: process.NODE_ENV === 'development',
 	state: {
 		isLoading: false,
-		blockNav: ['/', '/siteMap', '/login', '/user', '*']
 	},
 	getters: {
-		navList(state) {  //dropdown list && site map link
-			return router.options.routes.filter(item => {
-            return !state.blockNav.includes(item.path);
-         });
-		}
+		
 	},
 	mutations: {
 		setLoading(state, value) {

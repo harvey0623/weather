@@ -25,14 +25,14 @@
             <router-link to="/siteMap" :class="hoverClass">網站地圖</router-link>
          </div>
          <div class="guideBottom" v-if="isDefault">
-            <DropDown 
+            <!-- <DropDown 
                v-for="item in navList"
                :key="item.name"
                :id="item.name" 
                :dropdownText="item.meta.navName"
                :children="item.children"
                :path="item.path"
-            ></DropDown>
+            ></DropDown> -->
          </div>
       </div>
    </div>
@@ -54,7 +54,7 @@ export default {
    }),
    computed: {
       ...mapState('auth', { isLogin: state => state.fbUser.isLogin }),
-      ...mapGetters({ navList: 'navList' }),
+      // ...mapGetters({ navList: 'navList' }),
       hoverClass() {
          let isHomeName = this.$route.name === 'home';
          return {

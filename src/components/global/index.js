@@ -9,7 +9,6 @@ import RadioInput from '@/components/Form/RadioInput.vue';
 import TextArea from '@/components/Form/TextArea.vue';
 import Select from '@/components/Form/Select.vue';
 import CheckboxInput from '@/components/Form/CheckboxInput.vue';
-import DateInput from '@/components/Form/DateInput.vue';
 import SlideUpDown from 'vue-slide-up-down';
 
 Vue.component('DefaultLayout', Default);
@@ -22,6 +21,4 @@ Vue.component('TextInput', TextInput);
 // Vue.component('TextArea', TextArea);
 // Vue.component('Select', Select);
 // Vue.component('CheckboxInput', CheckboxInput);
-// Vue.component('DateInput', DateInput);
-// Vue.component('BaseModal', BaseModal);
 Vue.component('slide-up-down', SlideUpDown)

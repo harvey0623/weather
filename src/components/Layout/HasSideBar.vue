@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import DefaultHeader from '@/components/Header/DefaultHeader.vue';
+import DefaultHeader from '@/components/Header/index.vue';
 import SideBar from '@/components/SideBar/index.vue';
 import Menu from '@/components/Menu/index.vue';
 export default {

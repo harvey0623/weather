@@ -75,33 +75,6 @@ const routes = [
 		]
 	},
 	{
-		path: '/announcement',
-		name: 'announcement',
-		component: Home,
-		meta: {
-			navName: '公告事項',
-			auth: true
-		},
-		children: [
-			{
-				path: 'news',
-				name: 'news',
-				component: Home,
-				meta: {
-					navName: '最新公告',
-				},
-			},
-			{
-				path: 'meeting',
-				name: 'meeting',
-				component: Home,
-				meta: {
-					navName: '會議記錄',
-				},
-			},
-		]
-	},
-	{
 		path: '*',
 		redirect: '/'
 	}

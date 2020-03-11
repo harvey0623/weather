@@ -6,7 +6,7 @@
 
 <script>
 import { mapState } from 'vuex';
-import DefaultHeader from '@/components/Header/DefaultHeader.vue';
+import DefaultHeader from '@/components/Header/index.vue';
 export default {
    metaInfo() {
       return { title: this.seo.title, meta: this.seo.meta }

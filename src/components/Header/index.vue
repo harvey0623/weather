@@ -14,13 +14,12 @@
                   v-model="keyword" >
                <i class="far fa-search"></i>
             </div>
-            <router-link 
-               to="/"
+            <a
                v-if="isLogin"
                href="javascript:;" 
                :class="hoverClass"
-               @click.prevent.native="loginOutHandler"
-            >登出</router-link>
+               @click.prevent="loginOutHandler"
+            >登出</a>
             <router-link to="/login" :class="hoverClass" v-else>登入/註冊</router-link>
             <router-link to="/siteMap" :class="hoverClass">網站地圖</router-link>
          </div>

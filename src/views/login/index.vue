@@ -106,7 +106,7 @@ export default {
       },
       async loginHandler() {
          let result = await this.$store.dispatch('auth/fbLogin').then(res => res);
-         if (result) this.$router.push('/');
+         if (result) this.$router.replace({ name: 'info' });
       }
    },
    components: {

@@ -47,7 +47,7 @@ const routes = [
 		meta: {
 			navName: '會員資訊',
 			layout: 'HasSideBar',
-			auth: false
+			auth: true
 		},
 		children: [
 			{

@@ -10,7 +10,8 @@
          :type="fieldType" 
          v-model.trim="observeValue"
          :placeholder="placeholder" 
-         :name="fieldName">
+         :name="fieldName"
+         :readonly="readonly">
       <p 
          class="validate-error" 
          v-if="errors.length !== 0"
@@ -45,6 +46,10 @@ export default {
       vid: {
          type: String,
          default: ''
+      },
+      readonly: {
+         type: Boolean,
+         default: false
       }
    },
    computed: {

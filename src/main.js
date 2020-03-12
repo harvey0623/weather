@@ -22,8 +22,11 @@ import '@/plugin/bootstrap/index.js';
 Vue.config.productionTip = false;
 Vue.use(VueMeta);
 Vue.use(validator);
+Vue.prototype.$checkStoreModule = function(name) {
+  return this.$store.hasModule(name);
+}
 
-let app = new Vue({
+const app = new Vue({
   router,
   store,
   i18n,

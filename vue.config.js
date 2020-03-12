@@ -1,7 +1,6 @@
 module.exports = {
 	publicPath: process.env.NODE_ENV === 'production' ? process.env.VUE_APP_PUBLICPATH : '/',
 	runtimeCompiler: true,
-	devServer: { https: true },
 	css: {
 		extract: {
 			filename: 'css/[name].css',
@@ -18,5 +17,26 @@ module.exports = {
 		  filename: 'js/[name].js',
 		  chunkFilename: 'js/[name].js',
 		}
-	}
+	},
+	devServer: { 
+		https: true,
+		proxy: {
+			'/newsTotal': {
+				target: 'https://opendata.cwb.gov.tw/webapi/announcement/newspage',
+			  	ws: true,
+			  	changeOrigin: true,
+			  	pathRewrite: {
+			 		'^/newsTotal': ''
+				}
+			},
+			'/newsList': {
+				target: 'https://opendata.cwb.gov.tw/webapi/announcement/newslist',
+			  	ws: true,
+			  	changeOrigin: true,
+			  	pathRewrite: {
+			 		'^/newsList': ''
+				}
+			},
+		}
+	},
 }

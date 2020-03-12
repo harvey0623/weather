@@ -2,17 +2,18 @@
 <b-dropdown
    :id="id"
    :text="dropdownText" 
-   toggle-tag="div"
    :ref="id"
    :class="['dropDownOuter', { open: isOpen }]"
+   variant="menu-dropdown"
+   toggle-tag="div"
    @show="isOpen = true"
-   @hide="isOpen = false"
-   variant="menu-dropdown">
+   @hide="isOpen = false">
    <b-dropdown-item
-      v-for="item in children"
-      :key="item.name"
-      :to="path + `/${item.path}`"
-   >{{ item.meta.navName }}</b-dropdown-item>
+      v-for="child in children"
+      :key="child.name"
+      v-show="child.path !== ''"
+      :to="{ name: child.name }"
+   >{{ child.meta !== undefined ? child.meta.navName : '' }}</b-dropdown-item>
 </b-dropdown>
 </template>
 
@@ -29,10 +30,6 @@ export default {
       },
       children: {
          type: Array,
-         required: true
-      },
-      path: {
-         type: String,
          required: true
       }
    },

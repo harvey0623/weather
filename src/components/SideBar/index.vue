@@ -39,7 +39,7 @@ export default {
 <style lang="scss">
 .sideBarList {
    >li {
-      padding: 12px;
+      padding: 10px 12px;
       background-color: #eee;
       border-bottom: 1px solid #fff;
       >a {

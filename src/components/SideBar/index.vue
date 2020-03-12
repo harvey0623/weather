@@ -30,7 +30,7 @@ export default {
       childRoute() { //取得子router
          let child = this.familyRoute[0].children;
          let result = child !== undefined ? child : this.familyRoute;
-         return result.filter(item => item.name !== undefined);
+         return result.filter(item => item.path !== '');
       }
    }
 }
@@ -39,7 +39,7 @@ export default {
 <style lang="scss">
 .sideBarList {
    >li {
-      padding: 12px;
+      padding: 10px 12px;
       background-color: #eee;
       border-bottom: 1px solid #fff;
       >a {

@@ -17,7 +17,7 @@ $dropDownColor: map-get($fontColor, primary);
    }
    &::after {
       content: "\f078";
-      margin-left: 0.3rem;
+      margin-left: 3px;
       font-family: 'Font Awesome 5 Pro';
       font-size: 14px;
       border: none;

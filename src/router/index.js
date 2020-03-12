@@ -29,6 +29,15 @@ const routes = [
 		},
 	},
 	{
+		path: '/qa',
+		name: 'qa',
+		component: Qa,
+		meta: {
+			navName: '常見問答',
+			layout: 'HasSideBar'
+		},
+	},
+	{
 		path: '/login',
 		name: 'login',
 		component: Login,
@@ -38,16 +47,8 @@ const routes = [
 		},
 		meta: {
 			navName: '會員登入',
-			layout: 'HasSideBar'
-		},
-	},
-	{
-		path: '/qa',
-		name: 'qa',
-		component: Qa,
-		meta: {
-			navName: '常見問答',
-			layout: 'HasSideBar'
+			layout: 'HasSideBar',
+			auth: false
 		},
 	},
 	{
@@ -61,6 +62,7 @@ const routes = [
 		children: [
 			{
 				path: '',
+				name: 'defaultUser',
 				redirect: 'info'
 			},
 			{
@@ -72,33 +74,6 @@ const routes = [
 					layout: 'HasSideBar'
 				}
 			}
-		]
-	},
-	{
-		path: '/announcement',
-		name: 'announcement',
-		component: Home,
-		meta: {
-			navName: '公告事項',
-			auth: true
-		},
-		children: [
-			{
-				path: 'news',
-				name: 'news',
-				component: Home,
-				meta: {
-					navName: '最新公告',
-				},
-			},
-			{
-				path: 'meeting',
-				name: 'meeting',
-				component: Home,
-				meta: {
-					navName: '會議記錄',
-				},
-			},
 		]
 	},
 	{

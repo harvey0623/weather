@@ -71,6 +71,9 @@ $linkColor: map-get($fontColor, primary);
 
 .guideBottom {
    @extend %align;
+   >* {
+      @include elGutter(margin-right, 5px);
+   }
    >a {
       color: $linkColor;
       @extend %normalHover;

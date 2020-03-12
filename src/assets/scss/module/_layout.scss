@@ -91,6 +91,5 @@
 //表單錯誤樣式
 .validate-error {
    color: red;
-   @include pxToRem(16);
-   margin-top: 3px;
+   font-size: 14px;
 }

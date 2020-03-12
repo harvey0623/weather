@@ -14,18 +14,24 @@
                   v-model="keyword" >
                <i class="far fa-search"></i>
             </div>
-            <router-link to="/login" :class="hoverClass">登入/註冊</router-link>
+            <a
+               v-if="isLogin"
+               href="javascript:;" 
+               :class="hoverClass"
+               @click.prevent="loginOutHandler"
+            >登出</a>
+            <router-link to="/login" :class="hoverClass" v-else>登入/註冊</router-link>
             <router-link to="/siteMap" :class="hoverClass">網站地圖</router-link>
          </div>
          <div class="guideBottom" v-if="isDefault">
             <DropDown 
-               v-for="item in navList"
-               :key="item.name"
-               :id="item.name" 
+               v-for="item in dropDownList"
+               :key="item.path"
+               :id="item.path.replace('/', '')"
                :dropdownText="item.meta.navName"
                :children="item.children"
-               :path="item.path"
             ></DropDown>
+            <router-link to="/qa">常見問答</router-link>
          </div>
       </div>
    </div>
@@ -33,8 +39,7 @@
 </template>
 
 <script>
-import axios from 'axios';
-import { mapGetters } from 'vuex';
+import { mapState, mapGetters } from 'vuex';
 import DropDown from '@/components/DropDown/index.vue';
 export default {
    props: {
@@ -47,7 +52,8 @@ export default {
       keyword: ''
    }),
    computed: {
-      ...mapGetters({ navList: 'navList' }),
+      ...mapState('auth', { isLogin: state => state.fbUser.isLogin }),
+      ...mapGetters(['dropDownList']),
       hoverClass() {
          let isHomeName = this.$route.name === 'home';
          return {
@@ -56,10 +62,16 @@ export default {
          }
       }
    },
+   methods: {
+      async loginOutHandler() {
+         await this.$store.dispatch('auth/fbLogout').then(res => res);
+         this.$router.push('/').catch(() => {});
+      }
+   },
    components: {
       DropDown
    }
 }
 </script>
 
-<style lang="scss" src="./DefaultHeader.scss"></style>
+<style lang="scss" src="./index.scss"></style>

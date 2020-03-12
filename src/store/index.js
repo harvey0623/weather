@@ -14,13 +14,20 @@ export default new Vuex.Store({
 	strict: process.NODE_ENV === 'development',
 	state: {
 		isLoading: false,
-		blockNav: ['/', '/siteMap', '/login', '*']
+		blockPath: ['/', '*', '/siteMap', '/qa', '/login']
 	},
 	getters: {
-		navList(state) {  //dropdown list && site map link
+		showDropDown(state) {
 			return router.options.routes.filter(item => {
-            return !state.blockNav.includes(item.path);
-         });
+				return !state.blockPath.includes(item.path);
+			});
+		},
+		dropDownList(state, getters) {  //下拉清單資料
+			let isLogin = state.auth.fbUser.isLogin;
+			return getters.showDropDown.filter(item => {
+				let authStatus = item.meta.auth;
+				return authStatus === undefined || authStatus === isLogin; 
+			});
 		}
 	},
 	mutations: {

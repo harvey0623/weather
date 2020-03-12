@@ -1,7 +1,13 @@
+$linkColor: map-get($fontColor, primary);
 %align {
    display: flex;
    justify-content: flex-end;
    align-items: center;
+}
+%normalHover {
+   &:hover {
+      color: #fff;
+   }
 }
 
 .defaultHeader {
@@ -27,11 +33,6 @@
    >* {
       @include elGutter(margin-right, 20px);
    }
-   &.layout {
-      >a {
-         color: #fff;
-      }
-   }
    >.searchBox {
       position: relative;
       >.form-control {
@@ -56,11 +57,9 @@
       }
    }
    >a {
-      color: map-get($fontColor, primary);
+      color: $linkColor;
       &.default {
-         &:hover {
-            color: #fff;
-         }
+         @extend %normalHover;
       }
       &.layout {
          &:hover {
@@ -72,4 +71,11 @@
 
 .guideBottom {
    @extend %align;
+   >* {
+      @include elGutter(margin-right, 5px);
+   }
+   >a {
+      color: $linkColor;
+      @extend %normalHover;
+   }
 }

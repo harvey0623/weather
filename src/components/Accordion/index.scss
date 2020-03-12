@@ -1,0 +1,33 @@
+$titleBg: map-get($elBgColor, title);
+
+.accordionBox {
+   @include elGutter(margin-bottom, 15px);
+   border: 1px solid #ddd;
+   border-radius: map-get($radius, basic);
+}
+
+.accordionTitle {
+   display: flex;
+   align-items: center;
+   color: map-get($fontColor, primary);
+   cursor: pointer;
+   >.orderNumber {
+      background-color: map-get($elBgColor, menu);
+      padding: 8px;
+   }
+   >p {
+      flex: 1;
+      padding: 8px;
+      background-color: $titleBg ;
+   }
+}
+
+.accordionContent {
+   padding: 10px;
+   padding-top: 0;
+   background-color: $titleBg;
+   >p {
+      padding: 10px;
+      background-color: #fff;
+   }
+}

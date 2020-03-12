@@ -2,17 +2,17 @@
 <div class="siteMap">
    <div class="siteWrap">
       <div class="siteBox" 
-         v-for="item in navList"
+         v-for="item in siteMapRouter"
          :key="item.name">
-         <router-link
-            class="mainTitle"
-            :to="item.path"
-         >{{ item.meta.navName }}</router-link>
-         <div class="childrenBox" 
-            v-if="item.children && item.children.length !== 0">
+         <div class="mainTitle">
+            <router-link 
+               :to="item.path"
+            >{{ item.meta.navName }}</router-link>
+         </div>
+         <div class="childrenBox" v-if="item.children !== undefined">
             <router-link
                v-for="child in item.children"
-               :key="child.name" 
+               :key="child.name"
                :to="{ name: child.name }"
             >{{ child.meta.navName }}</router-link>
          </div>
@@ -24,12 +24,38 @@
 <script>
 import { mapState, mapGetters } from 'vuex';
 export default {
+   data: () => ({
+      blockList: ['/', '*', '/siteMap']
+   }),
    metaInfo() {
       return { title: this.seo.title, meta: this.seo.meta }
    },
    computed: {
       ...mapState('meta', { seo: state => state.metaInfo.siteMap }),
-      ...mapGetters({ navList: 'navList' }),
+      ...mapState('auth', { isLogin: state => state.fbUser.isLogin }),
+      allRouter() {
+         return this.$router.options.routes.filter(item => {
+            return !this.blockList.includes(item.path);
+         });
+      },
+      noEmptyRoute() {  //拿掉chihldren裡的path === ''
+         let copyArr = JSON.parse(JSON.stringify(this.allRouter));
+         for (let item of copyArr) {
+            if (item.children === undefined) continue;
+            let index = item.children.findIndex(child => child.path === '');
+            if (index === -1) continue;
+            item.children.splice(index, 1);
+         }
+         return copyArr;
+      },
+      siteMapRouter() { //依照登入狀態篩選對應route
+         let noAuthRoute = this.noEmptyRoute.filter(item => item.meta.auth === undefined);
+         let authRoute = this.noEmptyRoute.filter(item => item.meta.auth === this.isLogin);
+         return noAuthRoute.concat(authRoute);
+      }
+   },
+   mounted() {
+      
    }
 }
 </script>

@@ -21,22 +21,18 @@ export default {
          ]
       }
    },
-   data() {
-      return {
-         
-      }
-   },
 	computed: {
 		layout() {
-			return this.$route.meta.layout || 'DefaultLayout';
+         let defaultLayout = 'DefaultLayout';
+         let matchArr = this.$route.matched;
+         if (matchArr.length === 0) return defaultLayout;
+         let metaObj = matchArr[0].meta;
+         return metaObj.layout !== undefined ? metaObj.layout : defaultLayout;
       },
       isLoading() {
 			return this.$store.state.isLoading;
-		}
+      }
 	},
-   mounted() {
-      
-   },
    components: {
       Loading,
    }

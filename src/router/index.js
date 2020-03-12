@@ -1,9 +1,15 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import i18n from '@/plugin/i18n/index.js';
+import Store from '@/store/index.js';
 import Home from '@/views/home/index.vue';
 import SiteMap from '@/views/siteMap/index.vue';
 import Login from '@/views/login/index.vue';
+import RouterView from '@/views/routerView/index.vue';
+import UserInfo from '@/views/userInfo/index.vue';
+import Qa from '@/views/qa/index.vue';
+import News from '@/views/news/index.vue';
+import Meeting from '@/views/meeting/index.vue';
+
 Vue.use(VueRouter);
 
 const routes = [
@@ -21,67 +27,84 @@ const routes = [
 		component: SiteMap,
 		meta: {
 			navName: '網站地圖',
-			layout: 'NoSideBar'
+			layout: 'HasSideBar'
+		},
+	},
+	{
+		path: '/qa',
+		name: 'qa',
+		component: Qa,
+		meta: {
+			navName: '常見問答',
+			layout: 'HasSideBar'
 		},
 	},
 	{
 		path: '/login',
 		name: 'login',
 		component: Login,
+		beforeEnter(to, from, next) {
+			if (Store.state.auth.fbUser.isLogin) return next('/');
+			else return next();
+		},
 		meta: {
-			navName: '登入',
-			layout: 'NoSideBar'
+			navName: '會員登入',
+			layout: 'HasSideBar',
+			auth: false
 		},
 	},
 	{
-		path: '/announcement',
-		name: 'announcement',
-		component: Home,
+		path: '/user',
+		component: RouterView,
 		meta: {
-			navName: '公告事項',
+			navName: '會員資訊',
+			layout: 'HasSideBar',
+			auth: true
 		},
 		children: [
 			{
+				path: '',
+				name: 'defaultUser',
+				redirect: 'info'
+			},
+			{
+				path: 'info',
+				name: 'info',
+				component: UserInfo,
+				meta: {
+					navName: '會員基本資料'
+				}
+			}
+		]
+	},
+	{
+		path: '/announce',
+		component: RouterView,
+		meta: {
+			navName: '公告事項',
+			layout: 'HasSideBar',
+		},
+		children: [
+			{
+				path: '',
+				name: 'defaultAnnounce',
+				redirect: 'news'
+			},
+			{
 				path: 'news',
 				name: 'news',
-				component: Home,
+				component: News,
 				meta: {
-					navName: '最新公告',
-				},
+					navName: '最新消息'
+				}
 			},
 			{
 				path: 'meeting',
 				name: 'meeting',
-				component: Home,
+				component: Meeting,
 				meta: {
-					navName: '會議記錄',
-				},
-			},
-		]
-	},
-	{
-		path: '/dataset',
-		name: 'dataset',
-		component: Home,
-		meta: {
-			navName: '資料主題',
-		},
-		children: [
-			{
-				path: 'forcast',
-				name: 'forcast',
-				component: Home,
-				meta: {
-					navName: '預報',
-				},
-			},
-			{
-				path: 'observation',
-				name: 'observation',
-				component: Home,
-				meta: {
-					navName: '觀測',
-				},
+					navName: '會議記錄'
+				}
 			},
 		]
 	},
@@ -107,7 +130,19 @@ const router = new VueRouter({
 	}
 });
 
-router.beforeEach((to, from, next) => {
+let isFirst = false;
+router.beforeEach(async (to, from, next) => {
+	let isAuth = to.matched.some(item => item.meta.auth);
+	if (!isFirst && isAuth === false) {
+		await Store.dispatch('auth/getFbAuth');
+		isFirst = true;
+	}
+	if (isAuth) {
+		isFirst = true;
+		let fbAuthStatus = await Store.dispatch('auth/getFbAuth').then(res => res);
+		if (fbAuthStatus) return next();
+		else return next('/login');
+	}
 	return next();
 });
 

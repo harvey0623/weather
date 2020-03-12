@@ -1,0 +1,43 @@
+#topBlock {
+	position: relative;
+	min-height: 380px;
+	background-image: url("/img/blockBg/bg1.jpg");
+	background-size: cover;
+	background-repeat: no-repeat;
+}
+
+#menu {
+   position: absolute;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   >#menuCenter {
+      padding: 0 0;
+      background-color: map-get($elBgColor, menu);
+      border-radius: 5px;
+      >* {
+         height: 50px;
+      }
+   }
+}
+
+#sideBarCenter {
+   display: flex;
+   align-items: flex-start;
+}
+
+#sideBar {
+   flex: 0 0 250px;
+   min-height: 200px;
+}
+
+#pageContent {
+   flex: 1;
+   padding-left: 0px;
+   &.hasPadding {
+      padding-left: 50px;
+   }
+}
+
+
+

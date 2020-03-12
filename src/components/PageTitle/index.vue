@@ -1,14 +1,24 @@
 <template>
 <div class="pageTitle">
-   <h1>{{ text }}</h1>
+   <h1>{{ pageTitle }}</h1>
 </div>
 </template>
 
 <script>
 export default {
+	props: {
+		title: {
+			type: String,
+			default: ''
+		}
+	},
 	computed: {
-		text() {
+		navName() {
 			return this.$route.meta.navName;
+		},
+		pageTitle() {
+			if (this.title !== '') return this.title;
+			else return this.navName;
 		}
 	},
 }
@@ -17,7 +27,7 @@ export default {
 <style lang="scss">
 .pageTitle {
 	position: relative;
-	margin-bottom: 30px;
+	margin-bottom: 25px;
 	&:after {
 		content: '';
 		position: absolute;
@@ -29,7 +39,7 @@ export default {
 	}
 	>h1 {
 		display: inline-block;
-		padding-bottom: 3px;
+		padding-bottom: 5px;
 		font-size: 25px;
 		border-bottom: 2px solid map-get($borderColor, primary);
 		color: map-get($fontColor, primary);

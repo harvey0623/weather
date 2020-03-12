@@ -1,0 +1,19 @@
+.loginMethod {
+   @include elGutter(margin-bottom, 40px);
+   >.pageTitle {
+      margin-bottom: 20px;
+   }
+   >button {
+      @include size(250px, 40px);
+      font-size: 18px;
+   }
+   .formLayout {
+      margin-top: 20px;
+      margin-bottom: 20px;
+      padding-left: 20px;
+   }
+   .btnSubmit {
+      @include size(120px, 40px);
+      font-size: 16px;
+   }
+}

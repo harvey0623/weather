@@ -24,14 +24,14 @@
             <router-link to="/siteMap" :class="hoverClass">網站地圖</router-link>
          </div>
          <div class="guideBottom" v-if="isDefault">
-            <!-- <DropDown 
-               v-for="item in navList"
-               :key="item.name"
-               :id="item.name" 
+            <DropDown 
+               v-for="item in dropDownList"
+               :key="item.path"
+               :id="item.path.replace('/', '')"
                :dropdownText="item.meta.navName"
                :children="item.children"
-               :path="item.path"
-            ></DropDown> -->
+            ></DropDown>
+            <router-link to="/qa">常見問答</router-link>
          </div>
       </div>
    </div>
@@ -53,7 +53,7 @@ export default {
    }),
    computed: {
       ...mapState('auth', { isLogin: state => state.fbUser.isLogin }),
-      // ...mapGetters({ navList: 'navList' }),
+      ...mapGetters(['dropDownList']),
       hoverClass() {
          let isHomeName = this.$route.name === 'home';
          return {
@@ -65,7 +65,7 @@ export default {
    methods: {
       async loginOutHandler() {
          await this.$store.dispatch('auth/fbLogout').then(res => res);
-         this.$router.push('/');
+         this.$router.push('/').catch(() => {});
       }
    },
    components: {

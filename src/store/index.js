@@ -14,6 +14,21 @@ export default new Vuex.Store({
 	strict: process.NODE_ENV === 'development',
 	state: {
 		isLoading: false,
+		blockPath: ['/', '*', '/siteMap', '/qa', '/login']
+	},
+	getters: {
+		showDropDown(state) {
+			return router.options.routes.filter(item => {
+				return !state.blockPath.includes(item.path);
+			});
+		},
+		dropDownList(state, getters) {
+			let isLogin = state.auth.fbUser.isLogin;
+			return getters.showDropDown.filter(item => {
+				let authStatus = item.meta.auth;
+				return authStatus === undefined || authStatus === isLogin; 
+			});
+		}
 	},
 	mutations: {
 		setLoading(state, value) {

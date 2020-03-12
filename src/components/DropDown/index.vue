@@ -9,10 +9,11 @@
    @mouseenter.native="showHandler"
    @mouseleave.native="leaveHandler">
    <b-dropdown-item
-      v-for="item in children"
-      :key="item.name"
-      :to="path + `/${item.path}`"
-   >{{ item.meta.navName }}</b-dropdown-item>
+      v-for="child in children"
+      :key="child.name"
+      :to="{ name: child.name }"
+      v-show="child.path !== ''"
+   >{{ child.meta !== undefined ? child.meta.navName : '' }}</b-dropdown-item>
 </b-dropdown>
 </template>
 
@@ -29,10 +30,6 @@ export default {
       },
       children: {
          type: Array,
-         required: true
-      },
-      path: {
-         type: String,
          required: true
       }
    },
@@ -51,5 +48,3 @@ export default {
    },
 }
 </script>
-
-<style lang="scss"></style>

@@ -62,6 +62,7 @@ const routes = [
 		children: [
 			{
 				path: '',
+				name: 'defaultUser',
 				redirect: 'info'
 			},
 			{

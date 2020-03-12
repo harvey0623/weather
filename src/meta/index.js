@@ -31,5 +31,17 @@ export default function() {
             { property: 'og:title', content: i18n.t('seo.qa.title') },
          ],
       },
+      news: {
+         title: i18n.t('seo.news.title'),
+         meta: [
+            { property: 'og:title', content: i18n.t('seo.news.title') },
+         ],
+      },
+      meeting: {
+         title: i18n.t('seo.meeting.title'),
+         meta: [
+            { property: 'og:title', content: i18n.t('seo.meeting.title') },
+         ],
+      },
    }
 }

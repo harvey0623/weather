@@ -22,7 +22,7 @@ export default new Vuex.Store({
 				return !state.blockPath.includes(item.path);
 			});
 		},
-		dropDownList(state, getters) {
+		dropDownList(state, getters) {  //下拉清單資料
 			let isLogin = state.auth.fbUser.isLogin;
 			return getters.showDropDown.filter(item => {
 				let authStatus = item.meta.auth;

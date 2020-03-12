@@ -7,6 +7,8 @@ import Login from '@/views/login/index.vue';
 import RouterView from '@/views/routerView/index.vue';
 import UserInfo from '@/views/userInfo/index.vue';
 import Qa from '@/views/qa/index.vue';
+import News from '@/views/news/index.vue';
+import Meeting from '@/views/meeting/index.vue';
 
 Vue.use(VueRouter);
 
@@ -70,10 +72,40 @@ const routes = [
 				name: 'info',
 				component: UserInfo,
 				meta: {
-					navName: '會員基本資料',
-					layout: 'HasSideBar'
+					navName: '會員基本資料'
 				}
 			}
+		]
+	},
+	{
+		path: '/announce',
+		component: RouterView,
+		meta: {
+			navName: '公告事項',
+			layout: 'HasSideBar',
+		},
+		children: [
+			{
+				path: '',
+				name: 'defaultAnnounce',
+				redirect: 'news'
+			},
+			{
+				path: 'news',
+				name: 'news',
+				component: News,
+				meta: {
+					navName: '最新消息'
+				}
+			},
+			{
+				path: 'meeting',
+				name: 'meeting',
+				component: Meeting,
+				meta: {
+					navName: '會議記錄'
+				}
+			},
 		]
 	},
 	{

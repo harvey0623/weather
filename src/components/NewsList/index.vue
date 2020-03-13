@@ -2,7 +2,10 @@
 <li class="newsList">
    <p class="date">{{ createdate }}</p>
    <p class="title">
-      <router-link to="/aaaa">{{ title }}</router-link>
+      <router-link 
+         :to="{ name: 'newsContent', params: { id: id }}">
+         {{ title }}
+      </router-link>
    </p>
 </li>
 </template>

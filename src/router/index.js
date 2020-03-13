@@ -8,6 +8,7 @@ import RouterView from '@/views/routerView/index.vue';
 import UserInfo from '@/views/userInfo/index.vue';
 import Qa from '@/views/qa/index.vue';
 import News from '@/views/news/index.vue';
+import NewsContent from '@/views/newsContent/index.vue';
 import Meeting from '@/views/meeting/index.vue';
 
 Vue.use(VueRouter);
@@ -96,7 +97,14 @@ const routes = [
 				component: News,
 				meta: {
 					navName: '最新消息'
-				}
+				},
+				children: [
+					{
+						path: ':id',
+						name: 'newsContent',
+						component: NewsContent,
+					}
+				]
 			},
 			{
 				path: 'meeting',

@@ -14,6 +14,7 @@
       :pageNumber="pageNumber"
       @updateNumber="changeNumber"
    ></Pagination>
+   <router-view></router-view>
 </div>
 </template>
 

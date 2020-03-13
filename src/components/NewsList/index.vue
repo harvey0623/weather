@@ -1,19 +1,38 @@
 <template>
 <li class="newsList">
-   <p class="date">2020/10/10</p>
+   <p class="date">{{ createdate }}</p>
    <p class="title">
-      <router-link to="/">hello world</router-link>
+      <router-link to="/">{{ title }}</router-link>
    </p>
 </li>
 </template>
+
+<script>
+export default {
+   props: {
+      id: {
+         type: Number,
+         required: true
+      },
+      title: {
+         type: String,
+         required: true
+      },
+      createdate: {
+         type: String,
+         required: true
+      }
+   }
+}
+</script>
 
 <style lang="scss">
 .newsList {
    display: flex;
    align-items: center;
-   padding: 15px 12px;
+   padding: 12px 12px;
    border-bottom: 1px dotted #ccc;
-   @include elGutter(margin-bottom, 20px);
+   @include elGutter(margin-bottom, 15px);
    >.date {
       padding: 5px 8px;
       color: map-get($fontColor, primary);

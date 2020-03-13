@@ -25,13 +25,15 @@ const newsStore = function() {
          },
          pageId(state) {
             if (state.newsTotal.length === 0) return 0;
-            return state.newsTotal.find(item => {
+            let obj = state.newsTotal.find(item => {
                return item.page === state.pageNumber;
-            })['id'];
+            });
+            if (obj !== undefined) return obj.id;
+            else return 0;
          }
       },
       actions: {
-         async getTotalNews({state, commit, dispatch, getters }, value) {
+         async getTotalNews({ commit, dispatch, getters }, value) {
             let result = await News.getTotalNews().then(res => res.data);
             if (result.success) {
                commit('setNewsTotal', result.data);
@@ -41,7 +43,9 @@ const newsStore = function() {
          async getNewsList({ commit }, { pageIndex }) {
             let result = await News.getNewsList({ params: { pageIndex }})
                .then(res => res.data);
-            console.log(result);
+            if (result.success) {
+               commit('setNewsList', result.data);
+            }
          }
       }
    }

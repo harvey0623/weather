@@ -1,7 +1,13 @@
 <template>
 <div class="news">
    <ul>
-      <NewsList></NewsList>
+      <NewsList 
+         v-for="item in newsData"
+         :key="item.id"
+         :id="item.id"
+         :title="item.title"
+         :createdate="item.createdate"
+      ></NewsList>
    </ul>
 </div>
 </template>
@@ -18,7 +24,8 @@ export default {
       return { title: this.seo.title, meta: this.seo.meta };
    },
    computed: {
-      ...mapState("meta", { seo: state => state.metaInfo.news })
+      ...mapState("meta", { seo: state => state.metaInfo.news }),
+      ...mapState('newsStore', { newsData: 'newsList' })
    },
    methods: {
       checkStore(name) {

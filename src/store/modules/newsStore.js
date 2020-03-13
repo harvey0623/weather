@@ -37,7 +37,6 @@ const newsStore = function() {
             let { success, data } = await News.getTotalNews().then(res => res.data);
             if (success) {
                commit('setNewsTotal',data);
-               dispatch('getNewsList');
             }
          },
          async getNewsList({ commit, getters }) { //取得新聞資料

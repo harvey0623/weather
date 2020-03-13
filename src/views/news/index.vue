@@ -51,7 +51,6 @@ export default {
          }
       },
       changeNumber(val) {
-         console.log(val);
          this.setPageNumber(val);
          this.$router.push({ query: { page: val }}).catch(() => {});
       }

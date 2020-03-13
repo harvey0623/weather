@@ -37,20 +37,32 @@ export default {
 </script>
 
 <style lang="scss">
+%activeBg {
+   background-color: map-get($elBgColor, sideBar);
+   color: #fff;
+}
+
 .sideBarList {
    >li {
-      padding: 10px 12px;
       background-color: #eee;
       border-bottom: 1px solid #fff;
       >a {
+         display: block;
+         padding: 10px 12px;
          color: #666666;
-      }
-      &.active {
-         background-color: #f3ba42;
-         >a {
-            color: #fff;
+         &.router-link-active {
+            @extend %activeBg;
          }
       }
+      >.router-link-exact-active {
+         @extend %activeBg;
+      }
+      // &.active {
+      //    background-color: $sideBarBg;
+      //    >a {
+      //       color: #fff;
+      //    }
+      // }
    }
 }
 </style>

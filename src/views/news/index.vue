@@ -36,18 +36,12 @@ export default {
       },
       ...mapActions('newsStore', ['getTotalNews', 'getNewsList']),
       ...mapMutations('newsStore', ['setPageNumber']),
-      gotoFirstPage() {
-         this.$router.replace({ query: { page: 1 }});
-      },
       getPageNumber() {
          let pageId = this.$route.query.page;
          if (pageId === undefined) {
-            this.gotoFirstPage();
+            this.$router.replace({ query: { page: 1 }});
          } else {
-            let parseNumber = parseInt(pageId);
-            let obj = this.newsTotal.find(item => item.page === parseNumber);
-            if (obj !== undefined) this.setPageNumber(parseNumber);
-            else this.gotoFirstPage();
+            this.setPageNumber(parseInt(pageId));
          }
       }
    },
@@ -55,9 +49,8 @@ export default {
       if (!this.checkStore(this.storeName)) {
          this.$store.registerModule(this.storeName, newsStore());
       }
-      await this.getTotalNews();
+      this.getTotalNews();
       this.getPageNumber();
-      this.getNewsList();
    },
    mounted() {
       
@@ -68,7 +61,7 @@ export default {
       }
    },
    watch: {
-      $route(to, from, next) {
+      async $route(to, from, next) {
          this.getPageNumber();
          this.getNewsList();
       }

@@ -34,10 +34,10 @@ const newsStore = function() {
       },
       actions: {
          async getTotalNews({ commit, dispatch }) {  //取得page資料
-            let result = await News.getTotalNews().then(res => res.data);
-            if (result.success) {
-               commit('setNewsTotal', result.data);
-               // dispatch('getNewsList');
+            let { success, data } = await News.getTotalNews().then(res => res.data);
+            if (success) {
+               commit('setNewsTotal',data);
+               dispatch('getNewsList');
             }
          },
          async getNewsList({ commit, getters }) { //取得新聞資料

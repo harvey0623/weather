@@ -50,12 +50,11 @@ export default {
          display: block;
          padding: 10px 12px;
          color: #666666;
-         &.router-link-active {
+         transition: background-color 0.25s;
+         &.router-link-active,
+         &.router-link-exact-active {
             @extend %activeBg;
          }
-      }
-      >.router-link-exact-active {
-         @extend %activeBg;
       }
       // &.active {
       //    background-color: $sideBarBg;

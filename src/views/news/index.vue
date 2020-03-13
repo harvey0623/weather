@@ -1,6 +1,6 @@
 <template>
 <div class="news">
-   <ul>
+   <ul class="newsBox">
       <NewsList 
          v-for="item in newsData"
          :key="item.id"
@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex';
+import { mapState, mapActions, mapMutations } from 'vuex';
 import newsStore from '@/store/modules/newsStore.js';
 import NewsList from '@/components/NewsList/index.vue';
 export default {
@@ -25,25 +25,53 @@ export default {
    },
    computed: {
       ...mapState("meta", { seo: state => state.metaInfo.news }),
-      ...mapState('newsStore', { newsData: 'newsList' })
+      ...mapState('newsStore', { 
+         newsData: 'newsList',
+         newsTotal: 'newsTotal'
+      })
    },
    methods: {
       checkStore(name) {
          return this.$checkStoreModule(name);
       },
-      ...mapActions('newsStore', { getTotalNews: 'getTotalNews' })
+      ...mapActions('newsStore', ['getTotalNews', 'getNewsList']),
+      ...mapMutations('newsStore', ['setPageNumber']),
+      gotoFirstPage() {
+         this.$router.replace({ query: { page: 1 }});
+      },
+      getPageNumber() {
+         let pageId = this.$route.query.page;
+         if (pageId === undefined) {
+            this.gotoFirstPage();
+         } else {
+            let parseNumber = parseInt(pageId);
+            let obj = this.newsTotal.find(item => item.page === parseNumber);
+            if (obj !== undefined) this.setPageNumber(parseNumber);
+            else this.gotoFirstPage();
+         }
+      }
    },
-   created() {
+   async created() {
       if (!this.checkStore(this.storeName)) {
          this.$store.registerModule(this.storeName, newsStore());
       }
+      await this.getTotalNews();
+      this.getPageNumber();
+      this.getNewsList();
    },
    mounted() {
-      this.getTotalNews();
+      
    },
    beforeDestroy() {
       if (this.checkStore(this.storeName)) {
          this.$store.unregisterModule(this.storeName);
+      }
+   },
+   watch: {
+      $route(to, from, next) {
+         console.log('aaa')
+         this.getPageNumber();
+         this.getNewsList();
       }
    },
    components: {
@@ -51,3 +79,10 @@ export default {
    }
 }
 </script>
+
+<style lang="scss">
+.newsBox {
+   margin-bottom: 20px;
+}
+
+</style>

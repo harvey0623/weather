@@ -33,19 +33,18 @@ const newsStore = function() {
          }
       },
       actions: {
-         async getTotalNews({ commit, dispatch, getters }, value) {
+         async getTotalNews({ commit, dispatch }) {  //取得page資料
             let result = await News.getTotalNews().then(res => res.data);
             if (result.success) {
                commit('setNewsTotal', result.data);
-               dispatch('getNewsList', { pageIndex: getters.pageId });
+               // dispatch('getNewsList');
             }
          },
-         async getNewsList({ commit }, { pageIndex }) {
-            let result = await News.getNewsList({ params: { pageIndex }})
-               .then(res => res.data);
-            if (result.success) {
-               commit('setNewsList', result.data);
-            }
+         async getNewsList({ commit, getters }) { //取得新聞資料
+            let { success, data } = await News.getNewsList({ 
+                  params: { pageIndex: getters.pageId }
+               }).then(res => res.data);
+            if (success) commit('setNewsList', data);
          }
       }
    }

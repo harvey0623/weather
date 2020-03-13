@@ -69,7 +69,6 @@ export default {
    },
    watch: {
       $route(to, from, next) {
-         console.log('aaa')
          this.getPageNumber();
          this.getNewsList();
       }

@@ -37,6 +37,14 @@ module.exports = {
 			 		'^/newsList': ''
 				}
 			},
+			'/meetinglist': {
+				target: 'https://opendata.cwb.gov.tw/webapi/announcement/meetinglist',
+			  	ws: true,
+			  	changeOrigin: true,
+			  	pathRewrite: {
+			 		'^/meetinglist': ''
+				}
+			},
 		}
 	},
 }

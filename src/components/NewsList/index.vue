@@ -43,8 +43,8 @@ export default {
 .newsList {
    display: flex;
    align-items: center;
-   padding: 12px 12px;
-   border-bottom: 1px dotted #ccc;
+   padding: 12px;
+   border-bottom: 1px dotted map-get($borderColor, list);
    @include elGutter(margin-bottom, 15px);
    >.date {
       padding: 5px 8px;

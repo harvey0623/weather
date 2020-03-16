@@ -55,7 +55,6 @@ const datasetStore = function() {
             let { success, data } = await Dataset.getDatasetList({ 
                url, params: { pageIndex: getters.pageId }})
                .then(res => res.data);
-            
             if (success) {
                commit('setDatasetList', data);
             }

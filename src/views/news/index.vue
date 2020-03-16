@@ -1,20 +1,22 @@
 <template>
 <div class="news">
-   <ul class="newsBox">
-      <NewsList 
-         v-for="item in newsList"
-         :key="item.id"
-         :id="item.id"
-         :title="item.title"
-         :createdate="item.createdate"
-      ></NewsList>
-   </ul>
-   <Pagination
-      :total="total"
-      :pageNumber="pageNumber"
-      @updateNumber="changeNumber"
-   ></Pagination>
-   <router-view></router-view>
+   <template v-if="routeName === 'news'">
+      <ul class="newsBox">
+         <NewsList 
+            v-for="item in newsList"
+            :key="item.id"
+            :id="item.id"
+            :title="item.title"
+            :createdate="item.createdate"
+         ></NewsList>
+      </ul>
+      <Pagination
+         :total="total"
+         :pageNumber="pageNumber"
+         @updateNumber="changeNumber"
+      ></Pagination>
+   </template>
+   <router-view v-else></router-view>
 </div>
 </template>
 
@@ -34,6 +36,9 @@ export default {
       ...mapState("meta", { seo: state => state.metaInfo.news }),
       ...mapState('newsStore', ['newsList', 'newsTotal', 'pageNumber']),
       ...mapGetters('newsStore', { total: 'totalPage' }),
+      routeName() {
+         return this.$route.name;
+      }
    },
    methods: {
       checkStore(name) {
@@ -70,10 +75,11 @@ export default {
       }
    },
    watch: {
-      async $route(to, from) {
+      $route(to, from) {
+         if (to.name === 'newsContent') return;
          this.getPageNumber();
          this.getNewsList();
-      },
+      }
    },
    components: {
       NewsList,

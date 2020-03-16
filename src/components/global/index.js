@@ -15,7 +15,7 @@ Vue.component('DefaultLayout', Default);
 Vue.component('HasSideBar', HasSideBar);
 Vue.component('PageTitle', PageTitle);
 Vue.component('BaseButton', BaseButton);
-// Vue.component('ButtonBox', ButtonBox);
+Vue.component('ButtonBox', ButtonBox);
 Vue.component('TextInput', TextInput);
 // Vue.component('RadioInput', RadioInput);
 // Vue.component('TextArea', TextArea);

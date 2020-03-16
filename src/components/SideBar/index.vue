@@ -37,11 +37,6 @@ export default {
 </script>
 
 <style lang="scss">
-%activeBg {
-   background-color: map-get($elBgColor, sideBar);
-   color: #fff;
-}
-
 .sideBarList {
    >li {
       background-color: #eee;
@@ -53,7 +48,8 @@ export default {
          transition: background-color 0.25s;
          &.router-link-active,
          &.router-link-exact-active {
-            @extend %activeBg;
+            background-color: map-get($elBgColor, sideBar);
+            color: #fff;
          }
       }
    }

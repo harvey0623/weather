@@ -6,7 +6,8 @@ const newsStore = function() {
       state: {
          pageNumber: 1,
          newsTotal: [],
-         newsList: []
+         newsList: [],
+         newsId: 0
       },
       mutations: {
          setPageNumber(state, value) {
@@ -18,6 +19,9 @@ const newsStore = function() {
          setNewsList(state, value) {
             state.newsList = value;
          },
+         setNewsId(state, value) {
+            state.newsId = value;
+         }
       },
       getters: {
          totalPage(state) {
@@ -30,6 +34,14 @@ const newsStore = function() {
             });
             if (obj !== undefined) return obj.id;
             else return 0;
+         },
+         newsContent(state) {
+            if (state.newsList.length === 0) return null;
+            let content = state.newsList.find(item => {
+               return item.id === state.newsId
+            });
+            if (content !== undefined) return content;
+            else return null;
          }
       },
       actions: {

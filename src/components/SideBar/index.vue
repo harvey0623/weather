@@ -56,12 +56,6 @@ export default {
             @extend %activeBg;
          }
       }
-      // &.active {
-      //    background-color: $sideBarBg;
-      //    >a {
-      //       color: #fff;
-      //    }
-      // }
    }
 }
 </style>

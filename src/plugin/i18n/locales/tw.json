@@ -71,6 +71,12 @@
       },
       "meeting": {
          "title": "會議紀錄"
+      },
+      "forecast": {
+         "title": "預報"
+      },
+      "observation": {
+         "title": "觀測"
       }
    }
 }

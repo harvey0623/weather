@@ -45,6 +45,22 @@ module.exports = {
 			 		'^/meetinglist': ''
 				}
 			},
+			'/datasetPage': {
+				target: 'https://opendata.cwb.gov.tw/webapi/datasetPage/',
+			  	ws: true,
+			  	changeOrigin: true,
+			  	pathRewrite: {
+			 		'^/datasetPage': ''
+				}
+			},
+			'/datasetList': {
+				target: 'https://opendata.cwb.gov.tw/webapi/datasetList/',
+			  	ws: true,
+			  	changeOrigin: true,
+			  	pathRewrite: {
+			 		'^/datasetList': ''
+				}
+			},
 		}
 	},
 }

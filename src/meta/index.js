@@ -43,5 +43,17 @@ export default function() {
             { property: 'og:title', content: i18n.t('seo.meeting.title') },
          ],
       },
+      forecast: {
+         title: i18n.t('seo.forecast.title'),
+         meta: [
+            { property: 'og:title', content: i18n.t('seo.forecast.title') },
+         ],
+      },
+      observation: {
+         title: i18n.t('seo.observation.title'),
+         meta: [
+            { property: 'og:title', content: i18n.t('seo.observation.title') },
+         ],
+      },
    }
 }

@@ -27,7 +27,7 @@
 </template>
 
 <script>
-import { mapState ,mapGetters, mapMutations } from 'vuex';
+import { mapState, mapGetters, mapMutations } from 'vuex';
 export default {
    computed: {
       ...mapState('newsStore', ['pageNumber']),

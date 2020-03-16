@@ -10,6 +10,7 @@ import Qa from '@/views/qa/index.vue';
 import News from '@/views/news/index.vue';
 import NewsContent from '@/views/newsContent/index.vue';
 import Meeting from '@/views/meeting/index.vue';
+import DatasetPage from '@/views/dataset/index.vue';
 
 Vue.use(VueRouter);
 
@@ -115,6 +116,37 @@ const routes = [
 				component: Meeting,
 				meta: {
 					navName: '會議記錄'
+				}
+			},
+		]
+	},
+	{
+		path: '/dataset',
+		component: RouterView,
+		meta: {
+			navName: '資料主題',
+			layout: 'HasSideBar',
+		},
+		children: [
+			{
+				path: '',
+				name: 'defaultDataset',
+				redirect: 'forecast'
+			},
+			{
+				path: 'forecast',
+				name: 'forecast',
+				component: DatasetPage,
+				meta: {
+					navName: '預報'
+				}
+			},
+			{
+				path: 'observation',
+				name: 'observation',
+				component: DatasetPage,
+				meta: {
+					navName: '觀測'
 				}
 			},
 		]

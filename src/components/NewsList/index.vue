@@ -2,10 +2,7 @@
 <li class="newsList">
    <p class="date">{{ createdate }}</p>
    <p class="title">
-      <router-link 
-         :to="{ name: 'newsContent', params: { id: id }}">
-         {{ title }}
-      </router-link>
+      <router-link :to="linkDetail()">{{ title }}</router-link>
    </p>
 </li>
 </template>
@@ -24,6 +21,19 @@ export default {
       createdate: {
          type: String,
          required: true
+      },
+      pageNumber: {
+         type: Number,
+         required: true
+      }
+   },
+   methods: {
+      linkDetail() {
+         return {
+            name: 'newsContent',
+            params: { id: this.id },
+            query: { page: this.pageNumber }
+         }
       }
    }
 }

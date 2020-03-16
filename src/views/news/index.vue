@@ -8,6 +8,7 @@
             :id="item.id"
             :title="item.title"
             :createdate="item.createdate"
+            :pageNumber="pageNumber"
          ></NewsList>
       </ul>
       <Pagination
@@ -76,7 +77,6 @@ export default {
    },
    watch: {
       $route(to, from) {
-         if (to.name === 'newsContent') return;
          this.getPageNumber();
          this.getNewsList();
       }

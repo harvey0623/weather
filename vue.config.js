@@ -61,6 +61,22 @@ module.exports = {
 			 		'^/datasetList': ''
 				}
 			},
+			'/datasetMetadata': {
+				target: 'https://opendata.cwb.gov.tw/webapi/datasetMetadata/',
+			  	ws: true,
+			  	changeOrigin: true,
+			  	pathRewrite: {
+			 		'^/datasetMetadata': ''
+				}
+			},
+			'/datasetContent': {
+				target: 'https://opendata.cwb.gov.tw/webapi/datasetContent/',
+			  	ws: true,
+			  	changeOrigin: true,
+			  	pathRewrite: {
+			 		'^/datasetContent': ''
+				}
+			},
 		}
 	},
 }

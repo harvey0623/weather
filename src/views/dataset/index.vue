@@ -67,24 +67,24 @@ export default {
       changeNumber(val) {
          this.setPageNumber(val);
          this.$router.push({ query: { page: val }}).catch(() => {});
-      }
-   },
-   async created() {
-      if (!this.checkStore(this.storeName)) {
-         this.$store.registerModule(this.storeName, datasetStore());
-      }
-      this.setPageCode(this.routeName);
-      await this.getDatasetPage();
-      this.getPageNumber();
-      await this.getDatasetList();
-   },
-   watch: {
-      async $route(to, from) {
-         if (this.isContentPage) return;
+      },
+      async doing() {
          this.setPageCode(this.routeName);
          await this.getDatasetPage();
          this.getPageNumber();
          await this.getDatasetList();
+      }
+   },
+   created() {
+      if (!this.checkStore(this.storeName)) {
+         this.$store.registerModule(this.storeName, datasetStore());
+      }
+      this.doing();
+   },
+   watch: {
+      $route(to, from) {
+         if (this.isContentPage) return;
+         this.doing();
       }
    },
    beforeDestroy() {

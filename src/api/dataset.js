@@ -7,4 +7,10 @@ export default class Dataset {
    static getDatasetList(option = {}) {
       return httpMethod({ method: 'get' }, option);
    }
+   static getDatasetMeta(option = {}) {
+      return httpMethod({ method: 'get' }, option);
+   }
+   static getDatasetContent(option = {}) {
+      return httpMethod({ method: 'get' }, option);
+   }
 }

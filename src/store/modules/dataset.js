@@ -58,6 +58,23 @@ const datasetStore = function() {
             if (success) {
                commit('setDatasetList', data);
             }
+         },
+         async getDatasetMeta({ commit }, { id }) {
+            let url = `/datasetMetadata/${ id }`;
+            let { success, data } = await Dataset.getDatasetMeta({ url })
+               .then(res => res.data);
+            if (success) return data;
+            else return null;
+         },
+         async getDatasetContent({ commit }, { id }) {
+            let url = `/datasetContent/${ id }`;
+            let { success, result, records } = await Dataset.getDatasetContent({ url })
+               .then(res => res.data);
+            if (success === 'true') {
+               return { result, records };
+            } else {
+               return null;
+            }
          }
       }
    }

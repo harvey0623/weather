@@ -1,19 +1,79 @@
 <template>
 <div class="datasetContent">
-   {{ this.$route.params.id }}
+   <div class="bookmarkBox">
+      <Tablist 
+         v-for="item in tabList"
+         :key="item.id"
+         :id="item.id"
+         :title="item.title"
+         :hasData="item.hasData"
+         :currentId.sync="currentId"
+      ></Tablist>
+   </div>
+   <DatasetTitle 
+      v-if="datasetMeta !== null" 
+      :title="datasetMeta.dataname"
+   ></DatasetTitle>
 </div>
 </template>
 
 <script>
 import { mapActions } from 'vuex';
+import Tablist from '@/components/Tablist/index.vue';
+import DatasetTitle from '@/components/DatasetTitle/index.vue';
 export default {
+   data: () => ({
+      datasetMeta: null,
+      datasetContent: null,
+      currentId: 'collect',
+      listArr: [
+         { id: 'collect', title: '資料集' },
+         { id: 'preview', title: '資料預覽' },
+      ],
+      statusArr: { collect: true, preview: false }
+   }),
+   computed: {
+      tabList() {
+         return this.listArr.reduce((prev, current) => {
+            let obj = {};
+            obj.hasData = this.statusArr[current.id];
+            obj = { ...obj, ...current };
+            prev.push(obj);
+            return prev;
+         }, []);
+      }
+   },
+   methods: {
+      ...mapActions('dataset', ['getDatasetMeta', 'getDatasetContent']),
+      setPageTitle(text) {  //想不到方法,暫時先這樣寫
+         document.querySelector('.pageTitle > p').textContent = text;
+      },
+      async getData() {
+         let id = this.$route.params.id;
+         this.datasetMeta = await this.getDatasetMeta({ id }).then(res => res);
+         this.datasetContent = await this.getDatasetContent({ id }).then(res => res);
+         this.setPageTitle(this.datasetMeta !== null ? this.datasetMeta.dataname : '');
+         this.statusArr = {
+            collect: this.datasetMeta !== null,
+            preview: this.datasetContent !== null
+         }
+      }
+   },
    created() {
-      let id = this.$route.params.id;
-      console.log(id);
-      this.$store.dispatch('dataset/getDatasetMeta', { id: '123654' })
-         .then(res => {
-            console.log(res);
-         })   
+      this.getData();
+   },
+   beforeDestroy() {
+      this.setPageTitle('');
+   },
+   components: {
+      DatasetTitle,
+      Tablist
    }
 }
 </script>
+
+<style lang="scss">
+.datasetContent {
+   padding-top: 15px;
+}
+</style>

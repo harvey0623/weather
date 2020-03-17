@@ -1,7 +1,7 @@
 <template>
 <div class="datasetPage">
    <template v-if="!isContentPage">
-      <div class="tableTitle">{{ navName }}</div>
+      <DatasetTitle :title="navName"></DatasetTitle>
       <DataTable
          :thTitle="thTitle"
          :datasetList="datasetList"
@@ -19,6 +19,7 @@
 <script>
 import { mapState, mapActions, mapMutations, mapGetters } from 'vuex';
 import datasetStore from '@/store/modules/dataset.js';
+import DatasetTitle from '@/components/DatasetTitle/index.vue';
 import DataTable from '@/components/DataTable/index.vue';
 import Pagination from '@/components/Pagination/index.vue';
 export default {
@@ -69,6 +70,7 @@ export default {
          this.$router.push({ query: { page: val }}).catch(() => {});
       },
       async doing() {
+         if (this.isContentPage) return;
          this.setPageCode(this.routeName);
          await this.getDatasetPage();
          this.getPageNumber();
@@ -83,7 +85,6 @@ export default {
    },
    watch: {
       $route(to, from) {
-         if (this.isContentPage) return;
          this.doing();
       }
    },
@@ -93,17 +94,9 @@ export default {
       }
    },
    components: {
+      DatasetTitle,
       DataTable,
       Pagination
    }
 }
 </script>
-
-<style lang="scss">
-.tableTitle {
-   background-color: map-get($elBgColor, hover);
-   color: #fff;
-   padding: 6px 0;
-   text-align: center;
-}
-</style>

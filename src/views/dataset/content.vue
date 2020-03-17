@@ -26,19 +26,18 @@ export default {
       datasetMeta: null,
       datasetContent: null,
       currentId: 'collect',
+      statusArr: { collect: true, preview: false },
       listArr: [
          { id: 'collect', title: '資料集' },
          { id: 'preview', title: '資料預覽' },
       ],
-      statusArr: { collect: true, preview: false }
    }),
    computed: {
       tabList() {
          return this.listArr.reduce((prev, current) => {
             let obj = {};
             obj.hasData = this.statusArr[current.id];
-            obj = { ...obj, ...current };
-            prev.push(obj);
+            prev.push({ ...obj, ...current });
             return prev;
          }, []);
       }

@@ -1,9 +1,9 @@
 <template>
 <div 
+   v-show="hasData"
    class="bookmark"
    :class="{ active: currentId === id }"
    @click="$emit('update:currentId', id)"
-   v-show="hasData"
 >{{ title }}</div>
 </template>
 
@@ -33,6 +33,7 @@ export default {
 <style lang="scss">
 $height: 40px;
 $skewDeg: 20deg;
+$offsetX: -10px;
 $markActive: map-get($elBgColor, sideBar);
 
 .bookmarkBox {
@@ -46,7 +47,7 @@ $markActive: map-get($elBgColor, sideBar);
       background-color: #fff;
       margin-right: 20px;
       text-align: center;
-      box-shadow: 0 0 12px rgba(black, 0.3);
+      box-shadow: 0px 2px 15px rgba(black, 0.4);
       transition: background-color 0.25s;
       z-index: 1;
       cursor: pointer;
@@ -59,22 +60,29 @@ $markActive: map-get($elBgColor, sideBar);
          transition: background-color 0.25s;
       }
       &::before {
-         left: -10px;
+         left: $offsetX;
          transform: skew(-$skewDeg, 0);
       }
       &::after {
-         right: -10px;
+         right: $offsetX;
          transform: skew($skewDeg, 0);
       }
       &.active {
          background-color: $markActive;
          color: #fff;
+         z-index: 3;
          &::before,
          &::after {
             background-color: $markActive;
-            z-index: -1;
          } 
-         z-index: 3;
+      }
+      &:hover {
+         background-color: $markActive;
+         color: #fff;
+         &::before,
+         &::after {
+            background-color: $markActive;
+         }
       }
    }
 }

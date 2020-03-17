@@ -58,7 +58,6 @@ const datasetStore = function() {
             if (success) {
                commit('setDatasetList', data);
             }
-            
          }
       }
    }

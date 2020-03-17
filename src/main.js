@@ -14,9 +14,7 @@ import '@/filter/index.js';
 
 //===plugin
 import '@/plugin/bootstrap/index.js';
-// import '@/plugin/breadcrumbs/index.js';
 import '@/plugin/toastr/index.js';
-// import '@/plugin/cropper/index.js';
 
 
 Vue.config.productionTip = false;

@@ -14,6 +14,7 @@
       v-if="datasetMeta !== null" 
       :title="datasetMeta.dataname"
    ></DatasetTitle>
+   <DataCollect></DataCollect>
 </div>
 </template>
 
@@ -21,6 +22,7 @@
 import { mapActions } from 'vuex';
 import Tablist from '@/components/Tablist/index.vue';
 import DatasetTitle from '@/components/DatasetTitle/index.vue';
+import DataCollect from '@/components/DataCollect/index.vue';
 export default {
    data: () => ({
       datasetMeta: null,
@@ -66,7 +68,8 @@ export default {
    },
    components: {
       DatasetTitle,
-      Tablist
+      Tablist,
+      DataCollect
    }
 }
 </script>

@@ -5,6 +5,11 @@
       :thTitle="thTitle"
       :datasetList="datasetList"
    ></DataTable>
+   <Pagination
+      :total="totalPage"
+      :pageNumber="pageNumber"
+      @updateNumber="changeNumber"
+   ></Pagination>
 </div>
 </template>
 
@@ -12,6 +17,7 @@
 import { mapState, mapActions, mapMutations, mapGetters } from 'vuex';
 import datasetStore from '@/store/modules/dataset.js';
 import DataTable from '@/components/DataTable/index.vue';
+import Pagination from '@/components/Pagination/index.vue';
 export default {
    data: () => ({
       storeName: 'dataset',
@@ -27,7 +33,8 @@ export default {
       ...mapState("meta", { seo: function(state) {
          return state.metaInfo[this.routeName];
       }}),
-      ...mapState('dataset', ['datasetList']),
+      ...mapState('dataset', ['pageNumber', 'datasetList']),
+      ...mapGetters('dataset', ['totalPage']),
       routeName() {
          return this.$route.name;
       },
@@ -50,6 +57,10 @@ export default {
          } else {
             this.setPageNumber(parseId);
          }
+      },
+      changeNumber(val) {
+         this.setPageNumber(val);
+         this.$router.push({ query: { page: val }}).catch(() => {});
       }
    },
    async created() {
@@ -75,7 +86,8 @@ export default {
       }
    },
    components: {
-      DataTable
+      DataTable,
+      Pagination
    }
 }
 </script>

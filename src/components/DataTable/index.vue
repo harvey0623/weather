@@ -49,6 +49,7 @@ export default {
 $tdLinkColor: map-get($elBgColor, hover);
 #datasetTable {
    width: 100%;
+   margin-bottom: 20px;
    th {
       padding: 8px;
       font-weight: normal;

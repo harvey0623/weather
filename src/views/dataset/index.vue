@@ -1,15 +1,18 @@
 <template>
 <div class="datasetPage">
-   <div class="tableTitle">{{ navName }}</div>
-   <DataTable
-      :thTitle="thTitle"
-      :datasetList="datasetList"
-   ></DataTable>
-   <Pagination
-      :total="totalPage"
-      :pageNumber="pageNumber"
-      @updateNumber="changeNumber"
-   ></Pagination>
+   <template v-if="!isContentPage">
+      <div class="tableTitle">{{ navName }}</div>
+      <DataTable
+         :thTitle="thTitle"
+         :datasetList="datasetList"
+      ></DataTable>
+      <Pagination
+         :total="totalPage"
+         :pageNumber="pageNumber"
+         @updateNumber="changeNumber"
+      ></Pagination>
+   </template>
+   <router-view v-else></router-view>
 </div>
 </template>
 
@@ -35,11 +38,14 @@ export default {
       }}),
       ...mapState('dataset', ['pageNumber', 'datasetList']),
       ...mapGetters('dataset', ['totalPage']),
+      navName() {
+         return this.$route.meta.navName;
+      },
       routeName() {
          return this.$route.name;
       },
-      navName() {
-         return this.$route.meta.navName;
+      isContentPage() {
+         return this.routeName.includes('Content');
       }
    },
    methods: {
@@ -74,6 +80,7 @@ export default {
    },
    watch: {
       async $route(to, from) {
+         if (this.isContentPage) return;
          this.setPageCode(this.routeName);
          await this.getDatasetPage();
          this.getPageNumber();

@@ -2,7 +2,7 @@
 <tr>
    <td>
       <router-link 
-         to="/" 
+         :to="{ name: routeName, params: { id: dataid }}" 
          class="dataLink"
       >{{ dataname }}</router-link>
       <div class="formatBox">
@@ -30,6 +30,11 @@ export default {
       format: {
          type: Array,
          required: true
+      }
+   },
+   computed: {
+      routeName() {
+         return this.$route.name + 'Content';
       }
    }
 }

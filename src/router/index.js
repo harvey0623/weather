@@ -11,6 +11,7 @@ import News from '@/views/news/index.vue';
 import NewsContent from '@/views/newsContent/index.vue';
 import Meeting from '@/views/meeting/index.vue';
 import DatasetPage from '@/views/dataset/index.vue';
+import DatasetContent from '@/views/dataset/content.vue';
 
 Vue.use(VueRouter);
 
@@ -139,7 +140,17 @@ const routes = [
 				component: DatasetPage,
 				meta: {
 					navName: '預報'
-				}
+				},
+				children: [
+					{
+						path: ':id',
+						name: 'forecastContent',
+						component: DatasetContent,
+						meta: {
+							navName: ''
+						}
+					},
+				]
 			},
 			{
 				path: 'observation',
@@ -147,7 +158,17 @@ const routes = [
 				component: DatasetPage,
 				meta: {
 					navName: '觀測'
-				}
+				},
+				children: [
+					{
+						path: ':id',
+						name: 'observationContent',
+						component: DatasetContent,
+						meta: {
+							navName: ''
+						}
+					},
+				]
 			},
 		]
 	},

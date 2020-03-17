@@ -14,7 +14,7 @@ export default {
    metaInfo() {
       return {
          title: '',
-         titleTemplate: '%s | weather',
+         titleTemplate: '%s',
          meta: [
             { property: 'og:image', content: '' },
             { property: 'og:description', content: 'weather' },

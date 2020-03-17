@@ -1,5 +1,5 @@
 import i18n from '@/plugin/i18n/index.js';
-export default function() {
+export default function () {
    return {
       home: {
          title: i18n.t('seo.home.title'),
@@ -49,10 +49,28 @@ export default function() {
             { property: 'og:title', content: i18n.t('seo.forecast.title') },
          ],
       },
+      forecastContent: {
+         title: i18n.t('seo.forecastContent.title'),
+         meta: [
+            {
+               property: 'og:title',
+               content: i18n.t('seo.forecastContent.title')
+            },
+         ],
+      },
       observation: {
          title: i18n.t('seo.observation.title'),
          meta: [
             { property: 'og:title', content: i18n.t('seo.observation.title') },
+         ],
+      },
+      observationContent: {
+         title: i18n.t('seo.observationContent.title'),
+         meta: [
+            {
+               property: 'og:title',
+               content: i18n.t('seo.observationContent.title')
+            },
          ],
       },
    }

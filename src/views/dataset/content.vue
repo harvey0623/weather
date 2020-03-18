@@ -90,8 +90,8 @@ export default {
       async getData() {
          let id = this.$route.params.id;
          this.datasetMeta = await this.getDatasetMeta({ id }).then(res => res) || {};
-         this.datasetContent = await this.getDatasetContent({ id }).then(res => res) || {};
          this.setPageTitle(this.metaNotEmpty ? this.datasetMeta.dataname : '');
+         this.datasetContent = await this.getDatasetContent({ id }).then(res => res) || {};
          this.statusArr = {
             collect: this.metaNotEmpty,
             preview: this.contentNotEmpty

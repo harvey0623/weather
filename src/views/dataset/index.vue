@@ -1,18 +1,23 @@
 <template>
 <div class="datasetPage">
-   <template v-if="!isContentPage">
-      <DatasetTitle :title="navName"></DatasetTitle>
-      <DataTable
-         :thTitle="thTitle"
-         :datasetList="datasetList"
-      ></DataTable>
-      <Pagination
-         :total="totalPage"
-         :pageNumber="pageNumber"
-         @updateNumber="changeNumber"
-      ></Pagination>
-   </template>
-   <router-view v-else></router-view>
+   <transition name="fade" mode="out-in">
+      <div 
+         class="datasetList" 
+         v-if="!isContentPage" 
+         :key="1">
+         <DatasetTitle :title="navName"></DatasetTitle>
+         <DataTable
+            :thTitle="thTitle"
+            :datasetList="datasetList"
+         ></DataTable>
+         <Pagination
+            :total="totalPage"
+            :pageNumber="pageNumber"
+            @updateNumber="changeNumber"
+         ></Pagination>
+      </div>
+      <router-view v-else :key="2"></router-view>
+   </transition>
 </div>
 </template>
 

@@ -27,6 +27,7 @@ import datasetStore from '@/store/modules/dataset.js';
 import DatasetTitle from '@/components/DatasetTitle/index.vue';
 import DataTable from '@/components/DataTable/index.vue';
 import Pagination from '@/components/Pagination/index.vue';
+import mapCode from './mapCode.js';
 export default {
    data: () => ({
       storeName: 'dataset',
@@ -42,13 +43,16 @@ export default {
       ...mapState("meta", { seo: function(state) {
          return state.metaInfo[this.routeName];
       }}),
-      ...mapState('dataset', ['pageNumber', 'datasetList']),
+      ...mapState('dataset', ['pageNumber', 'datasetList', 'pageCode']),
       ...mapGetters('dataset', ['totalPage']),
       navName() {
          return this.$route.meta.navName;
       },
       routeName() {
          return this.$route.name;
+      },
+      currentCode() {
+         return mapCode[this.routeName];
       },
       isContentPage() {
          return this.routeName.includes('Content');
@@ -78,12 +82,11 @@ export default {
       },
       async doing() {
          if (this.isContentPage) return;
+         let isSame = this.currentCode === this.pageCode;  //如果頁面帶碼不同就要取得新的頁面資料
          this.setPageCode(this.routeName);
+         if (!isSame) await this.getDatasetPage();
          let isRedirect = this.getPageNumber();
-         if (!isRedirect) {
-            await this.getDatasetPage();
-            await this.getDatasetList();
-         }
+         if (!isRedirect) await this.getDatasetList();
       }
    },
    created() {

@@ -1,9 +1,5 @@
 import Dataset from '@/api/dataset.js';
-
-const mapCode = {
-   forecast: 'f',
-   observation: 'o'
-}
+import mapCode from '@/views/dataset/mapCode.js';
 
 const datasetStore = function() {
    return {

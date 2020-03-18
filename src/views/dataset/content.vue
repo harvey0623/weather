@@ -90,20 +90,20 @@ export default {
       async getData() {
          let id = this.$route.params.id;
          this.datasetMeta = await this.getDatasetMeta({ id }).then(res => res) || {};
-         this.setPageTitle(this.metaNotEmpty ? this.datasetMeta.dataname : '');
          this.datasetContent = await this.getDatasetContent({ id }).then(res => res) || {};
-         this.statusArr = {
-            collect: this.metaNotEmpty,
-            preview: this.contentNotEmpty
-         }
+         this.statusArr.preview = this.contentNotEmpty;
       }
    },
    created() {
       this.getData();
    },
    watch: {
-      $route(to, name) {
+      $route() {
          this.getData();
+      },
+      metaNotEmpty(to) {
+         this.setPageTitle(to ? this.datasetMeta.dataname : '');
+         this.statusArr.collect = to;
       }
    },
    beforeDestroy() {

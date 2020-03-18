@@ -53,22 +53,29 @@ export default {
          let rule = /^[0-9\s]*$/;
          if (pageId === undefined || !rule.test(pageId) || parseId === 0 ) {
             this.$router.replace({ query: { page: 1 }});
+            return true;
          } else {
             this.setPageNumber(parseId);
+            return false;
          }
       },
       changeNumber(val) {
          this.setPageNumber(val);
          this.$router.push({ query: { page: val }}).catch(() => {});
+      },
+      async doing() {
+         let isRedirect = this.getPageNumber();
+         if (!isRedirect) {
+            if (this.newsTotal.length === 0) await this.getTotalNews();
+            await this.getNewsList();
+         }
       }
    },
-   async created() {
+   created() {
       if (!this.checkStore(this.storeName)) {
          this.$store.registerModule(this.storeName, newsStore());
       }
-      await this.getTotalNews();
-      this.getPageNumber();
-      this.getNewsList();
+      this.doing();   
    },
    beforeDestroy() {
       if (this.checkStore(this.storeName)) {
@@ -77,8 +84,7 @@ export default {
    },
    watch: {
       $route(to, from) {
-         this.getPageNumber();
-         this.getNewsList();
+         this.doing();
       }
    },
    components: {

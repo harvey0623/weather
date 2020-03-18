@@ -66,8 +66,10 @@ export default {
          let rule = /^[0-9\s]*$/;
          if (pageId === undefined || !rule.test(pageId) || parseId === 0 ) {
             this.$router.replace({ query: { page: 1 }});
+            return true;
          } else {
             this.setPageNumber(parseId);
+            return false;
          }
       },
       changeNumber(val) {
@@ -77,9 +79,11 @@ export default {
       async doing() {
          if (this.isContentPage) return;
          this.setPageCode(this.routeName);
-         await this.getDatasetPage();
-         this.getPageNumber();
-         await this.getDatasetList();
+         let isRedirect = this.getPageNumber();
+         if (!isRedirect) {
+            await this.getDatasetPage();
+            await this.getDatasetList();
+         }
       }
    },
    created() {

@@ -32,14 +32,7 @@
          ></DataPreview>
       </div>
    </transition>
-   <div class="backBox">
-      <router-link 
-         class="btnBack"
-         :to="backPath">
-         <span>回上頁</span>
-         <i class="far fa-redo-alt"></i>
-      </router-link>
-   </div>
+   <BackBox :backPath="backPath"></BackBox>
 </div>
 </template>
 
@@ -49,6 +42,7 @@ import Tablist from '@/components/Tablist/index.vue';
 import DatasetTitle from '@/components/DatasetTitle/index.vue';
 import DataCollect from '@/components/DataCollect/index.vue';
 import DataPreview from '@/components/DataPreview/index.vue';
+import BackBox from '@/components/BackBox/index.vue';
 export default {
    data: () => ({
       datasetMeta: {},
@@ -119,7 +113,8 @@ export default {
       DatasetTitle,
       Tablist,
       DataCollect,
-      DataPreview
+      DataPreview,
+      BackBox
    }
 }
 </script>

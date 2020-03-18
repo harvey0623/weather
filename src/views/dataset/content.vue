@@ -11,10 +11,13 @@
       ></Tablist>
    </div>
    <DatasetTitle 
-      v-if="datasetMeta !== null" 
+      v-if="metaNotEmpty" 
       :title="datasetMeta.dataname"
    ></DatasetTitle>
-   <DataCollect></DataCollect>
+   <DataCollect
+      v-if="metaNotEmpty" 
+      :datasetMeta="datasetMeta"
+   ></DataCollect>
 </div>
 </template>
 
@@ -25,8 +28,8 @@ import DatasetTitle from '@/components/DatasetTitle/index.vue';
 import DataCollect from '@/components/DataCollect/index.vue';
 export default {
    data: () => ({
-      datasetMeta: null,
-      datasetContent: null,
+      datasetMeta: {},
+      datasetContent: {},
       currentId: 'collect',
       statusArr: { collect: true, preview: false },
       listArr: [
@@ -42,6 +45,12 @@ export default {
             prev.push({ ...obj, ...current });
             return prev;
          }, []);
+      },
+      metaNotEmpty() {
+         return Object.entries(this.datasetMeta).length !== 0;
+      },
+      contentNotEmpty() {
+         return Object.entries(this.datasetContent).length !== 0;
       }
    },
    methods: {
@@ -51,12 +60,12 @@ export default {
       },
       async getData() {
          let id = this.$route.params.id;
-         this.datasetMeta = await this.getDatasetMeta({ id }).then(res => res);
-         this.datasetContent = await this.getDatasetContent({ id }).then(res => res);
-         this.setPageTitle(this.datasetMeta !== null ? this.datasetMeta.dataname : '');
+         this.datasetMeta = await this.getDatasetMeta({ id }).then(res => res) || {};
+         this.datasetContent = await this.getDatasetContent({ id }).then(res => res) || {};
+         this.setPageTitle(this.metaNotEmpty ? this.datasetMeta.dataname : '');
          this.statusArr = {
-            collect: this.datasetMeta !== null,
-            preview: this.datasetContent !== null
+            collect: this.metaNotEmpty,
+            preview: this.contentNotEmpty
          }
       }
    },

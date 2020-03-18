@@ -61,9 +61,8 @@ export default {
 
 <style lang="scss">
 .collectTable {
-   width: 100%;
    tr {
-      border-bottom: 1px solid #ddd;
+      border-bottom: 1px solid map-get($borderColor, list);
       >th:first-child,
       >td:first-child {
          background-color: map-get($elBgColor, menu);
@@ -74,7 +73,7 @@ export default {
    }
    th, td {
       padding: 8px 10px;
-      color: #666666;
+      color: map-get($fontColor, table);
       font-size: 15px;
       >a {
          color: map-get($fontColor, primary);

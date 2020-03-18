@@ -47,7 +47,7 @@ $markActive: map-get($elBgColor, sideBar);
       background-color: #fff;
       margin-right: 20px;
       text-align: center;
-      box-shadow: 0px 2px 15px rgba(black, 0.4);
+      box-shadow: 0px 0px 10px rgba(black, 0.35);
       transition: background-color 0.25s;
       z-index: 1;
       cursor: pointer;

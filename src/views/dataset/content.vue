@@ -10,14 +10,28 @@
          :currentId.sync="currentId"
       ></Tablist>
    </div>
-   <DatasetTitle 
-      v-if="metaNotEmpty" 
-      :title="datasetMeta.dataname"
-   ></DatasetTitle>
-   <DataCollect
-      v-if="metaNotEmpty" 
-      :datasetMeta="datasetMeta"
-   ></DataCollect>
+   <transition name="fade" mode="out-in">
+      <div
+         class="collectBox" 
+         v-if="currentId === 'collect'" 
+         :key="'collect'">
+         <DatasetTitle 
+            v-if="metaNotEmpty" 
+            :title="datasetMeta.dataname"
+         ></DatasetTitle>
+         <DataCollect
+            v-if="metaNotEmpty" 
+            :datasetMeta="datasetMeta"
+         ></DataCollect>
+      </div>
+      <div class="previewBox" v-else :key="'preview'">
+         <DataPreview 
+            v-if="contentNotEmpty"
+            :fields="datasetContent.result.fields"
+            :location="datasetContent.records.location[0]"
+         ></DataPreview>
+      </div>
+   </transition>
 </div>
 </template>
 
@@ -26,6 +40,7 @@ import { mapActions } from 'vuex';
 import Tablist from '@/components/Tablist/index.vue';
 import DatasetTitle from '@/components/DatasetTitle/index.vue';
 import DataCollect from '@/components/DataCollect/index.vue';
+import DataPreview from '@/components/DataPreview/index.vue';
 export default {
    data: () => ({
       datasetMeta: {},
@@ -78,7 +93,8 @@ export default {
    components: {
       DatasetTitle,
       Tablist,
-      DataCollect
+      DataCollect,
+      DataPreview
    }
 }
 </script>

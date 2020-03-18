@@ -39,6 +39,17 @@ const datasetStore = function() {
             });
             if (obj !== undefined) return obj.id;
             return 0;
+         },
+         pageName(state) {
+            if (state.pageCode === '') return '';
+            let routeName = '';
+            for (let key in mapCode) {
+               if (mapCode[key] === state.pageCode) {
+                  routeName = key;
+                  break;
+               }
+            }
+            return routeName;
          }
       },
       actions: {

@@ -70,20 +70,4 @@ export default {
       font-size: 14px;
    }
 }
-.backBox {
-   margin-top: 20px;
-   text-align: right;
-   >.btnBack {
-      @include size(90px, 35px);
-      line-height: 35px;
-      text-align: center;
-      color: white;
-      background-color: #337ab7;
-      font-size: 14px;
-      >span {
-         margin-right: 3px;
-      }
-   }
-}
-
 </style>

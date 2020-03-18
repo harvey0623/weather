@@ -32,11 +32,19 @@
          ></DataPreview>
       </div>
    </transition>
+   <div class="backBox">
+      <router-link 
+         class="btnBack"
+         :to="backPath">
+         <span>回上頁</span>
+         <i class="far fa-redo-alt"></i>
+      </router-link>
+   </div>
 </div>
 </template>
 
 <script>
-import { mapActions } from 'vuex';
+import { mapState, mapGetters, mapActions } from 'vuex';
 import Tablist from '@/components/Tablist/index.vue';
 import DatasetTitle from '@/components/DatasetTitle/index.vue';
 import DataCollect from '@/components/DataCollect/index.vue';
@@ -46,13 +54,15 @@ export default {
       datasetMeta: {},
       datasetContent: {},
       currentId: 'collect',
-      statusArr: { collect: true, preview: false },
+      statusArr: { collect: false, preview: false },
       listArr: [
          { id: 'collect', title: '資料集' },
          { id: 'preview', title: '資料預覽' },
       ],
    }),
    computed: {
+      ...mapState('dataset', ['pageNumber']),
+      ...mapGetters('dataset', ['pageName']),
       tabList() {
          return this.listArr.reduce((prev, current) => {
             let obj = {};
@@ -66,6 +76,16 @@ export default {
       },
       contentNotEmpty() {
          return Object.entries(this.datasetContent).length !== 0;
+      },
+      routeName() {
+         return this.$route.name;
+      },
+      backPath() {
+         let pageName = this.pageName;
+         return {
+            name: pageName !== '' ? pageName : this.routeName.replace('Content', ''),
+            query: { page: this.pageNumber }
+         }
       }
    },
    methods: {
@@ -86,6 +106,11 @@ export default {
    },
    created() {
       this.getData();
+   },
+   watch: {
+      $route(to, name) {
+         this.getData();
+      }
    },
    beforeDestroy() {
       this.setPageTitle('');

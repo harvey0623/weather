@@ -10,8 +10,7 @@ import Qa from '@/views/qa/index.vue';
 import News from '@/views/news/index.vue';
 import NewsContent from '@/views/newsContent/index.vue';
 import Meeting from '@/views/meeting/index.vue';
-import DatasetPage from '@/views/dataset/index.vue';
-import DatasetContent from '@/views/dataset/content.vue';
+import datasetPath from '@/router/dataset.js';
 
 Vue.use(VueRouter);
 
@@ -134,132 +133,7 @@ const routes = [
 				name: 'defaultDataset',
 				redirect: 'forecast'
 			},
-			{
-				path: 'forecast',
-				name: 'forecast',
-				component: DatasetPage,
-				meta: {
-					navName: '預報'
-				},
-				children: [
-					{
-						path: ':id',
-						name: 'forecastContent',
-						component: DatasetContent,
-						meta: {
-							navName: ''
-						}
-					},
-				]
-			},
-			{
-				path: 'observation',
-				name: 'observation',
-				component: DatasetPage,
-				meta: {
-					navName: '觀測'
-				},
-				children: [
-					{
-						path: ':id',
-						name: 'observationContent',
-						component: DatasetContent,
-						meta: {
-							navName: ''
-						}
-					},
-				]
-			},
-			{
-				path: 'earthquake',
-				name: 'earthquake',
-				component: DatasetPage,
-				meta: {
-					navName: '地震海嘯'
-				},
-				children: [
-					{
-						path: ':id',
-						name: 'earthquakeContent',
-						component: DatasetContent,
-						meta: {
-							navName: ''
-						}
-					},
-				]
-			},
-			{
-				path: 'climate',
-				name: 'climate',
-				component: DatasetPage,
-				meta: {
-					navName: '氣候'
-				},
-				children: [
-					{
-						path: ':id',
-						name: 'climateContent',
-						component: DatasetContent,
-						meta: {
-							navName: ''
-						}
-					},
-				]
-			},
-			{
-				path: 'warning',
-				name: 'warning',
-				component: DatasetPage,
-				meta: {
-					navName: '天氣警特報'
-				},
-				children: [
-					{
-						path: ':id',
-						name: 'warningContent',
-						component: DatasetContent,
-						meta: {
-							navName: ''
-						}
-					},
-				]
-			},
-			{
-				path: 'mathematics',
-				name: 'mathematics',
-				component: DatasetPage,
-				meta: {
-					navName: '數值預報'
-				},
-				children: [
-					{
-						path: ':id',
-						name: 'mathematicsContent',
-						component: DatasetContent,
-						meta: {
-							navName: ''
-						}
-					},
-				]
-			},
-			{
-				path: 'astronomy',
-				name: 'astronomy',
-				component: DatasetPage,
-				meta: {
-					navName: '天文'
-				},
-				children: [
-					{
-						path: ':id',
-						name: 'astronomyContent',
-						component: DatasetContent,
-						meta: {
-							navName: ''
-						}
-					},
-				]
-			},
+			...datasetPath,
 		]
 	},
 	{

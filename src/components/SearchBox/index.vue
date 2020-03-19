@@ -4,19 +4,38 @@
       type="text" 
       class="form-control" 
       placeholder="搜尋"
-      @input="inputHandler">
+      @input="inputHandler"
+      @keyup.enter="keyupHandler"
+      :value="keyword">
    <i class="far fa-search"></i>
 </div>
 </template>
 
 <script>
 export default {
-   data: () => ({
-      keyword: ''
-   }),
+   props: {
+      enterEvent: {
+         type: Boolean,
+         default: false
+      },
+      keyword: {
+         type: String,
+         default: ''
+      }
+   },
    methods: {
       inputHandler(evt) {
-         this.$emit('changeKeyword', evt.target.value);
+         this.$emit('changeKeyword', evt.target.value.trim());
+      },
+      keyupHandler(evt) {
+         if (!this.enterEvent) return;
+         this.$router.push({ 
+            name: 'forecast', 
+            query: { 
+               page: 1,
+               searchValue: evt.target.value,
+            }
+         });
       }
    }
 }

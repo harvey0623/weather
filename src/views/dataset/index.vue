@@ -5,13 +5,17 @@
       @after-enter="afterEnter" @before-leave="beforeLeave"
       @leave="leave" @after-leave="afterLeave"
       :css="false">
-      <div 
+      <div
          class="datasetList" 
          v-if="!isContentPage" 
          :key="1">
-         <SearchBox class="mb" @changeKeyword="keywordHandler"></SearchBox>
+         <SearchBox 
+            class="mb"
+            :keyword="keyword" 
+            @changeKeyword="setKeyword"
+         ></SearchBox>
          <DatasetTitle :title="navName"></DatasetTitle>
-         <template v-if="searchArr.length === 0">
+         <template v-if="searchArr.length === 0 && keyword === ''">
             <DataTable
                :thTitle="thTitle"
                :datasetList="datasetList"
@@ -53,6 +57,7 @@ const animateStartInfo = {
 export default {
    data: () => ({
       storeName: 'dataset',
+      keyword: '',
       searchArr: [],
       thTitle: [
          { title: '資料名稱', width: '75%' },
@@ -106,15 +111,6 @@ export default {
          this.setPageNumber(val);
          this.$router.push({ query: { page: val }}).catch(() => {});
       },
-      keywordHandler(text) {
-         let copyData = JSON.parse(JSON.stringify(this.keywordData({ keyword: text })));
-         copyData.forEach(item => {
-            let dataname = item.title + '-' + item['resourceDescription-1'];
-            item.dataname = dataname;
-            delete item.title;
-         });
-         this.searchArr = copyData;
-      },
       async doing() {
          if (this.isContentPage) return;
          let isSame = this.currentCode === this.pageCode;  //如果頁面帶碼不同就要取得新的頁面資料
@@ -122,6 +118,20 @@ export default {
          if (!isSame) await this.getDatasetPage();
          let isRedirect = this.getPageNumber();
          if (!isRedirect) await this.getDatasetList();
+      },
+      getSearchValue() {  //取得網址的關鍵字參數
+         if (this.isContentPage) return;
+         this.setKeyword(this.$route.query.searchValue || '');
+      },
+      setKeyword(text) {  //取得符合關鍵字得資料
+         this.keyword = text;
+         let copyData = JSON.parse(JSON.stringify(this.keywordData({ keyword: text })));
+         copyData.forEach(item => {
+            let dataname = item.title + '-' + item['resourceDescription-1'];
+            item.dataname = dataname;
+            delete item.title;
+         });
+         this.searchArr = copyData;
       },
       beforeEnter(el) {
          TweenMax.set(el, {
@@ -163,14 +173,15 @@ export default {
          this.$store.registerModule(this.storeName, datasetStore());
       }
       this.doing();
-   },
-   mounted() {
-      this.getDatasetSearch();
+      this.getDatasetSearch().then(res => {
+         this.getSearchValue();
+      });
    },
    watch: {
       $route(to, from) {
          if (this.isContentPage) this.searchArr = [];
          this.doing();
+         this.getSearchValue();
       }
    },
    beforeDestroy() {

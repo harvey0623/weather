@@ -7,7 +7,7 @@
       <div class="navWrap">
          <div class="guideTop" :class="{ layout : !isDefault }">
             <template v-if="isDefault">
-               <SearchBox></SearchBox>
+               <SearchBox enterEvent></SearchBox>
             </template>
             <a
                v-if="isLogin"

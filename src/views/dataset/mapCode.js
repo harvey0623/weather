@@ -1,4 +1,8 @@
 export default  {
    forecast: 'f',
-   observation: 'o'
+   observation: 'o',
+   earthquake: 'e',
+   climate: 'c',
+   warning: 'w',
+   mathematics: 'm'
 };

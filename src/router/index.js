@@ -170,6 +170,96 @@ const routes = [
 					},
 				]
 			},
+			{
+				path: 'earthquake',
+				name: 'earthquake',
+				component: DatasetPage,
+				meta: {
+					navName: '地震海嘯'
+				},
+				children: [
+					{
+						path: ':id',
+						name: 'earthquakeContent',
+						component: DatasetContent,
+						meta: {
+							navName: ''
+						}
+					},
+				]
+			},
+			{
+				path: 'climate',
+				name: 'climate',
+				component: DatasetPage,
+				meta: {
+					navName: '氣候'
+				},
+				children: [
+					{
+						path: ':id',
+						name: 'climateContent',
+						component: DatasetContent,
+						meta: {
+							navName: ''
+						}
+					},
+				]
+			},
+			{
+				path: 'warning',
+				name: 'warning',
+				component: DatasetPage,
+				meta: {
+					navName: '天氣警特報'
+				},
+				children: [
+					{
+						path: ':id',
+						name: 'warningContent',
+						component: DatasetContent,
+						meta: {
+							navName: ''
+						}
+					},
+				]
+			},
+			{
+				path: 'mathematics',
+				name: 'mathematics',
+				component: DatasetPage,
+				meta: {
+					navName: '數值預報'
+				},
+				children: [
+					{
+						path: ':id',
+						name: 'mathematicsContent',
+						component: DatasetContent,
+						meta: {
+							navName: ''
+						}
+					},
+				]
+			},
+			{
+				path: 'astronomy',
+				name: 'astronomy',
+				component: DatasetPage,
+				meta: {
+					navName: '天文'
+				},
+				children: [
+					{
+						path: ':id',
+						name: 'astronomyContent',
+						component: DatasetContent,
+						meta: {
+							navName: ''
+						}
+					},
+				]
+			},
 		]
 	},
 	{

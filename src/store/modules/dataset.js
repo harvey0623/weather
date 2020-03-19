@@ -51,7 +51,7 @@ const datasetStore = function() {
             }
             return routeName;
          },
-         keywordData: (state) => ({keyword = ''}) => {
+         keywordData: (state) => ({ keyword = '' }) => {
             if (state.searchData.length === 0) return [];
             if (keyword === '') return [];
             return state.searchData.filter(item => {

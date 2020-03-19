@@ -5,13 +5,9 @@
       @after-enter="afterEnter" @before-leave="beforeLeave"
       @leave="leave" @after-leave="afterLeave"
       :css="false">
-      <div
-         class="datasetList" 
-         v-if="!isContentPage" 
-         :key="1">
+      <div class="datasetList" v-if="!isContentPage" :key="1">
          <SearchBox 
-            class="mb"
-            :keyword="keyword" 
+            class="mb" :keyword="keyword" 
             @changeKeyword="setKeyword"
          ></SearchBox>
          <DatasetTitle :title="navName"></DatasetTitle>
@@ -46,7 +42,6 @@ import DataTable from '@/components/DataTable/index.vue';
 import Pagination from '@/components/Pagination/index.vue';
 import SearchBox from '@/components/SearchBox/index.vue';
 import mapCode from './mapCode.js';
-import Dataset from '@/api/dataset.js';
 const slideTime = 0.2;
 const animateStartInfo = { 
    position: 'absolute', 

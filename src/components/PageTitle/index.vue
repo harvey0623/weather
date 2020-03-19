@@ -1,6 +1,7 @@
 <template>
 <div class="pageTitle">
    <h1>{{ pageTitle }}</h1>
+	<p></p>
 </div>
 </template>
 
@@ -37,7 +38,8 @@ export default {
 		background-color: map-get($elBgColor, title);
 		z-index: -1;
 	}
-	>h1 {
+	>h1,
+	>p {
 		display: inline-block;
 		padding-bottom: 5px;
 		font-size: 25px;

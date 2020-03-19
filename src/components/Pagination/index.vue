@@ -2,12 +2,12 @@
 <b-pagination
    v-model="currentPage"
    :total-rows="total"
-   :per-page="perPage"
+   :per-page="1"
+   :limit="5"
    align="center"
    pills
-   last-number
    first-number
-   :limit="5"
+   last-number
 ></b-pagination>
 </template>
 
@@ -23,9 +23,6 @@ export default {
          required: true
       }
    },
-   data: () => ({ 
-      perPage: 1
-   }),
    computed: {
       currentPage: {
          get() {

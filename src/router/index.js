@@ -10,7 +10,7 @@ import Qa from '@/views/qa/index.vue';
 import News from '@/views/news/index.vue';
 import NewsContent from '@/views/newsContent/index.vue';
 import Meeting from '@/views/meeting/index.vue';
-import DatasetPage from '@/views/dataset/index.vue';
+import datasetPath from '@/router/dataset.js';
 
 Vue.use(VueRouter);
 
@@ -133,22 +133,7 @@ const routes = [
 				name: 'defaultDataset',
 				redirect: 'forecast'
 			},
-			{
-				path: 'forecast',
-				name: 'forecast',
-				component: DatasetPage,
-				meta: {
-					navName: '預報'
-				}
-			},
-			{
-				path: 'observation',
-				name: 'observation',
-				component: DatasetPage,
-				meta: {
-					navName: '觀測'
-				}
-			},
+			...datasetPath,
 		]
 	},
 	{

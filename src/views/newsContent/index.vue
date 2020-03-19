@@ -15,23 +15,20 @@
          <h1>找不到該最新消息!!</h1>
       </div>
    </template>
-   <div class="backBox">
-      <router-link 
-         class="btnBack"
-         :to="{ name: 'news', query: { page: pageNumber }}">
-         <span>回上頁</span>
-         <i class="far fa-redo-alt"></i>
-      </router-link>
-   </div>
+   <BackBox :backPath="backPath"></BackBox>
 </div>
 </template>
 
 <script>
 import { mapState, mapGetters, mapMutations } from 'vuex';
+import BackBox from '@/components/BackBox/index.vue';
 export default {
    computed: {
       ...mapState('newsStore', ['pageNumber']),
-      ...mapGetters('newsStore', ['newsContent'])
+      ...mapGetters('newsStore', ['newsContent']),
+      backPath() {
+         return { name: 'news', query: { page: this.pageNumber }};
+      }
    },
    methods: {
       ...mapMutations('newsStore',  ['setNewsId']),
@@ -52,6 +49,9 @@ export default {
       $route(to, from) {
          this.setNewsId(this.getUrlId());
       }
+   },
+   components: {
+      BackBox
    }
 }
 </script>
@@ -70,20 +70,4 @@ export default {
       font-size: 14px;
    }
 }
-.backBox {
-   margin-top: 20px;
-   text-align: right;
-   >.btnBack {
-      @include size(90px, 35px);
-      line-height: 35px;
-      text-align: center;
-      color: white;
-      background-color: #337ab7;
-      font-size: 14px;
-      >span {
-         margin-right: 3px;
-      }
-   }
-}
-
 </style>

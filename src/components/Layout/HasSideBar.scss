@@ -32,10 +32,10 @@
 }
 
 #pageContent {
-   flex: 1;
+   width: calc(100% - 250px);
    padding-left: 0px;
    &.hasPadding {
-      padding-left: 30px;
+      padding-left: 55px;
    }
 }
 

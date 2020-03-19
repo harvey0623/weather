@@ -73,10 +73,46 @@
          "title": "會議紀錄"
       },
       "forecast": {
-         "title": "預報"
+         "title": "資料主題-預報"
+      },
+      "forecastContent": {
+         "title": "資料主題-預報資料"
       },
       "observation": {
-         "title": "觀測"
+         "title": "資料主題-觀測"
+      },
+      "observationContent": {
+         "title": "資料主題-觀測資料"
+      },
+      "earthquake": {
+         "title": "資料主題-地震海嘯"
+      },
+      "earthquakeContent": {
+         "title": "資料主題-地震海嘯資料"
+      },
+      "climate": {
+         "title": "資料主題-氣候"
+      },
+      "climateContent": {
+         "title": "資料主題-氣候資料"
+      },
+      "warning": {
+         "title": "資料主題-天氣警特報"
+      },
+      "warningContent": {
+         "title": "資料主題-天氣警特報資料"
+      },
+      "mathematics": {
+         "title": "資料主題-數值預報"
+      },
+      "mathematicsContent": {
+         "title": "資料主題-數值預報資料"
+      },
+      "astronomy": {
+         "title": "資料主題-天文"
+      },
+      "astronomyContent": {
+         "title": "資料主題-天文資料"
       }
    }
 }

@@ -1,6 +1,10 @@
 <template>
 <div class="datasetPage">
-   <transition name="fade" mode="out-in">
+   <transition 
+      @before-enter="beforeEnter" @enter="enter"
+      @after-enter="afterEnter" @before-leave="beforeLeave"
+      @leave="leave" @after-leave="afterLeave"
+      :css="false">
       <div 
          class="datasetList" 
          v-if="!isContentPage" 
@@ -28,6 +32,13 @@ import DatasetTitle from '@/components/DatasetTitle/index.vue';
 import DataTable from '@/components/DataTable/index.vue';
 import Pagination from '@/components/Pagination/index.vue';
 import mapCode from './mapCode.js';
+const slideTime = 0.2;
+const animateStartInfo = { 
+   position: 'absolute', 
+   left: 0,
+   top: 0,
+   width: '100%'
+};
 export default {
    data: () => ({
       storeName: 'dataset',
@@ -51,11 +62,14 @@ export default {
       routeName() {
          return this.$route.name;
       },
-      currentCode() {
+      currentCode() {  //頁面代碼
          return mapCode[this.routeName];
       },
-      isContentPage() {
+      isContentPage() {  //是否為詳情夜
          return this.routeName.includes('Content');
+      },
+      directionIndex() { //動畫方向
+         return this.isContentPage ? 1 : -1;
       }
    },
    methods: {
@@ -87,7 +101,41 @@ export default {
          if (!isSame) await this.getDatasetPage();
          let isRedirect = this.getPageNumber();
          if (!isRedirect) await this.getDatasetList();
-      }
+      },
+      beforeEnter(el) {
+         TweenMax.set(el, {
+            ...animateStartInfo,
+            opacity: 0,
+            x: 150 * this.directionIndex,
+         });
+      },
+      enter(el, done) {
+         TweenMax.to(el, slideTime, {
+            opacity: 1,
+            x: 0,
+            onComplete() { done() }
+         });
+      },
+      afterEnter(el) {
+         el.style = '';
+      },
+      beforeLeave(el) {
+         TweenMax.set(el, {
+            ...animateStartInfo,
+            opacity: 1,
+            x: 0,
+         });
+      },
+      leave(el, done) {
+         TweenMax.to(el, slideTime, {
+            opacity: 0,
+            x: -150 * this.directionIndex,
+            onComplete() { done() }
+         });
+      },
+      afterLeave(el) {
+         el.style = '';
+      },
    },
    created() {
       if (!this.checkStore(this.storeName)) {
@@ -112,3 +160,9 @@ export default {
    }
 }
 </script>
+
+<style>
+.datasetPage {
+   position: relative;
+}
+</style>

@@ -118,9 +118,3 @@ export default {
    }
 }
 </script>
-
-<style lang="scss">
-.datasetContent {
-   padding-top: 15px;
-}
-</style>

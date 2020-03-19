@@ -9,6 +9,7 @@ const datasetStore = function() {
          pageNumber: 1,
          datasetPage: [],
          datasetList: [],
+         searchData: []
       },
       mutations: {
          setPageCode(state, value) {
@@ -23,6 +24,9 @@ const datasetStore = function() {
          setDatasetList(state, value) {
             state.datasetList = value;
          },
+         setSearchData(state, value) {
+            state.searchData = value;
+         }
       },
       getters: {
          totalPage(state) {
@@ -46,6 +50,13 @@ const datasetStore = function() {
                }
             }
             return routeName;
+         },
+         keywordData: (state) => ({keyword = ''}) => {
+            if (state.searchData.length === 0) return [];
+            if (keyword === '') return [];
+            return state.searchData.filter(item => {
+               return item.title.includes(keyword);
+            });
          }
       },
       actions: {
@@ -82,6 +93,11 @@ const datasetStore = function() {
             } else {
                return null;
             }
+         },
+         async getDatasetSearch({ commit }) {
+            let { success, data } =  await Dataset.getDatasetSearch()
+               .then(res => res.data);
+            if (success) commit('setSearchData', data);
          }
       }
    }

@@ -5,20 +5,33 @@
       @after-enter="afterEnter" @before-leave="beforeLeave"
       @leave="leave" @after-leave="afterLeave"
       :css="false">
-      <div 
+      <div
          class="datasetList" 
          v-if="!isContentPage" 
          :key="1">
+         <SearchBox 
+            class="mb"
+            :keyword="keyword" 
+            @changeKeyword="setKeyword"
+         ></SearchBox>
          <DatasetTitle :title="navName"></DatasetTitle>
-         <DataTable
-            :thTitle="thTitle"
-            :datasetList="datasetList"
-         ></DataTable>
-         <Pagination
-            :total="totalPage"
-            :pageNumber="pageNumber"
-            @updateNumber="changeNumber"
-         ></Pagination>
+         <template v-if="searchArr.length === 0 && keyword === ''">
+            <DataTable
+               :thTitle="thTitle"
+               :datasetList="datasetList"
+            ></DataTable>
+            <Pagination
+               :total="totalPage"
+               :pageNumber="pageNumber"
+               @updateNumber="changeNumber"
+            ></Pagination>
+         </template>
+         <template v-else>
+            <DataTable
+               :thTitle="thTitle"
+               :datasetList="searchArr"
+            ></DataTable>
+         </template>
       </div>
       <router-view v-else :key="2"></router-view>
    </transition>
@@ -31,7 +44,9 @@ import datasetStore from '@/store/modules/dataset.js';
 import DatasetTitle from '@/components/DatasetTitle/index.vue';
 import DataTable from '@/components/DataTable/index.vue';
 import Pagination from '@/components/Pagination/index.vue';
+import SearchBox from '@/components/SearchBox/index.vue';
 import mapCode from './mapCode.js';
+import Dataset from '@/api/dataset.js';
 const slideTime = 0.2;
 const animateStartInfo = { 
    position: 'absolute', 
@@ -42,10 +57,12 @@ const animateStartInfo = {
 export default {
    data: () => ({
       storeName: 'dataset',
+      keyword: '',
+      searchArr: [],
       thTitle: [
          { title: '資料名稱', width: '75%' },
          { title: '資料編號', width: '25%' },
-      ]
+      ],
    }),
    metaInfo() {
       return { title: this.seo.title, meta: this.seo.meta };
@@ -55,7 +72,7 @@ export default {
          return state.metaInfo[this.routeName];
       }}),
       ...mapState('dataset', ['pageNumber', 'datasetList', 'pageCode']),
-      ...mapGetters('dataset', ['totalPage']),
+      ...mapGetters('dataset', ['totalPage', 'keywordData']),
       navName() {
          return this.$route.meta.navName;
       },
@@ -74,7 +91,7 @@ export default {
    },
    methods: {
       ...mapMutations('dataset', ['setPageCode', 'setPageNumber']),
-      ...mapActions('dataset', ['getDatasetPage', 'getDatasetList']),
+      ...mapActions('dataset', ['getDatasetPage', 'getDatasetList', 'getDatasetSearch']),
       checkStore(name) {
          return this.$checkStoreModule(name);
       },
@@ -101,6 +118,20 @@ export default {
          if (!isSame) await this.getDatasetPage();
          let isRedirect = this.getPageNumber();
          if (!isRedirect) await this.getDatasetList();
+      },
+      getSearchValue() {  //取得網址的關鍵字參數
+         if (this.isContentPage) return;
+         this.setKeyword(this.$route.query.searchValue || '');
+      },
+      setKeyword(text) {  //取得符合關鍵字得資料
+         this.keyword = text;
+         let copyData = JSON.parse(JSON.stringify(this.keywordData({ keyword: text })));
+         copyData.forEach(item => {
+            let dataname = item.title + '-' + item['resourceDescription-1'];
+            item.dataname = dataname;
+            delete item.title;
+         });
+         this.searchArr = copyData;
       },
       beforeEnter(el) {
          TweenMax.set(el, {
@@ -142,10 +173,15 @@ export default {
          this.$store.registerModule(this.storeName, datasetStore());
       }
       this.doing();
+      this.getDatasetSearch().then(res => {
+         this.getSearchValue();
+      });
    },
    watch: {
       $route(to, from) {
+         if (this.isContentPage) this.searchArr = [];
          this.doing();
+         this.getSearchValue();
       }
    },
    beforeDestroy() {
@@ -156,7 +192,8 @@ export default {
    components: {
       DatasetTitle,
       DataTable,
-      Pagination
+      Pagination,
+      SearchBox
    }
 }
 </script>

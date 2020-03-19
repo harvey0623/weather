@@ -9,16 +9,25 @@
          class="datasetList" 
          v-if="!isContentPage" 
          :key="1">
+         <SearchBox class="mb" @changeKeyword="keywordHandler"></SearchBox>
          <DatasetTitle :title="navName"></DatasetTitle>
-         <DataTable
-            :thTitle="thTitle"
-            :datasetList="datasetList"
-         ></DataTable>
-         <Pagination
-            :total="totalPage"
-            :pageNumber="pageNumber"
-            @updateNumber="changeNumber"
-         ></Pagination>
+         <template v-if="searchArr.length === 0">
+            <DataTable
+               :thTitle="thTitle"
+               :datasetList="datasetList"
+            ></DataTable>
+            <Pagination
+               :total="totalPage"
+               :pageNumber="pageNumber"
+               @updateNumber="changeNumber"
+            ></Pagination>
+         </template>
+         <template v-else>
+            <DataTable
+               :thTitle="thTitle"
+               :datasetList="searchArr"
+            ></DataTable>
+         </template>
       </div>
       <router-view v-else :key="2"></router-view>
    </transition>
@@ -31,7 +40,9 @@ import datasetStore from '@/store/modules/dataset.js';
 import DatasetTitle from '@/components/DatasetTitle/index.vue';
 import DataTable from '@/components/DataTable/index.vue';
 import Pagination from '@/components/Pagination/index.vue';
+import SearchBox from '@/components/SearchBox/index.vue';
 import mapCode from './mapCode.js';
+import Dataset from '@/api/dataset.js';
 const slideTime = 0.2;
 const animateStartInfo = { 
    position: 'absolute', 
@@ -42,10 +53,11 @@ const animateStartInfo = {
 export default {
    data: () => ({
       storeName: 'dataset',
+      searchArr: [],
       thTitle: [
          { title: '資料名稱', width: '75%' },
          { title: '資料編號', width: '25%' },
-      ]
+      ],
    }),
    metaInfo() {
       return { title: this.seo.title, meta: this.seo.meta };
@@ -55,7 +67,7 @@ export default {
          return state.metaInfo[this.routeName];
       }}),
       ...mapState('dataset', ['pageNumber', 'datasetList', 'pageCode']),
-      ...mapGetters('dataset', ['totalPage']),
+      ...mapGetters('dataset', ['totalPage', 'keywordData']),
       navName() {
          return this.$route.meta.navName;
       },
@@ -74,7 +86,7 @@ export default {
    },
    methods: {
       ...mapMutations('dataset', ['setPageCode', 'setPageNumber']),
-      ...mapActions('dataset', ['getDatasetPage', 'getDatasetList']),
+      ...mapActions('dataset', ['getDatasetPage', 'getDatasetList', 'getDatasetSearch']),
       checkStore(name) {
          return this.$checkStoreModule(name);
       },
@@ -93,6 +105,15 @@ export default {
       changeNumber(val) {
          this.setPageNumber(val);
          this.$router.push({ query: { page: val }}).catch(() => {});
+      },
+      keywordHandler(text) {
+         let copyData = JSON.parse(JSON.stringify(this.keywordData({ keyword: text })));
+         copyData.forEach(item => {
+            let dataname = item.title + '-' + item['resourceDescription-1'];
+            item.dataname = dataname;
+            delete item.title;
+         });
+         this.searchArr = copyData;
       },
       async doing() {
          if (this.isContentPage) return;
@@ -143,8 +164,12 @@ export default {
       }
       this.doing();
    },
+   mounted() {
+      this.getDatasetSearch();
+   },
    watch: {
       $route(to, from) {
+         if (this.isContentPage) this.searchArr = [];
          this.doing();
       }
    },
@@ -156,7 +181,8 @@ export default {
    components: {
       DatasetTitle,
       DataTable,
-      Pagination
+      Pagination,
+      SearchBox
    }
 }
 </script>

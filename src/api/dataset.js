@@ -13,4 +13,11 @@ export default class Dataset {
    static getDatasetContent(option = {}) {
       return httpMethod({ method: 'get' }, option);
    }
+   static getDatasetSearch(option = {}) {
+      return httpMethod({ 
+         url: '/datasetSearch', 
+         method: 'get',
+         params: { q: '_' }  
+      }, option);
+   }
 }

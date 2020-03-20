@@ -1,9 +1,13 @@
 #topBlock {
 	position: relative;
 	min-height: 380px;
-	background-image: url("/img/blockBg/bg1.jpg");
 	background-size: cover;
-	background-repeat: no-repeat;
+   background-repeat: no-repeat;
+   @for $i from 1 through 5 {
+      &.banner#{$i} {
+         background-image: url("/img/blockBg/pageBanner#{$i}.jpg");
+      }
+   }
 }
 
 #menu {
@@ -13,7 +17,6 @@
    width: 100%;
    >#menuCenter {
       display: flex;
-      max-width: 1024px;
       padding: 0;
       background-color: map-get($elBgColor, menu);
       border-radius: 5px;

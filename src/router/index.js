@@ -32,7 +32,8 @@ const routes = [
 		component: SiteMap,
 		meta: {
 			navName: '網站地圖',
-			layout: 'HasSideBar'
+			layout: 'HasSideBar',
+			banner: 'banner1'
 		},
 	},
 	{
@@ -42,7 +43,8 @@ const routes = [
 		meta: {
 			navName: '常見問答',
 			layout: 'HasSideBar',
-			order: 6
+			order: 6,
+			banner: 'banner5'
 		},
 	},
 	{
@@ -57,7 +59,8 @@ const routes = [
 			navName: '會員登入',
 			layout: 'HasSideBar',
 			auth: false,
-			order: 5
+			order: 5,
+			banner: 'banner1'
 		},
 	},
 	{
@@ -67,7 +70,8 @@ const routes = [
 			navName: '會員資訊',
 			layout: 'HasSideBar',
 			auth: true,
-			order: 4
+			order: 4,
+			banner: 'banner1'
 		},
 		children: [
 			{
@@ -91,7 +95,8 @@ const routes = [
 		meta: {
 			navName: '公告事項',
 			layout: 'HasSideBar',
-			order: 1
+			order: 1,
+			banner: 'banner4'
 		},
 		children: [
 			{
@@ -133,7 +138,8 @@ const routes = [
 		meta: {
 			navName: '資料主題',
 			layout: 'HasSideBar',
-			order: 2
+			order: 2,
+			banner: 'banner3'
 		},
 		children: [
 			{
@@ -150,7 +156,8 @@ const routes = [
 		meta: {
 			navName: '應用活化',
 			layout: 'HasSideBar',
-			order: 3
+			order: 3,
+			banner: 'banner2'
 		},
 		children: [
 			{

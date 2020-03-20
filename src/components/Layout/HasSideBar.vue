@@ -1,6 +1,6 @@
 <template>
 <div class="hasSideBar">
-	<div id="topBlock">
+	<div id="topBlock" :class="bannerClass">
 		<DefaultHeader :isDefault="false"></DefaultHeader>
 		<div id="menu">
 			<div id="menuCenter" class="mycontainer">
@@ -18,9 +18,7 @@
 	<section class="mysection">
 		<div id="sideBarCenter" class="mycontainer">
 			<SideBar v-if="showSideBar"></SideBar>
-			<div 
-				id="pageContent" 
-				:class="{ hasPadding: showSideBar, fullWidth: !showSideBar}">
+			<div id="pageContent" :class="contentClass">
 				<PageTitle v-if="hidePageTitle"></PageTitle>
 				<slot></slot>
 			</div>
@@ -48,6 +46,16 @@ export default {
 		},
 		hidePageTitle() { //如果是登入夜面就隱藏頁面標題
 			return this.routeName !== 'login';
+		},
+		contentClass() {
+			return {
+				hasPadding: this.showSideBar, 
+				fullWidth: !this.showSideBar
+			}
+		},
+		bannerClass() {
+			let parentRoute = this.$route.matched[0];
+			return parentRoute.meta.banner || 'banner1';
 		}
 	},
    components: {

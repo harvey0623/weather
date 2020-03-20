@@ -113,6 +113,15 @@
       },
       "astronomyContent": {
          "title": "資料主題-天文資料"
+      },
+      "app": {
+         "title": "應用活化-氣象應用APP"
+      },
+      "innovation": {
+         "title": "應用活化-氣象創意應用"
+      },
+      "web": {
+         "title": "應用活化-氣象網頁應用服務"
       }
    }
 }

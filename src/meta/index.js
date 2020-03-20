@@ -148,5 +148,23 @@ export default function () {
             },
          ],
       },
+      app: {
+         title: i18n.t('seo.app.title'),
+         meta: [
+            { property: 'og:title', content: i18n.t('seo.app.title') },
+         ],
+      },
+      innovation: {
+         title: i18n.t('seo.innovation.title'),
+         meta: [
+            { property: 'og:title', content: i18n.t('seo.innovation.title') },
+         ],
+      },
+      web: {
+         title: i18n.t('seo.web.title'),
+         meta: [
+            { property: 'og:title', content: i18n.t('seo.web.title') },
+         ],
+      },
    }
 }

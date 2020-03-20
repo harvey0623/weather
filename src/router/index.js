@@ -10,6 +10,9 @@ import Qa from '@/views/qa/index.vue';
 import News from '@/views/news/index.vue';
 import NewsContent from '@/views/newsContent/index.vue';
 import Meeting from '@/views/meeting/index.vue';
+import Apps from '@/views/apps/index.vue';
+import Innovation from '@/views/apps/innovation.vue';
+import Web from '@/views/apps/web.vue';
 import datasetPath from '@/router/dataset.js';
 
 Vue.use(VueRouter);
@@ -134,6 +137,45 @@ const routes = [
 				redirect: 'forecast'
 			},
 			...datasetPath,
+		]
+	},
+	{
+		path: '/application',
+		component: RouterView,
+		meta: {
+			navName: '應用活化',
+			layout: 'HasSideBar',
+		},
+		children: [
+			{
+				path: '',
+				name: 'defaultApplication',
+				redirect: 'app'
+			},
+			{
+				path: 'app',
+				name: 'app',
+				component: Apps,
+				meta: {
+					navName: '氣象應用APP'
+				},
+			},
+			{
+				path: 'innovation',
+				name: 'innovation',
+				component: Innovation,
+				meta: {
+					navName: '氣象創意應用'
+				},
+			},
+			{
+				path: 'web',
+				name: 'web',
+				component: Web,
+				meta: {
+					navName: '氣象網頁應用服務'
+				},
+			}
 		]
 	},
 	{

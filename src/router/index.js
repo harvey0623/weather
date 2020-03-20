@@ -11,6 +11,7 @@ import News from '@/views/news/index.vue';
 import NewsContent from '@/views/newsContent/index.vue';
 import Meeting from '@/views/meeting/index.vue';
 import Apps from '@/views/apps/index.vue';
+import Innovation from '@/views/apps/innovation.vue';
 import datasetPath from '@/router/dataset.js';
 
 Vue.use(VueRouter);
@@ -156,6 +157,14 @@ const routes = [
 				component: Apps,
 				meta: {
 					navName: '氣象應用APP'
+				},
+			},
+			{
+				path: 'innovation',
+				name: 'innovation',
+				component: Innovation,
+				meta: {
+					navName: '氣象創意應用'
 				},
 			}
 		]

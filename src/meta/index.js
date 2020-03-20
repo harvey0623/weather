@@ -154,5 +154,11 @@ export default function () {
             { property: 'og:title', content: i18n.t('seo.app.title') },
          ],
       },
+      innovation: {
+         title: i18n.t('seo.innovation.title'),
+         meta: [
+            { property: 'og:title', content: i18n.t('seo.innovation.title') },
+         ],
+      },
    }
 }

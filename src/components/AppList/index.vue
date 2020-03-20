@@ -5,7 +5,7 @@
       :key="index">
       <div class="appL">
          <img :src="item.imgUrl" alt="">
-         <div class="downloadBox" v-if="item.download">
+         <div class="downloadBox" v-if="item.download !== undefined">
             <a
                v-for="(value,key) in item.download"
                v-show="value !== ''"
@@ -16,7 +16,10 @@
          </div>
       </div>
       <div class="appR">
-         <h3>{{ item.title }}</h3>
+         <h3 v-if="item.pageUrl === undefined">{{ item.title }}</h3>
+         <h3 v-else>
+            <a :href="item.pageUrl" target="_blank">{{ item.title }}</a>
+         </h3>
          <p>{{ item.content }}</p>
       </div>
    </li>

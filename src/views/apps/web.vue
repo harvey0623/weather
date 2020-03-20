@@ -20,7 +20,7 @@ export default {
       appData
    }),
    computed: {
-      ...mapState("meta", { seo: state => state.metaInfo.innovation }),
+      ...mapState("meta", { seo: state => state.metaInfo.web }),
    },
    components: {
       AppList

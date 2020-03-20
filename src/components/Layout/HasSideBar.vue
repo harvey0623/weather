@@ -11,6 +11,7 @@
 					:dropdownText="item.meta.navName"
 					:children="item.children"
 				></MenuDropDown>
+				<router-link to="/qa">常見問答</router-link>
 			</div>
 		</div>
 	</div>
@@ -35,7 +36,7 @@ import SideBar from '@/components/SideBar/index.vue';
 import MenuDropDown from '@/components/DropDown/Menu.vue';
 export default {
 	data: () => ({
-		blockName: ['siteMap', 'qa']
+		blockName: ['siteMap', 'qa']  //哪些頁面不要sideBar
 	}),
 	computed: {
 		...mapGetters(['dropDownList']),

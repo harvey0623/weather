@@ -41,7 +41,8 @@ const routes = [
 		component: Qa,
 		meta: {
 			navName: '常見問答',
-			layout: 'HasSideBar'
+			layout: 'HasSideBar',
+			order: 6
 		},
 	},
 	{
@@ -55,7 +56,8 @@ const routes = [
 		meta: {
 			navName: '會員登入',
 			layout: 'HasSideBar',
-			auth: false
+			auth: false,
+			order: 5
 		},
 	},
 	{
@@ -64,7 +66,8 @@ const routes = [
 		meta: {
 			navName: '會員資訊',
 			layout: 'HasSideBar',
-			auth: true
+			auth: true,
+			order: 4
 		},
 		children: [
 			{
@@ -88,6 +91,7 @@ const routes = [
 		meta: {
 			navName: '公告事項',
 			layout: 'HasSideBar',
+			order: 1
 		},
 		children: [
 			{
@@ -129,6 +133,7 @@ const routes = [
 		meta: {
 			navName: '資料主題',
 			layout: 'HasSideBar',
+			order: 2
 		},
 		children: [
 			{
@@ -145,6 +150,7 @@ const routes = [
 		meta: {
 			navName: '應用活化',
 			layout: 'HasSideBar',
+			order: 3
 		},
 		children: [
 			{

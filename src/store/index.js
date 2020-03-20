@@ -17,17 +17,21 @@ export default new Vuex.Store({
 		blockPath: ['/', '*', '/siteMap', '/qa', '/login']
 	},
 	getters: {
-		showDropDown(state) {
+		showDropDown(state) {  //需要dropdown的router
 			return router.options.routes.filter(item => {
 				return !state.blockPath.includes(item.path);
 			});
 		},
-		dropDownList(state, getters) {  //下拉清單資料
+		showList(state, getters) {  //需要顯示的下拉清單
 			let isLogin = state.auth.fbUser.isLogin;
 			return getters.showDropDown.filter(item => {
 				let authStatus = item.meta.auth;
 				return authStatus === undefined || authStatus === isLogin; 
 			});
+		},
+		dropDownList(state, getters) {
+			let list = JSON.parse(JSON.stringify(getters.showList));
+			return list.sort((a, b) => a.meta.order - b.meta.order );
 		}
 	},
 	mutations: {

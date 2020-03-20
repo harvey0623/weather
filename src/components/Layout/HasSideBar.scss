@@ -12,11 +12,23 @@
    bottom: 0;
    width: 100%;
    >#menuCenter {
-      padding: 0 0;
+      display: flex;
+      max-width: 1024px;
+      padding: 0;
       background-color: map-get($elBgColor, menu);
       border-radius: 5px;
       >* {
+         flex: 1;
          height: 50px;
+      }
+      >a {
+         color: map-get($fontColor, primary);
+         text-align: center;
+         line-height: 50px;
+         &:hover {
+            color:  map-get($fontColor, menu);
+            background-color: map-get($elBgColor, hover);
+         }
       }
    }
 }

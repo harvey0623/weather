@@ -17,7 +17,9 @@
 	<section class="mysection">
 		<div id="sideBarCenter" class="mycontainer">
 			<SideBar v-if="showSideBar"></SideBar>
-			<div id="pageContent" :class="{ hasPadding: showSideBar }">
+			<div 
+				id="pageContent" 
+				:class="{ hasPadding: showSideBar, fullWidth: !showSideBar}">
 				<PageTitle v-if="hidePageTitle"></PageTitle>
 				<slot></slot>
 			</div>

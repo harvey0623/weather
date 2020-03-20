@@ -30,7 +30,7 @@ export default {
    methods: {
       linkDetail() {
          return {
-            name: 'newsContent',
+            name: 'newsDetail',
             params: { id: this.id },
             query: { page: this.pageNumber }
          }

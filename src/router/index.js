@@ -114,7 +114,7 @@ const routes = [
 				children: [
 					{
 						path: ':id',
-						name: 'newsContent',
+						name: 'newsDetail',
 						component: NewsContent,
 						meta: {
 							navName: '最新消息'

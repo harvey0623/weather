@@ -117,7 +117,7 @@ const routes = [
 						name: 'newsDetail',
 						component: NewsContent,
 						meta: {
-							navName: '最新消息'
+							navName: ''
 						},
 					}
 				]

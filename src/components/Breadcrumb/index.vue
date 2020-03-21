@@ -14,7 +14,7 @@
             :to="item.path"
          >{{ item.meta.navName }}</router-link>
       </template>
-      <template v-else>
+      <template v-else-if="item.meta.navName !== ''">
          <i class="far fa-chevron-right"></i>
          <span>{{ item.meta.navName }}</span>
       </template>
@@ -24,35 +24,14 @@
 
 <script>
 export default {
-   props: {
-      matchedArr: {
-         type: Array,
-         required: true
-      },
-      routeName: {
-         type: String,
-         required: true
-      }
-   },
    computed: {
+      matchedArr() {
+         return this.$route.matched;
+      },
       total() {
          return this.matchedArr.length;
-      },
-      copyRoute() {
-         return this.matchedArr.reduce((prev, current) => {
-            prev.push({
-               name: current.name,
-               path: current.path,
-               meta: current.meta
-            });
-            return prev;
-         }, []);
-      },
+      }
    },
-   created() {
-      console.log(this.copyRoute);
-   }
-   
 }
 </script>
 

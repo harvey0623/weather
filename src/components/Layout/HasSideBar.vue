@@ -17,10 +17,7 @@
 	</div>
 	<section class="mysection">
 		<div id="breadCenter" class="mycontainer">
-			<Breadcrumb 
-				:matchedArr="matchedArr"
-				:routeName="routeName"
-			></Breadcrumb>
+			<Breadcrumb></Breadcrumb>
 		</div>
 		<div id="sideBarCenter" class="mycontainer">
 			<SideBar v-if="showSideBar"></SideBar>
@@ -48,9 +45,6 @@ export default {
 		routeName() {
 			return this.$route.name;
 		},
-		matchedArr() {
-			return this.$route.matched;
-		},
 		showSideBar() {  //顯示sideBar
 			return !this.blockName.includes(this.routeName);
 		},
@@ -64,7 +58,7 @@ export default {
 			}
 		},
 		bannerClass() {
-			let parentRoute = this.matchedArr[0];
+			let parentRoute = this.$route.matched[0];
 			return parentRoute.meta.banner || 'banner1';
 		}
 	},

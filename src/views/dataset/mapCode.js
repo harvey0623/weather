@@ -4,5 +4,6 @@ export default  {
    earthquake: 'e',
    climate: 'c',
    warning: 'w',
-   mathematics: 'm'
+   mathematics: 'm',
+   astronomy: 'a'
 };

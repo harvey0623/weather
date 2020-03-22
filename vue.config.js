@@ -85,6 +85,14 @@ module.exports = {
 			 		'^/datasetSearch': ''
 				}
 			},
+			'/homeData': {
+				target: 'https://opendata.cwb.gov.tw/webapi/homeData',
+			  	ws: true,
+			  	changeOrigin: true,
+			  	pathRewrite: {
+			 		'^/homeData': ''
+				}
+			},
 		}
 	},
 }

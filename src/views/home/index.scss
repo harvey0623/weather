@@ -1,0 +1,23 @@
+$dataColor: map-get($fontColor, primary);
+
+.home {
+	background-color: #c1edff;
+   min-height: 100vh;
+   section {
+      padding-top: 15px;
+   }
+}
+
+.homeCenter > * {
+   margin-bottom: 20px;
+}
+
+.visitCount {
+   text-align: right;
+   color: $dataColor;
+}
+
+.statistics {
+   text-align: center;
+   color: $dataColor;
+}

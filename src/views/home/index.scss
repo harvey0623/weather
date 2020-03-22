@@ -21,3 +21,8 @@ $dataColor: map-get($fontColor, primary);
    text-align: center;
    color: $dataColor;
 }
+
+.categoryBox {
+   display: flex;
+   flex-wrap: wrap;
+}

@@ -8,11 +8,14 @@
          </div>
          <div class="statistics">{{ statisticData }}</div>
          <div class="categoryBox">
-            <router-link to="">
-               <img src="" alt="">
-               <p></p>
-               <small></small>
-            </router-link>
+            <CategoryList
+               v-for="item in categoryData"
+               :key="item.id"
+               :id="item.id"
+               :title="item.title"
+               :count="item.value"
+               :imgUrl="item.imgUrl"
+            ></CategoryList>
          </div>
       </div>
    </section>
@@ -24,6 +27,7 @@ import { mapState } from 'vuex';
 import DefaultHeader from '@/components/Header/index.vue';
 import Home from '@/api/home.js';
 import currency from '@/filter/currency.js';
+import CategoryList from '@/components/CategoryList/index.vue';
 export default {
    metaInfo() {
       return { title: this.seo.title, meta: this.seo.meta }
@@ -54,9 +58,9 @@ export default {
          return `總下載次數 ${currency(statisticAll)} 
             最近一個月下載次數 ${currency(statisticDays)}`;
       },
-      datasetList() {
+      categoryData() {
          let { datasetSizeByType } = this.homeData;
-         let keyLength = Object.keys(datasetSizeByType);
+         let keyLength = Object.keys(datasetSizeByType).length;
          if (keyLength === 0) return this.mappingList;
          return this.mappingList.reduce((prev, current) => {
             let obj = { value: datasetSizeByType[current.id] };
@@ -66,10 +70,12 @@ export default {
       }
    },
    async created() {
-      this.homeData = await Home.getHomeData().then(res => res.data.data);
+      let { success, data } = await Home.getHomeData().then(res => res.data);
+      if (success) this.homeData = data;
    },
    components: {
-      DefaultHeader
+      DefaultHeader,
+      CategoryList
    }
 }
 </script>

@@ -53,8 +53,7 @@ const newsStore = function() {
          },
          async getNewsList({ commit, getters }) { //取得新聞資料
             let { success, data } = await News.getNewsList({ 
-                  params: { pageIndex: getters.pageId }
-               }).then(res => res.data);
+               pageIndex: getters.pageId }).then(res => res.data);
             if (success) commit('setNewsList', data);
          }
       }

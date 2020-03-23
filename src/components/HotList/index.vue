@@ -34,5 +34,26 @@ export default {
 </script>
 
 <style lang="scss">
-
+.hotList {
+   flex: 0 0 50%;
+   padding-right: 20px;
+   margin-bottom: 10px;
+   @for $i from 1 through 2 {
+      &:nth-last-child(#{$i}) {
+         margin-bottom: 0;
+      }
+   }
+   >a {
+      color: map-get($fontColor, primary);
+      font-size: 15px;
+      &:before {
+         content: "•";
+         padding-right: 5px;
+         color: black;
+      }
+      &:hover {
+         text-decoration: underline;;
+      }
+   }
+}
 </style>

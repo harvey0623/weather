@@ -4,7 +4,7 @@
       <li 
          v-for="item in childRoute" 
          :key="item.name"
-         :class="{ active: routeName === item.name }">
+         :class="{ active: item.name === routeName }">
          <router-link
             :to="{name: item.name}"
          >{{ item.meta.navName }}</router-link>

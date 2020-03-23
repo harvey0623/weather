@@ -1,6 +1,6 @@
 module.exports = {
 	publicPath: process.env.NODE_ENV === 'production' ? process.env.VUE_APP_PUBLICPATH : '/',
-	runtimeCompiler: true,
+	// runtimeCompiler: true,
 	css: {
 		extract: {
 			filename: 'css/[name].css',

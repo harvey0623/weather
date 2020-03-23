@@ -84,7 +84,7 @@ module.exports = {
 			 		'^/datasetSearch': ''
 				}
 			},
-			[process.env.NODE_ENV === 'production' ? process.env.VUE_APP_HOMEDATA : '/']: {
+			'/homeData': {
 				target: 'https://opendata.cwb.gov.tw/webapi/homeData',
 			  	ws: true,
 			  	changeOrigin: true,

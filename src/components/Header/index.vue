@@ -2,7 +2,7 @@
 <header class="defaultHeader">
    <div class="mycontainer defaultCenter">
       <router-link to="/" class="logoBox">
-         <img src="/img/logo.png">
+         <img :src="require('@/assets/img/logo.png')">
       </router-link>
       <div class="navWrap">
          <div class="guideTop" :class="{ layout : !isDefault }">

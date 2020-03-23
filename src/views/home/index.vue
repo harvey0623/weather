@@ -59,12 +59,12 @@ export default {
       },
       mappingList: [
          { id: 'F', title: '預報', imgUrl: require('@/assets/img/home/forecast.svg'), value: 0 },
-         { id: 'O', title: '觀測', imgUrl: require('@/assets/img/home/observe.svg'), value: 0  },
-         { id: 'E', title: '地震海嘯', imgUrl: require('@/assets/img/home/tsunami.svg'), value: 0  },
-         { id: 'C', title: '氣候', imgUrl: require('@/assets/img/home/climate.svg'), value: 0  },
-         { id: 'W', title: '天氣警特報', imgUrl: require('@/assets/img/home/icon2.svg'), value: 0  },
-         { id: 'M', title: '數值預報', imgUrl: require('@/assets/img/home/number.svg'), value: 0  },
-         { id: 'A', title: '天文', imgUrl: require('@/assets/img/home/astronomy.png'), value: 0  }
+         { id: 'O', title: '觀測', imgUrl: require('@/assets/img/home/observe.svg'), value: 0 },
+         { id: 'E', title: '地震海嘯', imgUrl: require('@/assets/img/home/tsunami.svg'), value: 0 },
+         { id: 'C', title: '氣候', imgUrl: require('@/assets/img/home/climate.svg'), value: 0 },
+         { id: 'W', title: '天氣警特報', imgUrl: require('@/assets/img/home/icon2.svg'), value: 0 },
+         { id: 'M', title: '數值預報', imgUrl: require('@/assets/img/home/number.svg'), value: 0 },
+         { id: 'A', title: '天文', imgUrl: require('@/assets/img/home/astronomy.png'), value: 0 }
       ]
    }),
    computed: {

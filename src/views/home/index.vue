@@ -6,6 +6,7 @@
          <div class="visitCount">
             訪客人次 {{ homeData.visitCount | currency }} 人
          </div>
+         <div class="titleBg"></div>
          <div class="statistics">{{ statisticData }}</div>
          <div class="categoryBox">
             <CategoryList
@@ -30,6 +31,7 @@
          </div>
       </div>
    </section>
+   <Footer></Footer>
 </div>
 </template>
 
@@ -39,6 +41,7 @@ import DefaultHeader from '@/components/Header/index.vue';
 import CategoryList from '@/components/CategoryList/index.vue';
 import HotList from '@/components/HotList/index.vue';
 import Home from '@/api/home.js';
+import Footer from '@/components/Footer/index.vue';
 import currency from '@/filter/currency.js';
 export default {
    metaInfo() {
@@ -93,7 +96,8 @@ export default {
    components: {
       DefaultHeader,
       CategoryList,
-      HotList
+      HotList,
+      Footer
    }
 }
 </script>

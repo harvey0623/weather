@@ -27,6 +27,7 @@
 			</div>
 		</div>
 	</section>
+	<Footer></Footer>
 </div>
 </template>
 
@@ -36,6 +37,7 @@ import DefaultHeader from '@/components/Header/index.vue';
 import SideBar from '@/components/SideBar/index.vue';
 import MenuDropDown from '@/components/DropDown/Menu.vue';
 import Breadcrumb from '@/components/Breadcrumb/index.vue';
+import Footer from '@/components/Footer/index.vue';
 export default {
 	data: () => ({
 		blockName: ['siteMap', 'qa']  //哪些頁面不要sideBar
@@ -66,7 +68,8 @@ export default {
 		DefaultHeader,
 		SideBar,
 		MenuDropDown,
-		Breadcrumb
+		Breadcrumb,
+		Footer
    }
 }
 </script>

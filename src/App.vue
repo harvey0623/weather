@@ -1,15 +1,16 @@
 <template>
 <div id="app">
-	<component :is="layout">
-		<router-view/>
-	</component>
    <Loading v-if="isLoading"></Loading>
+	<component :is="layout">
+		<router-view></router-view>
+	</component>
 </div>
 </template>
 
 <script>
 import '@/assets/scss/module/index.scss';
 import Loading from '@/components/Loading/index.vue';
+import Footer from '@/components/Footer/index.vue';
 export default {
    metaInfo() {
       return {

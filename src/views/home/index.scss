@@ -1,15 +1,23 @@
 $dataColor: map-get($fontColor, primary);
 
 .home {
-	background-color: #c1edff;
-   min-height: 100vh;
+   background-color: #c1edff;
    section {
-      padding-top: 15px;
+      padding-top: 20px;
+      padding-bottom: 40px;
    }
 }
 
 .homeCenter > * {
-   margin-bottom: 20px;
+   margin-bottom: 35px;
+}
+
+.titleBg {
+   height: 350px;
+   background-image: url("/img/home/title.svg");
+   background-size: contain;
+   background-position: center center;
+   background-repeat: no-repeat;
 }
 
 .visitCount {
@@ -34,7 +42,7 @@ $dataColor: map-get($fontColor, primary);
    border: 2px solid #95d2f0;
    >p {
       flex: 0 0 220px;
-      padding: 15px;
+      padding: 10px;
       color: #fff;
       background-color: #95d2f0;
       text-align: center;
@@ -46,26 +54,4 @@ $dataColor: map-get($fontColor, primary);
    padding: 15px;
    display: flex;
    flex-wrap: wrap;
-   >li {
-      flex: 0 0 50%;
-      padding-right: 20px;
-      margin-bottom: 10px;
-      @for $i from 1 through 2 {
-         &:nth-last-child(#{$i}) {
-            margin-bottom: 0;
-         }
-      }
-      >a {
-         color: map-get($fontColor, primary);
-         font-size: 15px;
-         &:before {
-            content: "•";
-            padding-right: 5px;
-            color: black;
-         }
-         &:hover {
-            text-decoration: underline;;
-         }
-      }
-   }
 }

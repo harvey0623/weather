@@ -2,18 +2,13 @@
 <header class="defaultHeader">
    <div class="mycontainer defaultCenter">
       <router-link to="/" class="logoBox">
-         <img src="/img/logo.png">
+         <img :src="require('@/assets/img/logo.png')">
       </router-link>
       <div class="navWrap">
          <div class="guideTop" :class="{ layout : !isDefault }">
-            <div class="searchBox" v-if="isDefault">
-               <input 
-                  type="text" 
-                  class="form-control" 
-                  placeholder="搜尋"
-                  v-model="keyword" >
-               <i class="far fa-search"></i>
-            </div>
+            <template v-if="isDefault">
+               <SearchBox enterEvent></SearchBox>
+            </template>
             <a
                v-if="isLogin"
                href="javascript:;" 
@@ -41,6 +36,7 @@
 <script>
 import { mapState, mapGetters } from 'vuex';
 import DropDown from '@/components/DropDown/index.vue';
+import SearchBox from '@/components/SearchBox/index.vue';
 export default {
    props: {
       isDefault: {
@@ -49,7 +45,7 @@ export default {
       }
    },
    data:() => ({
-      keyword: ''
+      
    }),
    computed: {
       ...mapState('auth', { isLogin: state => state.fbUser.isLogin }),
@@ -69,7 +65,8 @@ export default {
       }
    },
    components: {
-      DropDown
+      DropDown,
+      SearchBox
    }
 }
 </script>

@@ -37,11 +37,11 @@ axios.interceptors.response.use(function (response) {
    return Promise.reject(error);
 });
 
-const httpMethod = function (option1, option2) {
-   if (Object.prototype.toString.call(option2) !== '[object Object]') {
-      return Promise.reject('option must be object');
-   }
-   return axios({ ...option1, ...option2 });
+const httpMethod = function (option) {
+   // if (Object.prototype.toString.call(option2) !== '[object Object]') {
+   //    return Promise.reject('option must be object');
+   // }
+   return axios(option);
 }
 
 export default httpMethod;

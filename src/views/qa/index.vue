@@ -7,6 +7,7 @@
          :orderNumber="index + 1"
          :title="item.title"
          :content="item.content"
+         :visible="index === 0"
       ></Accordion>
    </div>
 </div>

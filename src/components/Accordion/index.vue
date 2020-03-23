@@ -5,6 +5,7 @@
       <p>{{ title }}</p>
    </div>
    <b-collapse
+      :visible="visible"
       :id="`accordion${orderNumber}`"
       accordion="my-accordion"
       role="tabpanel">
@@ -28,6 +29,10 @@ export default {
       },
       content: {
          type: String,
+         required: true
+      },
+      visible: { 
+         type: Boolean,
          required: true
       }
    }

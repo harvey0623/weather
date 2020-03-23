@@ -39,7 +39,7 @@ export default {
                break;
             }
          }
-         return { name: pageName, query: { page: 1 } };
+         return { name: pageName, query: { page: 1 }};
       }
    }
 }

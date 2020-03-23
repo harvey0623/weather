@@ -17,6 +17,17 @@
                :imgUrl="item.imgUrl"
             ></CategoryList>
          </div>
+         <div class="hotDataBox">
+            <p>熱門資料</p>
+            <ul class="hotUl">
+               <HotList 
+                  v-for="item in topDownloadDataset"
+                  :key="item.dataid"
+                  :dataid="item.dataid"
+                  :dataname="item.dataname"
+               ></HotList>
+            </ul>
+         </div>
       </div>
    </section>
 </div>
@@ -25,9 +36,10 @@
 <script>
 import { mapState } from 'vuex';
 import DefaultHeader from '@/components/Header/index.vue';
+import CategoryList from '@/components/CategoryList/index.vue';
+import HotList from '@/components/HotList/index.vue';
 import Home from '@/api/home.js';
 import currency from '@/filter/currency.js';
-import CategoryList from '@/components/CategoryList/index.vue';
 export default {
    metaInfo() {
       return { title: this.seo.title, meta: this.seo.meta }
@@ -36,8 +48,9 @@ export default {
       homeData: {
          visitCount: 0,
          datasetSizeByType: {},
+         topDownloadDataset: [],
          statisticSum: {
-            statisticAll: 0 ,
+            statisticAll: 0,
             statisticDays: 0
          }
       },
@@ -67,6 +80,10 @@ export default {
             prev.push({ ...current, ...obj });
             return prev;
          }, []);
+      },
+      topDownloadDataset() {
+         if (this.homeData.topDownloadDataset.length === 0) return [];
+         return this.homeData.topDownloadDataset;
       }
    },
    async created() {
@@ -75,7 +92,8 @@ export default {
    },
    components: {
       DefaultHeader,
-      CategoryList
+      CategoryList,
+      HotList
    }
 }
 </script>

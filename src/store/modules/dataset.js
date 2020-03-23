@@ -78,15 +78,13 @@ const datasetStore = function() {
             }
          },
          async getDatasetMeta({ commit }, { id }) {
-            let url = `/datasetMetadata/${ id }`;
-            let { success, data } = await Dataset.getDatasetMeta({ url })
+            let { success, data } = await Dataset.getDatasetMeta({ id })
                .then(res => res.data);
             if (success) return data;
             else return null;
          },
          async getDatasetContent({ commit }, { id }) {
-            let url = `/datasetContent/${ id }`;
-            let { success, result, records } = await Dataset.getDatasetContent({ url })
+            let { success, result, records } = await Dataset.getDatasetContent({ id })
                .then(res => res.data);
             if (success === 'true') {
                return { result, records };

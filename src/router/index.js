@@ -8,7 +8,12 @@ import RouterView from '@/views/routerView/index.vue';
 import UserInfo from '@/views/userInfo/index.vue';
 import Qa from '@/views/qa/index.vue';
 import News from '@/views/news/index.vue';
+import NewsContent from '@/views/newsContent/index.vue';
 import Meeting from '@/views/meeting/index.vue';
+import Apps from '@/views/apps/index.vue';
+import Innovation from '@/views/apps/innovation.vue';
+import Web from '@/views/apps/web.vue';
+import datasetPath from '@/router/dataset.js';
 
 Vue.use(VueRouter);
 
@@ -27,7 +32,8 @@ const routes = [
 		component: SiteMap,
 		meta: {
 			navName: '網站地圖',
-			layout: 'HasSideBar'
+			layout: 'HasSideBar',
+			banner: 'banner1'
 		},
 	},
 	{
@@ -36,7 +42,9 @@ const routes = [
 		component: Qa,
 		meta: {
 			navName: '常見問答',
-			layout: 'HasSideBar'
+			layout: 'HasSideBar',
+			order: 6,
+			banner: 'banner5'
 		},
 	},
 	{
@@ -50,7 +58,9 @@ const routes = [
 		meta: {
 			navName: '會員登入',
 			layout: 'HasSideBar',
-			auth: false
+			auth: false,
+			order: 5,
+			banner: 'banner1'
 		},
 	},
 	{
@@ -59,7 +69,9 @@ const routes = [
 		meta: {
 			navName: '會員資訊',
 			layout: 'HasSideBar',
-			auth: true
+			auth: true,
+			order: 4,
+			banner: 'banner1'
 		},
 		children: [
 			{
@@ -83,6 +95,8 @@ const routes = [
 		meta: {
 			navName: '公告事項',
 			layout: 'HasSideBar',
+			order: 1,
+			banner: 'banner4'
 		},
 		children: [
 			{
@@ -96,7 +110,17 @@ const routes = [
 				component: News,
 				meta: {
 					navName: '最新消息'
-				}
+				},
+				children: [
+					{
+						path: ':id',
+						name: 'newsDetail',
+						component: NewsContent,
+						meta: {
+							navName: ''
+						},
+					}
+				]
 			},
 			{
 				path: 'meeting',
@@ -106,6 +130,65 @@ const routes = [
 					navName: '會議記錄'
 				}
 			},
+		]
+	},
+	{
+		path: '/dataset',
+		component: RouterView,
+		meta: {
+			navName: '資料主題',
+			layout: 'HasSideBar',
+			order: 2,
+			banner: 'banner3'
+		},
+		children: [
+			{
+				path: '',
+				name: 'defaultDataset',
+				redirect: 'forecast'
+			},
+			...datasetPath,
+		]
+	},
+	{
+		path: '/application',
+		component: RouterView,
+		meta: {
+			navName: '應用活化',
+			layout: 'HasSideBar',
+			order: 3,
+			banner: 'banner2'
+		},
+		children: [
+			{
+				path: '',
+				name: 'defaultApplication',
+				redirect: 'app'
+			},
+			{
+				path: 'app',
+				name: 'app',
+				component: Apps,
+				meta: {
+					navName: '氣象應用APP'
+				},
+			},
+			{
+				path: 'innovation',
+				name: 'innovation',
+				component: Innovation,
+				meta: {
+					navName: '氣象創意應用'
+				},
+			},
+			{
+				path: 'web',
+				name: 'web',
+				component: Web,
+				meta: {
+					navName: '氣象網頁應用服務'
+				},
+			}
 		]
 	},
 	{

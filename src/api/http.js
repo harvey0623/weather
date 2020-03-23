@@ -18,7 +18,7 @@ const errorHandle = function(statusCode) {
 
 //request interceptor
 axios.interceptors.request.use(function (config) {
-   store.commit('setLoading', true);
+   // store.commit('setLoading', true);
    return config;
 }, function (error) {
    return Promise.reject(error);
@@ -26,10 +26,10 @@ axios.interceptors.request.use(function (config) {
 
 //response interceptor
 axios.interceptors.response.use(function (response) {
-   store.commit('setLoading', false);
+   // store.commit('setLoading', false);
    return response;
 }, function (error) {
-   store.commit('setLoading', false);
+   // store.commit('setLoading', false);
    if (error.response) {
       let statusCode = error.response.status;
       errorHandle(statusCode);

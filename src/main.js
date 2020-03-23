@@ -14,16 +14,17 @@ import '@/filter/index.js';
 
 //===plugin
 import '@/plugin/bootstrap/index.js';
-// import '@/plugin/breadcrumbs/index.js';
-// import '@/plugin/toastr/index.js';
-// import '@/plugin/cropper/index.js';
+import '@/plugin/toastr/index.js';
 
 
 Vue.config.productionTip = false;
 Vue.use(VueMeta);
 Vue.use(validator);
+Vue.prototype.$checkStoreModule = function(name) {
+  return this.$store.hasModule(name);
+}
 
-let app = new Vue({
+const app = new Vue({
   router,
   store,
   i18n,

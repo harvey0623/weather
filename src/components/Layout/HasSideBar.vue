@@ -1,6 +1,6 @@
 <template>
 <div class="hasSideBar">
-	<div id="topBlock">
+	<div id="topBlock" :class="bannerClass">
 		<DefaultHeader :isDefault="false"></DefaultHeader>
 		<div id="menu">
 			<div id="menuCenter" class="mycontainer">
@@ -11,18 +11,23 @@
 					:dropdownText="item.meta.navName"
 					:children="item.children"
 				></MenuDropDown>
+				<router-link to="/qa">常見問答</router-link>
 			</div>
 		</div>
 	</div>
 	<section class="mysection">
+		<div id="breadCenter" class="mycontainer">
+			<Breadcrumb></Breadcrumb>
+		</div>
 		<div id="sideBarCenter" class="mycontainer">
 			<SideBar v-if="showSideBar"></SideBar>
-			<div id="pageContent" :class="{ hasPadding: showSideBar }">
+			<div id="pageContent" :class="contentClass">
 				<PageTitle v-if="hidePageTitle"></PageTitle>
 				<slot></slot>
 			</div>
 		</div>
 	</section>
+	<Footer></Footer>
 </div>
 </template>
 
@@ -31,9 +36,11 @@ import { mapGetters } from 'vuex';
 import DefaultHeader from '@/components/Header/index.vue';
 import SideBar from '@/components/SideBar/index.vue';
 import MenuDropDown from '@/components/DropDown/Menu.vue';
+import Breadcrumb from '@/components/Breadcrumb/index.vue';
+import Footer from '@/components/Footer/index.vue';
 export default {
 	data: () => ({
-		blockName: ['siteMap', 'qa']
+		blockName: ['siteMap', 'qa']  //哪些頁面不要sideBar
 	}),
 	computed: {
 		...mapGetters(['dropDownList']),
@@ -45,12 +52,24 @@ export default {
 		},
 		hidePageTitle() { //如果是登入夜面就隱藏頁面標題
 			return this.routeName !== 'login';
+		},
+		contentClass() {
+			return {
+				hasPadding: this.showSideBar, 
+				fullWidth: !this.showSideBar
+			}
+		},
+		bannerClass() {
+			let parentRoute = this.$route.matched[0];
+			return parentRoute.meta.banner || 'banner1';
 		}
 	},
    components: {
 		DefaultHeader,
 		SideBar,
-		MenuDropDown
+		MenuDropDown,
+		Breadcrumb,
+		Footer
    }
 }
 </script>

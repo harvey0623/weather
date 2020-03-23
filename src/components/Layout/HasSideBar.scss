@@ -1,9 +1,19 @@
+.hasSideBar {
+   >.mysection {
+      min-height: 600px;
+   }
+}
+
 #topBlock {
 	position: relative;
 	min-height: 380px;
-	background-image: url("/img/blockBg/bg1.jpg");
 	background-size: cover;
-	background-repeat: no-repeat;
+   background-repeat: no-repeat;
+   @for $i from 1 through 5 {
+      &.banner#{$i} {
+         background-image: url("/img/blockBg/pageBanner#{$i}.jpg");
+      }
+   }
 }
 
 #menu {
@@ -12,11 +22,22 @@
    bottom: 0;
    width: 100%;
    >#menuCenter {
-      padding: 0 0;
+      display: flex;
+      padding: 0;
       background-color: map-get($elBgColor, menu);
       border-radius: 5px;
       >* {
+         flex: 1;
          height: 50px;
+      }
+      >a {
+         color: map-get($fontColor, primary);
+         text-align: center;
+         line-height: 50px;
+         &:hover {
+            color:  map-get($fontColor, menu);
+            background-color: map-get($elBgColor, hover);
+         }
       }
    }
 }
@@ -32,12 +53,17 @@
 }
 
 #pageContent {
-   flex: 1;
+   width: calc(100% - 250px);
    padding-left: 0px;
+   &.fullWidth {
+      width: 100%;
+   }
    &.hasPadding {
-      padding-left: 50px;
+      padding-left: 35px;
    }
 }
 
-
+#breadCenter {
+   margin-bottom: 20px;
+}
 

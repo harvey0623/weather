@@ -4,7 +4,7 @@
       <li 
          v-for="item in childRoute" 
          :key="item.name"
-         :class="{ active: routeName === item.name }">
+         :class="{ active: item.name === routeName }">
          <router-link
             :to="{name: item.name}"
          >{{ item.meta.navName }}</router-link>
@@ -39,15 +39,16 @@ export default {
 <style lang="scss">
 .sideBarList {
    >li {
-      padding: 10px 12px;
       background-color: #eee;
       border-bottom: 1px solid #fff;
       >a {
+         display: block;
+         padding: 10px 12px;
          color: #666666;
-      }
-      &.active {
-         background-color: #f3ba42;
-         >a {
+         transition: background-color 0.25s;
+         &.router-link-active,
+         &.router-link-exact-active {
+            background-color: map-get($elBgColor, sideBar);
             color: #fff;
          }
       }

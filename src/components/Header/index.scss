@@ -33,29 +33,6 @@ $linkColor: map-get($fontColor, primary);
    >* {
       @include elGutter(margin-right, 20px);
    }
-   >.searchBox {
-      position: relative;
-      >.form-control {
-         @include size(150px, 36px);
-         padding-left: 30px;
-         border-radius: 100px;
-         background-color: #ededed;
-         transition: width 0.5s, background-color, 0.5s;
-         &::placeholder {
-            font-size: 16px;
-         }
-         &:focus {
-            width: 180px;
-            background-color: #fff;
-         }
-      }
-      >i {
-         position: absolute;
-         left: 10px;
-         top: 10px;
-         color: gray;
-      }
-   }
    >a {
       color: $linkColor;
       &.default {

@@ -51,7 +51,8 @@ export default {
       siteMapRouter() { //依照登入狀態篩選對應route
          let noAuthRoute = this.noEmptyRoute.filter(item => item.meta.auth === undefined);
          let authRoute = this.noEmptyRoute.filter(item => item.meta.auth === this.isLogin);
-         return noAuthRoute.concat(authRoute);
+         let showArr = noAuthRoute.concat(authRoute);
+         return showArr.sort((a, b) => a.meta.order - b.meta.order);
       }
    },
    mounted() {

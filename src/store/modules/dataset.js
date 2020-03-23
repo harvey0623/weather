@@ -61,8 +61,8 @@ const datasetStore = function() {
       },
       actions: {
          async getDatasetPage({ state, commit }) {
-            let url = `/datasetPage/${state.pageCode}`;
-            let { success, data } = await Dataset.getDatasetPage({ url })
+            let { success, data } = await Dataset.getDatasetPage({ 
+               pageCode: state.pageCode })
                .then(res => res.data);
             if (success) {
                commit('setDatasetPage', data);

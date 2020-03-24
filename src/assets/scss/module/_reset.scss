@@ -22,6 +22,11 @@ footer, header, hgroup, menu, nav, section {
 	display: block;
 }
 
+*:after,
+*:before {
+	box-sizing: border-box;
+}
+
 html {
 	font-size: 16px;
 }
@@ -40,8 +45,7 @@ table {
 	border-spacing: 0;
 }
 
-a,
-span {
+a,span {
 	display: inline-block;
 }
 

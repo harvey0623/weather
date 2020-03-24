@@ -8,7 +8,7 @@ export default class News {
          url: this.url,
          method: 'get',
          params: { url }
-      }, {});
+      });
    }
    static getNewsList({ pageIndex }) {
       const url = `https://opendata.cwb.gov.tw/webapi/announcement/newslist?pageIndex=${pageIndex}`;
@@ -16,6 +16,6 @@ export default class News {
          url: this.url,
          method: 'get',
          params: { url }
-      }, {});
+      });
    }
 }

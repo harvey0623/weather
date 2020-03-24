@@ -8,7 +8,7 @@ export default class Dataset {
          url: this.url,
          method: 'get',
          params: { url }
-      }, {});
+      });
    }
    static getDatasetList({ pageCode, pageIndex }) {
       const url = `https://opendata.cwb.gov.tw/webapi/datasetList/${pageCode}?pageIndex=${pageIndex}`;
@@ -16,7 +16,7 @@ export default class Dataset {
          url: this.url,
          method: 'get',
          params: { url }
-      }, {});
+      });
    }
    static getDatasetMeta({ id }) {
       const url = `https://opendata.cwb.gov.tw/webapi/datasetMetadata/${id}`;
@@ -24,7 +24,7 @@ export default class Dataset {
          url: this.url,
          method: 'get',
          params: { url }
-      }, {});
+      });
    }
    static getDatasetContent({ id }) {
       const url = `https://opendata.cwb.gov.tw/webapi/datasetContent/${id}`;
@@ -32,7 +32,7 @@ export default class Dataset {
          url: this.url,
          method: 'get',
          params: { url }
-      }, {});
+      });
    }
    static getDatasetSearch() {
       const url = `https://opendata.cwb.gov.tw/webapi/datasetSearch/?q=_`;
@@ -40,6 +40,6 @@ export default class Dataset {
          url: this.url,
          method: 'get',
          params: { url }
-      }, {});
+      });
    }
 }

@@ -1,13 +1,16 @@
 <template>
 <div class="apps">
-   <AppList :appData="appData"></AppList>
+   <AppList 
+      :appData="appData"
+      vertical
+   ></AppList>
 </div>
 </template>
 
 <script>
 import { mapState } from 'vuex';
 import AppList from '@/components/AppList/index.vue';
-import appData from './innovation.js';
+import appData from './index.js';
 
 export default {
    metaInfo() {
@@ -17,7 +20,7 @@ export default {
       appData
    }),
    computed: {
-      ...mapState("meta", { seo: state => state.metaInfo.innovation }),
+      ...mapState("meta", { seo: state => state.metaInfo.web }),
    },
    components: {
       AppList

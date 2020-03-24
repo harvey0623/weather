@@ -11,8 +11,8 @@ import News from '@/views/news/index.vue';
 import NewsContent from '@/views/newsContent/index.vue';
 import Meeting from '@/views/meeting/index.vue';
 import Apps from '@/views/apps/index.vue';
-import Innovation from '@/views/apps/innovation.vue';
-import Web from '@/views/apps/web.vue';
+import Innovation from '@/views/innovation/index.vue';
+import Web from '@/views/web/index.vue';
 import datasetPath from '@/router/dataset.js';
 
 Vue.use(VueRouter);
